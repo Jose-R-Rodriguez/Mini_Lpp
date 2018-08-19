@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/lpp.dir/lexer.cpp.o CMakeFiles/lpp.dir/src/main.cpp.o  -o lpp 
