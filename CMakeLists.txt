@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.60)
 
 project(lpp)
 
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+set( CMAKE_CXX_FLAGS	"${CMAKE_CXX_FLAGS}")
 
 add_custom_command(
   OUTPUT lexer.cpp
@@ -16,5 +16,6 @@ add_custom_command(
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/src/hdrs)
-add_executable(lpp lexer.cpp
+add_executable(lpp	lexer.cpp
+					parser.cpp
 					src/main.cpp)
