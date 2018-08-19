@@ -1,3 +1,6 @@
+%code{
+	#include "lexer.hpp"
+}
 %{
 	#include "common.hpp"
 	extern int yylex();
@@ -8,8 +11,7 @@
 
 %defines "../src/hdrs/parser.hpp"
 
-%token TK_ADD
-%token TK_SUB
+
 %%
 	test: ;
 %%

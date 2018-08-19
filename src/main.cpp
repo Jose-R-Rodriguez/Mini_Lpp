@@ -11,6 +11,10 @@ int main(int argc, char const *argv[]){
 	}
 	std::ifstream file(argv[1]);
 	mylexer= new Lexer(file);
-	std::cout<<mylexer->ResolveToken()<<std::endl;
+	int currToken= mylexer->ResolveToken();
+	while (currToken != 0) {
+		std::cout<<currToken<<std::endl;
+		currToken= mylexer->ResolveToken();
+	}
 	return 0;
 }

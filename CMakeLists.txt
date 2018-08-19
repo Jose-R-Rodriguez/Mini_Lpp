@@ -18,4 +18,4 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/src/hdrs)
 add_executable(lpp	lexer.cpp
 					parser.cpp
-					src/main.cpp)
+					${PROJECT_SOURCE_DIR}/src/main.cpp)
