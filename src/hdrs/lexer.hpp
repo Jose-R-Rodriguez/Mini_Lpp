@@ -53,15 +53,29 @@ private:
 	std::string currentLexeme;
 	~Lexer();
 	CaseIUnorderedMap Keywords{
-		{"inicio",			105},
-		{"fin",				106},
-		{"entonces",		107},
-		{"si",				108},
+		{"inicio",			KW_INICIO},
+		{"fin",				KW_FIN},
+		{"entonces",		KW_ENTONCES},
+		{"si",				KW_SI},
 		{"escriba",			109},
+		{"tipo",			KW_TIPO},
+		{"es",				KW_ES},
+		{"de",				KW_DE},
+		{"arreglo",			KW_ARREGLO},
 		{"entero",			KW_ENTERO},
-		{"booleano",		111},
-		{"caracter",		112},
-		{"procedimiento",	113}
+		{"booleano",		KW_BOOLEANO},
+		{"caracter",		KW_CARACTER},
+		{"procedimiento",	KW_PROC},
+		{"FUNCION",			KW_FUNC},
+		{"sino",			KW_SINO},
+		{"para",			KW_PARA},
+		{"HASTA",			KW_HASTA},
+		{"haga",			KW_HAGA},
+		{"llamar",			KW_LLAMAR},
+		{"verdadero",		KW_VERD},
+		{"false",			KW_FALSO},
+		{"retorn",			KW_RETORNE},
+		{"<-",				TK_ARROW}
 	};
 };
 #endif

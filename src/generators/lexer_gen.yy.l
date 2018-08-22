@@ -16,16 +16,19 @@
 %option caseless
 id			[a-zA-Z_][a-zA-Z0-9_]*
 dec_num		[1-9][0-9]*
-hex_num		"0x"[0-9]+
-oct_num		"0"[0-8]+
-binary_num	"0b"[01]+
 %x LINE_COMMENT
 %x BLOCK_COMMENT
 %x STR_LIT
 
 %%
 {id}				{ setLexeme(std::string(yytext)); return (Keywords.find(yytext) == Keywords.end()) ? TK_ID : Keywords[yytext]; }
+{dec_num}			{ setLexeme(std::string(yytext)); return TK_NUM; }
 \n					{ return TK_NEW_LINE; }
+","					{ return TK_COMMA; }
+"["					{ return TK_OPEN_BRACK; }
+"]"					{ return TK_CLOSE_BRACK; }
+"("					{ return TK_OPEN_PAR; }
+")"					{ return TK_CLOSE_PAR; }
 "\""				{ BEGIN(STR_LIT); }
 "//"				{ BEGIN(LINE_COMMENT); }
 "/*"				{ BEGIN(BLOCK_COMMENT); }

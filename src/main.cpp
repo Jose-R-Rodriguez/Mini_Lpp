@@ -17,7 +17,7 @@ int main(int argc, char const *argv[]){
 	void* pParser = ParseAlloc(malloc);
 	int currentToken=-1;
 	while (currentToken != TK_EOF){
-		//std::cout<<"IN HERE: "<<currentToken<<std::endl;
+		std::cout<<"IN HERE: "<<currentToken<<std::endl;
 		currentToken= mylexer->ResolveToken();
 		Parse(pParser, currentToken, mylexer->getLexeme().c_str());
 	}
