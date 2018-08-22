@@ -11,8 +11,8 @@ add_custom_command(
 
 add_custom_command(
   OUTPUT parser.cpp
-  COMMAND bison -o parser.cpp ${PROJECT_SOURCE_DIR}/src/generators/parser_gen.y
-  MAIN_DEPENDENCY ${PROJECT_SOURCE_DIR}/src/generators/parser_gen.y)
+  COMMAND lemon -oparser.cpp -dparser.hpp -T${PROJECT_SOURCE_DIR}/src/lempar.c ${PROJECT_SOURCE_DIR}/src/generators/parser_gen_lemon.y
+  MAIN_DEPENDENCY ${PROJECT_SOURCE_DIR}/src/generators/parser_gen_lemon.y)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/src/hdrs)

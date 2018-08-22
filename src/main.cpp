@@ -1,9 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include "lexer.hpp"
+#include "parser_lemon.hpp"
+#include "parser.hpp"
 Lexer* mylexer;
-int yylex(){ return mylexer->ResolveToken(); }
-
+//int yylex(){ return mylexer->ResolveToken(); }
+//extern int yyparse();
 int main(int argc, char const *argv[]){
 	if (argc < 2) {
 		std::cerr<<"Error no file inputted"<<std::endl;
@@ -11,10 +13,13 @@ int main(int argc, char const *argv[]){
 	}
 	std::ifstream file(argv[1]);
 	mylexer= new Lexer(file);
-	int currToken= mylexer->ResolveToken();
-	while (currToken != 0) {
-		std::cout<<currToken<<std::endl;
-		currToken= mylexer->ResolveToken();
+	//yyparse();
+	void* pParser = ParseAlloc(malloc);
+	int currentToken=-1;
+	while (currentToken != TK_EOF){
+		//std::cout<<"IN HERE: "<<currentToken<<std::endl;
+		currentToken= mylexer->ResolveToken();
+		Parse(pParser, currentToken, mylexer->getLexeme().c_str());
 	}
 	return 0;
 }

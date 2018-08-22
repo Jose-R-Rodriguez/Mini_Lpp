@@ -24,16 +24,19 @@ binary_num	"0b"[01]+
 %x STR_LIT
 
 %%
-{id}				{ return Keywords.find(yytext) == Keywords.end() ? 20 : 10; }
+{id}				{ setLexeme(std::string(yytext)); return (Keywords.find(yytext) == Keywords.end()) ? TK_ID : Keywords[yytext]; }
 \n					{ return TK_NEW_LINE; }
-.					{ ; }
+"\""				{ BEGIN(STR_LIT); }
 "//"				{ BEGIN(LINE_COMMENT); }
 "/*"				{ BEGIN(BLOCK_COMMENT); }
+.					{ ; }
+<STR_LIT>[^"]*		{ ; }
+<STR_LIT>\"			{BEGIN(INITIAL); return TK_STR_LIT; }
 <LINE_COMMENT>.		{ ; }
 <LINE_COMMENT>\n	{ BEGIN(INITIAL); }
-<BLOCK_COMMENT>.|\n	{  }
+<BLOCK_COMMENT>.|\n	{}
 <BLOCK_COMMENT>"*/"	{ BEGIN(INITIAL); }
-<<EOF>>				{ return 0; }
+<<EOF>>				{ return TK_EOF; }
 %%
 
 Lexer::Lexer(std::istream &input) : input(input){

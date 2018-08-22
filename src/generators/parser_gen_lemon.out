@@ -1,0 +1,66 @@
+State 0:
+          start ::= * global_decls
+          global_decls ::= * primitive id_list eol
+          primitive ::= * KW_ENTERO
+
+                     KW_ENTERO shift-reduce 7      primitive ::= KW_ENTERO
+                         start accept
+                  global_decls shift        6      
+                     primitive shift        2      
+
+State 1:
+          global_decls ::= primitive id_list * eol
+          eol ::= * TK_NEW_LINE
+          eol ::= * TK_EOF
+
+                   TK_NEW_LINE shift-reduce 2      eol ::= TK_NEW_LINE
+                        TK_EOF shift-reduce 3      eol ::= TK_EOF
+                           eol shift-reduce 1      global_decls ::= primitive id_list eol
+
+State 2:
+          global_decls ::= primitive * id_list eol
+          id_list ::= * TK_ID ids
+
+                         TK_ID shift        3      
+                       id_list shift        1      
+
+State 3:
+          id_list ::= TK_ID * ids
+          ids ::= * ids TK_COMMA TK_ID
+      (6) ids ::= *
+
+                           ids shift        5      
+                     {default} reduce       6      ids ::=
+
+State 4:
+          ids ::= ids TK_COMMA * TK_ID
+
+                         TK_ID shift-reduce 5      ids ::= ids TK_COMMA TK_ID
+
+State 5:
+      (4) id_list ::= TK_ID ids *
+          ids ::= ids * TK_COMMA TK_ID
+
+                      TK_COMMA shift        4      
+                     {default} reduce       4      id_list ::= TK_ID ids
+
+State 6:
+      (0) start ::= global_decls *
+
+                             $ reduce       0      start ::= global_decls
+
+----------------------------------------------------
+Symbols:
+    0: $:
+    1: TK_NEW_LINE
+    2: TK_EOF
+    3: TK_ID
+    4: TK_COMMA
+    5: KW_ENTERO
+    6: error:
+    7: start: KW_ENTERO
+    8: global_decls: KW_ENTERO
+    9: primitive: KW_ENTERO
+   10: id_list: TK_ID
+   11: eol: TK_NEW_LINE TK_EOF
+   12: ids: <lambda> TK_COMMA
