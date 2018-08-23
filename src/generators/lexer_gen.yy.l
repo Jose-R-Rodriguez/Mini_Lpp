@@ -29,6 +29,18 @@ dec_num		[1-9][0-9]*
 "]"					{ return TK_CLOSE_BRACK; }
 "("					{ return TK_OPEN_PAR; }
 ")"					{ return TK_CLOSE_PAR; }
+"+"					{ return TK_SUMA; }
+"^"					{ return TK_PODER; }
+"-"					{ return TK_RESTA; }
+"<-"				{ return TK_ARROW; }
+"<="				{ return TK_MENOR_Q_IG; }
+"="					{ return TK_IGUAL_Q; }
+">="				{ return TK_MAYOR_Q_IG; }
+"<"					{ return TK_MENOR_Q; }
+">"					{ return TK_MAYOR_Q; }
+"*"					{ return TK_MULT;  }
+"/"					{ return TK_DIV; }
+"%"					{ return TK_MOD; }
 "\""				{ BEGIN(STR_LIT); }
 "//"				{ BEGIN(LINE_COMMENT); }
 "/*"				{ BEGIN(BLOCK_COMMENT); }

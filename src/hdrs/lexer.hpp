@@ -16,7 +16,6 @@ struct CaseInsensitiveComparator{
 		std::string temp1(str1.length(), ' '), temp2(str2.length(), ' ');
 		std::transform(str1.begin(), str1.end(), temp1.begin(), toupper);
 		std::transform(str2.begin(), str2.end(), temp2.begin(), toupper);
-		//std::cout<<"COMPARING "<<temp1<<" TO "<<temp2<<": "<<(temp1==temp2)<<std::endl;
 		return (temp1 < temp2);
 	}
 };
@@ -57,7 +56,7 @@ private:
 		{"fin",				KW_FIN},
 		{"entonces",		KW_ENTONCES},
 		{"si",				KW_SI},
-		{"escriba",			109},
+		//{"escriba",			KW_ESCRIBA},
 		{"tipo",			KW_TIPO},
 		{"es",				KW_ES},
 		{"de",				KW_DE},
@@ -75,7 +74,14 @@ private:
 		{"verdadero",		KW_VERD},
 		{"false",			KW_FALSO},
 		{"retorn",			KW_RETORNE},
-		{"<-",				TK_ARROW}
+		{"mod",				TK_MOD},
+		{"div",				TK_DIV},
+		{"y",				TK_Y},
+		{"O",				TK_O},
+		/*{"mientras",		KW_MIENTRAS},
+		{"repita",			KW_REPITA},
+		{"var",				KW_VAR}*/
+		
 	};
 };
 #endif

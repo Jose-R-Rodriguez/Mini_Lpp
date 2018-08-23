@@ -4,8 +4,6 @@
 #include "parser_lemon.hpp"
 #include "parser.hpp"
 Lexer* mylexer;
-//int yylex(){ return mylexer->ResolveToken(); }
-//extern int yyparse();
 int main(int argc, char const *argv[]){
 	if (argc < 2) {
 		std::cerr<<"Error no file inputted"<<std::endl;
@@ -13,7 +11,6 @@ int main(int argc, char const *argv[]){
 	}
 	std::ifstream file(argv[1]);
 	mylexer= new Lexer(file);
-	//yyparse();
 	void* pParser = ParseAlloc(malloc);
 	int currentToken=-1;
 	while (currentToken != TK_EOF){
