@@ -54,6 +54,7 @@ struct input_t {
     bool fill(size_t need);
     
 };
+
 class Lexer{
 public:
 	Lexer(std::istream& input) : in(input){};

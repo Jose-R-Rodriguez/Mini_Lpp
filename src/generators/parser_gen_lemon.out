@@ -5,8 +5,8 @@ State 0:
           global_decls ::= * global_decls typedef eol
       (4) global_decls ::= *
 
-                         start accept
                   global_decls shift        26     
+                         start accept
                      {default} reduce       4      global_decls ::=
 
 State 1:
@@ -977,8 +977,8 @@ State 26:
                        KW_TIPO shift        92     
                        KW_PROC shift        85     
                        KW_FUNC shift        80     
-                      fp_decls shift        52     
                      primitive shift        40     
+                      fp_decls shift        52     
                        typedef shift        37     
                      {default} reduce       20     fp_decls ::=
 
@@ -1770,17 +1770,17 @@ Symbols:
    45: TK_Y
    46: TK_MOD
    47: error:
-   48: start: KW_ENTERO KW_BOOLEANO KW_CARACTER KW_TIPO KW_PROC KW_FUNC KW_INICIO
-   49: global_decls: <lambda> KW_ENTERO KW_BOOLEANO KW_CARACTER KW_TIPO
-   50: fp_decls: <lambda> KW_PROC KW_FUNC
-   51: block: KW_INICIO
-   52: primitive: KW_ENTERO KW_BOOLEANO KW_CARACTER
-   53: id_list: TK_ID
-   54: eol: TK_NEW_LINE TK_EOF
-   55: typedef: KW_TIPO
-   56: ids: <lambda> TK_COMMA
-   57: num_list: TK_NUM
-   58: nums: <lambda> TK_COMMA
+   48: ids: <lambda> TK_COMMA
+   49: id_list: TK_ID
+   50: primitive: KW_ENTERO KW_BOOLEANO KW_CARACTER
+   51: num_list: TK_NUM
+   52: nums: <lambda> TK_COMMA
+   53: global_decls: <lambda> KW_ENTERO KW_BOOLEANO KW_CARACTER KW_TIPO
+   54: fp_decls: <lambda> KW_PROC KW_FUNC
+   55: block: KW_INICIO
+   56: start: KW_ENTERO KW_BOOLEANO KW_CARACTER KW_TIPO KW_PROC KW_FUNC KW_INICIO
+   57: eol: TK_NEW_LINE TK_EOF
+   58: typedef: KW_TIPO
    59: opt_arg_list: <lambda> TK_OPEN_PAR
    60: arg_list: KW_ENTERO KW_BOOLEANO KW_CARACTER
    61: args: <lambda> TK_COMMA

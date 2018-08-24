@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <stack>
+#include <memory>
 #include "lexer.hpp"
 #include "parser_lemon.hpp"
 #include "parser.hpp"
@@ -13,12 +15,19 @@ int main(int argc, char const *argv[]){
 	Lexer mylexer(file);
 	void* pParser = ParseAlloc(malloc);
 
-	int currentToken= mylexer.lex();
+
+	
+	using unique_str_ptr = std::unique_ptr<std::string>;
+	using unique_ptr_pool = std::stack<unique_str_ptr>;
+	unique_ptr_pool inputStrings;
+
+	int currentToken= -1;
 	while (currentToken != TK_EOF){
-		std::cout<<currentToken<<"   "<<mylexer.getLexeme()<<std::endl;
-		Parse(pParser, currentToken, mylexer.getLexeme().c_str());
 		currentToken= mylexer.lex();
+		auto temp = std::make_unique<std::string>(mylexer.getLexeme());
+		inputStrings.push(std::move(temp));
+		Parse(pParser, currentToken, inputStrings.top().get()->c_str());
 	}
-	std::cout<<"Syntaxis good fam"<<std::endl;
+	std::cout<<"Syntax good"<<std::endl;
 	return 0;
 }

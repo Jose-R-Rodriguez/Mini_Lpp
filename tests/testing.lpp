@@ -1,3 +1,4 @@
-entero myint
-booleano mybool
-caracter micaracter
+entero mientero
+funcion myfunction : entero
+inicio
+fin

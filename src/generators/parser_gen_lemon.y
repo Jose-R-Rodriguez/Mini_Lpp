@@ -3,30 +3,39 @@
 	#include <iostream>
 	#include "ast.hpp"
 }
-%token_type{const char*}
+%token_type{const char* }
+%type ids {Node*}
+%type id_list {Node*}
+%type primitive {Node*}
+%type num_list {Node*}
+%type nums {Node*}
+%type global_decls {Node*}
+%type fp_decls {Node*}
+%type block {Node*}
+
 %syntax_error {
 	std::cout<<"SYNTAX ERROR"<<std::endl;
 	exit(1);
 }
 
-start ::= global_decls fp_decls block.						{ std::cout<<"Found Declaration"<<std::endl; }
-global_decls ::= global_decls primitive id_list eol.		{}
+start ::= global_decls(A) fp_decls(B) block(C).				{std::cout<<A->toString()<<B->toString()<<C->toString()<<std::endl;}
+global_decls(A) ::= global_decls(B) primitive(C) id_list(D) eol.									{A= new VariableDeclListNode(B, C, D);}
 global_decls ::= global_decls primitive TK_OPEN_BRACK TK_NUM TK_CLOSE_BRACK id_list eol. 			{}
 global_decls ::= global_decls typedef eol.					{}
 global_decls ::= .											{}
 eol ::= TK_NEW_LINE.										{}
 eol ::= TK_EOF.												{}
-id_list ::= TK_ID ids.										{}
-ids ::= ids TK_COMMA TK_ID.									{}
-ids ::= .													{}
-primitive ::= KW_ENTERO(B).									{std::cout<<"----"<<B<<std::endl;}
-primitive ::= KW_BOOLEANO(B).								{std::cout<<"----"<<B<<std::endl;}
-primitive ::= KW_CARACTER(B).								{std::cout<<"----"<<B<<std::endl;}
+id_list(A) ::= TK_ID(B) ids(C).								{A= new IdListNode(new IdNode(B), C);}
+ids(A) ::= ids(B) TK_COMMA TK_ID(C).						{A= new IdListNode(new IdNode(C), B);}
+ids(A) ::= .												{A= nullptr;}
+primitive(A) ::= KW_ENTERO.									{A= new IntDeclNode();}
+primitive(A) ::= KW_BOOLEANO.								{A= new BooleanDeclNode();}
+primitive(A) ::= KW_CARACTER.								{A= new CharDeclNode();}
 typedef ::= KW_TIPO TK_ID KW_ES primitive.					{}
 typedef ::= KW_TIPO TK_ID KW_ES KW_ARREGLO TK_OPEN_BRACK num_list TK_CLOSE_BRACK KW_DE primitive. 	{}
-num_list ::= TK_NUM nums.									{}
-nums ::= nums TK_COMMA TK_NUM.								{}
-nums ::= .													{}
+num_list(A) ::= TK_NUM(B) nums(C).							{A= new NumListNode(C, new NumberNode(std::stoi(B)));}
+nums(A) ::= nums(B) TK_COMMA TK_NUM(C).						{A=new NumListNode(B, new NumberNode(std::stoi(C)));}
+nums(A) ::= .												{A=nullptr;}
 fp_decls ::= KW_PROC TK_ID opt_arg_list eol block.			{}
 fp_decls ::= KW_FUNC TK_ID opt_arg_list TK_COLON primitive eol block.								{}
 fp_decls ::= .												{}

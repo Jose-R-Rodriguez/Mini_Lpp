@@ -56,8 +56,7 @@ int Lexer::lex() {
 			id=			[a-zA-Z_][a-zA-Z0-9_]*;
 			dec_num=	[1-9][0-9]*;
 
-			<!main> 					{ lexeme = std::string(in.tok, in.cur-in.tok);}
-			<main>id      				{ return (Keywords.find(lexeme) == Keywords.end()) ? TK_ID : Keywords[lexeme]; }
+			<main>id      				{ lexeme = std::string(in.tok, in.cur);return (Keywords.find(lexeme) == Keywords.end()) ? TK_ID : Keywords[lexeme]; }
 			<main>dec_num				{ return TK_NUM; }
 			<main>"+"					{ return TK_SUMA; }
 			<main>"*"					{ return TK_MULT; }
