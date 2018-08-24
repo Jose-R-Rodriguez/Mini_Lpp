@@ -45,7 +45,25 @@ DEFINE_N_ARY_NODE(IfStatement);
 DEFINE_N_ARY_NODE(ElseStatement);
 DEFINE_N_ARY_NODE(ForStatement);
 DEFINE_N_ARY_NODE(FuncCall);
-
+DEFINE_N_ARY_NODE(ParamList);
+DEFINE_N_ARY_NODE(Assignment);
+DEFINE_N_ARY_NODE(Return);
+DEFINE_N_ARY_NODE(Addition);
+DEFINE_N_ARY_NODE(Subtraction);
+DEFINE_N_ARY_NODE(Multiplication);
+DEFINE_N_ARY_NODE(Division);
+DEFINE_N_ARY_NODE(Modulus);
+DEFINE_N_ARY_NODE(Exponent);
+DEFINE_N_ARY_NODE(Or);
+DEFINE_N_ARY_NODE(And);
+DEFINE_N_ARY_NODE(TypedefArray);
+DEFINE_N_ARY_NODE(LessThan);
+DEFINE_N_ARY_NODE(LessThanEt);
+DEFINE_N_ARY_NODE(GrtrThan);
+DEFINE_N_ARY_NODE(GrtrThanEt);
+DEFINE_N_ARY_NODE(Equals);
+DEFINE_N_ARY_NODE(FunctionUse);
+DEFINE_N_ARY_NODE(ArrayAccess);
 
 
 DEFINE_PRIMITIVE_NODE(Number, int);

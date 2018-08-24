@@ -50,10 +50,10 @@ State 1:
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
                     opt_params shift        100    
                           expr shift        31     
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        74     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -100,10 +100,10 @@ State 2:
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
                     opt_params shift        105    
                           expr shift        31     
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        74     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -147,10 +147,10 @@ State 3:
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
                           expr shift        66     
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        74     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -193,10 +193,10 @@ State 4:
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
                           expr shift        67     
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        74     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -239,10 +239,10 @@ State 5:
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
                           expr shift        68     
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        74     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -285,10 +285,10 @@ State 6:
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
                           expr shift        62     
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        74     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -331,10 +331,10 @@ State 7:
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
                           expr shift        63     
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        74     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -377,10 +377,10 @@ State 8:
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
                           expr shift        64     
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        74     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -457,10 +457,10 @@ State 10:
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
                           expr shift        65     
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        74     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -496,10 +496,10 @@ State 11:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        75     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -535,10 +535,10 @@ State 12:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        76     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -574,10 +574,10 @@ State 13:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        77     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -613,10 +613,10 @@ State 14:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        78     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -652,10 +652,10 @@ State 15:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term0 shift        73     
                          term1 shift        69     
                          final shift-reduce 73     term1 ::= final
@@ -747,10 +747,10 @@ State 18:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term1 shift        70     
                          final shift-reduce 73     term1 ::= final
 
@@ -781,10 +781,10 @@ State 19:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term1 shift        71     
                          final shift-reduce 73     term1 ::= final
 
@@ -815,10 +815,10 @@ State 20:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          term1 shift        72     
                          final shift-reduce 73     term1 ::= final
 
@@ -843,10 +843,10 @@ State 21:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          final shift-reduce 72     term1 ::= term1 TK_MOD final
 
 State 22:
@@ -870,10 +870,10 @@ State 22:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          final shift-reduce 71     term1 ::= term1 TK_Y final
 
 State 23:
@@ -897,10 +897,10 @@ State 23:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          final shift-reduce 70     term1 ::= term1 TK_PODER final
 
 State 24:
@@ -924,10 +924,10 @@ State 24:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          final shift-reduce 69     term1 ::= term1 TK_DIV final
 
 State 25:
@@ -951,10 +951,10 @@ State 25:
                        TK_CHAR shift-reduce 53     constant ::= TK_CHAR
                        KW_VERD shift-reduce 54     bool_const ::= KW_VERD
                       KW_FALSO shift-reduce 55     bool_const ::= KW_FALSO
-                      left_val shift-reduce 74     final ::= left_val
-                  function_use shift-reduce 75     final ::= function_use
                       constant shift-reduce 76     final ::= constant
                     bool_const shift-reduce 51     constant ::= bool_const
+                      left_val shift-reduce 74     final ::= left_val
+                  function_use shift-reduce 75     final ::= function_use
                          final shift-reduce 68     term1 ::= term1 TK_MULT final
 
 State 26:
@@ -1820,15 +1820,15 @@ Symbols:
    67: function_call: KW_LLAMAR
    68: assignment: TK_ID
    69: return_statement: KW_RETORNE
-   70: start: KW_ENTERO KW_BOOLEANO KW_CARACTER KW_TIPO KW_PROC KW_FUNC KW_INICIO
-   71: eol: TK_NEW_LINE TK_EOF
-   72: typedef: KW_TIPO
-   73: opt_eol: <lambda> TK_NEW_LINE
-   74: params: <lambda> TK_COMMA
-   75: left_val: TK_ID
-   76: function_use: TK_ID
-   77: constant: TK_NUM TK_CHAR KW_VERD KW_FALSO
-   78: bool_const: KW_VERD KW_FALSO
-   79: term0: TK_NUM TK_ID TK_OPEN_PAR TK_CHAR KW_VERD KW_FALSO
-   80: term1: TK_NUM TK_ID TK_OPEN_PAR TK_CHAR KW_VERD KW_FALSO
-   81: final: TK_NUM TK_ID TK_OPEN_PAR TK_CHAR KW_VERD KW_FALSO
+   70: params: <lambda> TK_COMMA
+   71: constant: TK_NUM TK_CHAR KW_VERD KW_FALSO
+   72: bool_const: KW_VERD KW_FALSO
+   73: left_val: TK_ID
+   74: function_use: TK_ID
+   75: term0: TK_NUM TK_ID TK_OPEN_PAR TK_CHAR KW_VERD KW_FALSO
+   76: term1: TK_NUM TK_ID TK_OPEN_PAR TK_CHAR KW_VERD KW_FALSO
+   77: final: TK_NUM TK_ID TK_OPEN_PAR TK_CHAR KW_VERD KW_FALSO
+   78: typedef: KW_TIPO
+   79: start: KW_ENTERO KW_BOOLEANO KW_CARACTER KW_TIPO KW_PROC KW_FUNC KW_INICIO
+   80: eol: TK_NEW_LINE TK_EOF
+   81: opt_eol: <lambda> TK_NEW_LINE
