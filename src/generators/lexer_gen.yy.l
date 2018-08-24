@@ -1,5 +1,8 @@
+%option yylineno
+%option caseless
 %option noyywrap
 %option reentrant
+
 %{
 #include <istream>
 #include "lexer.hpp"
@@ -12,8 +15,6 @@
 #define YY_DECL int Lexer::_ResolveToken (void* yyscanner)
 
 %}
-
-%option caseless
 id			[a-zA-Z_][a-zA-Z0-9_]*
 dec_num		[1-9][0-9]*
 %x LINE_COMMENT
@@ -41,10 +42,12 @@ dec_num		[1-9][0-9]*
 "*"					{ return TK_MULT;  }
 "/"					{ return TK_DIV; }
 "%"					{ return TK_MOD; }
+\'[0-255]\'			{ return TK_CHAR;}
 "\""				{ BEGIN(STR_LIT); }
 "//"				{ BEGIN(LINE_COMMENT); }
 "/*"				{ BEGIN(BLOCK_COMMENT); }
-.					{ ; }
+" "					{;}
+.					{ std::cout<<"UNRECOGNIZED TOKEN"<<std::endl; exit(1); }
 <STR_LIT>[^"]*		{ ; }
 <STR_LIT>\"			{BEGIN(INITIAL); return TK_STR_LIT; }
 <LINE_COMMENT>.		{ ; }

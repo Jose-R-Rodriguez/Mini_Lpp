@@ -7,9 +7,13 @@
 #include "common.hpp"
 #include "parser.hpp"
 
+
 enum Token {
 	TK_STR_LIT= 255
 };
+
+static const size_t SIZE = 1024;
+
 
 struct CaseInsensitiveComparator{
 	bool operator()(const std::string& str1, const std::string& str2) const {
@@ -37,20 +41,31 @@ struct CaseIPredicate{
 		);
 	}
 };
+struct input_t {
+    char *buf;
+    char *lim;
+    char *cur;
+	char *mar;
+    char *tok;
+    bool eof;
+	std::istream& in;
+
+    input_t(std::istream& in);
+    bool fill(size_t need);
+    
+};
 class Lexer{
 public:
-	Lexer (std::istream& input);
-	int ResolveToken(){ return _ResolveToken(myscanner); }
-	std::string getLexeme() { return currentLexeme; }
-	void setLexeme(std::string lexeme) { currentLexeme= lexeme; }
+	Lexer(std::istream& input) : in(input){};
+	std::string getLexeme() { return lexeme; }
+	void setLexeme(std::string lexeme) { this->lexeme= lexeme; }
+	int lex ();
 private:
 	using CaseInsensitiveMap = std::map<std::string, int, CaseInsensitiveComparator>;
 	using CaseIUnorderedMap= std::unordered_map<std::string, int, CaseIHash, CaseIPredicate>;
-	int _ResolveToken(void*);
-	std::istream& input;
+	struct input_t in;
+	std::string lexeme;
 	void* myscanner;
-	std::string currentLexeme;
-	~Lexer();
 	CaseIUnorderedMap Keywords{
 		{"inicio",			KW_INICIO},
 		{"fin",				KW_FIN},

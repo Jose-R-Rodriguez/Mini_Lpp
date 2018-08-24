@@ -1,6 +1,7 @@
 %include{
 	#include <cassert> 
 	#include <iostream>
+	#include "ast.hpp"
 }
 %token_type{const char*}
 %syntax_error {
@@ -18,9 +19,9 @@ eol ::= TK_EOF.												{}
 id_list ::= TK_ID ids.										{}
 ids ::= ids TK_COMMA TK_ID.									{}
 ids ::= .													{}
-primitive ::= KW_ENTERO.									{}
-primitive ::= KW_BOOLEANO.									{}
-primitive ::= KW_CARACTER.									{}
+primitive ::= KW_ENTERO(B).									{std::cout<<"----"<<B<<std::endl;}
+primitive ::= KW_BOOLEANO(B).								{std::cout<<"----"<<B<<std::endl;}
+primitive ::= KW_CARACTER(B).								{std::cout<<"----"<<B<<std::endl;}
 typedef ::= KW_TIPO TK_ID KW_ES primitive.					{}
 typedef ::= KW_TIPO TK_ID KW_ES KW_ARREGLO TK_OPEN_BRACK num_list TK_CLOSE_BRACK KW_DE primitive. 	{}
 num_list ::= TK_NUM nums.									{}
@@ -36,11 +37,11 @@ args ::= args TK_COMMA primitive TK_ID.						{}
 args ::= .													{}
 block ::= KW_INICIO opt_eol variable_decls statement_list KW_FIN eol.	{}
 opt_eol ::= opt_eol TK_NEW_LINE.							{}
-opt_eol ::= .
+opt_eol ::= .												{}
 variable_decls ::= primitive id_list eol.					{}
 variable_decls ::= primitive TK_OPEN_BRACK TK_NUM TK_CLOSE_BRACK id_list eol.						{}
 variable_decls ::= .										{}
-statement_list ::= statement_list statement eol.			{}
+statement_list ::= statement_list statement TK_NEW_LINE opt_eol.	{}
 statement_list ::= .										{}
 statement ::= if_statement.									{}
 statement ::= for_statement.								{}
