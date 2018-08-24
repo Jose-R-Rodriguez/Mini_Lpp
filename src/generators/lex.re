@@ -35,6 +35,8 @@ input_t::input_t (std::istream &in) : in(in){
 	mar= lim;
 	eof= false;
 }
+unsigned int currentRow= 0;
+unsigned int currentLine= 0;
 
 int Lexer::lex() {
 	while (1){
@@ -56,7 +58,8 @@ int Lexer::lex() {
 			id=			[a-zA-Z_][a-zA-Z0-9_]*;
 			dec_num=	[1-9][0-9]*;
 
-			<main>id      				{ lexeme = std::string(in.tok, in.cur);return (Keywords.find(lexeme) == Keywords.end()) ? TK_ID : Keywords[lexeme]; }
+			<!main>						{ int yylen= in.cur-in.tok; lexeme = std::string(in.tok, yylen); currentLine+= yylen;}
+			<main>id      				{ return (Keywords.find(lexeme) == Keywords.end()) ? TK_ID : Keywords[lexeme]; }
 			<main>dec_num				{ return TK_NUM; }
 			<main>"+"					{ return TK_SUMA; }
 			<main>"*"					{ return TK_MULT; }
@@ -76,7 +79,8 @@ int Lexer::lex() {
 			<main>","					{ return TK_COMMA; }
 			<main>"["					{ return TK_OPEN_BRACK; }
 			<main>"]"					{ return TK_CLOSE_BRACK; }
-			<main>"\n"					{ return TK_NEW_LINE; }
+			<main>":"					{ return TK_COLON; }
+			<main>"\n"					{ ++currentRow; currentLine=0;return TK_NEW_LINE; }
 			<main>" "					{ continue; }
 			<main>*						{ if (!in.eof){std::cout<<"UNKNOWN TOKEN"<<lexeme<<std::endl;} return TK_EOF; }
 

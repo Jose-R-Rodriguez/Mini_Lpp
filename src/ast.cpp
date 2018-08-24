@@ -47,3 +47,103 @@ std::string CharDeclNode::toString(){
 std::string BooleanDeclNode::toString(){
 	return "booleano";
 }
+
+std::string ArgListNode::toString(){
+	std::string result= "";
+	for (Node * child : child_list){
+		if (child != nullptr){
+			result+= child->toString();
+		}
+	}
+	return result;
+}
+
+std::string FuncsListNode::toString(){
+	std::string result= "";
+	for (Node * child : child_list){
+		if (child != nullptr){
+			result+= child->toString();
+		}
+	}
+	return result;
+}
+
+std::string ProcedureNode::toString(){
+	std::string result= "";
+	for (Node * child : child_list){
+		if (child != nullptr){
+			result+= child->toString();
+		}
+	}
+	return result;
+}
+
+std::string BlockNode::toString(){
+	std::string result= "";
+	for (Node * child : child_list){
+		if (child != nullptr){
+			result+= child->toString();
+		}
+	}
+	return result;
+}
+
+std::string FunctionNode::toString(){
+	std::string result= "";
+	for (Node * child : child_list){
+		if (child != nullptr){
+			result+= child->toString();
+		}
+	}
+	return result;
+}
+
+std::string FuncCallNode::toString(){
+	std::string result= "";
+	for (Node * child : child_list){
+		if (child != nullptr){
+			result+= child->toString();
+		}
+	}
+	return result;
+}
+
+std::string IfStatementNode::toString(){
+	std::string result= "";
+	for (Node * child : child_list){
+		if (child != nullptr){
+			result+= child->toString();
+		}
+	}
+	return result;
+}
+
+std::string ForStatementNode::toString(){
+	std::string result= "";
+	for (Node * child : child_list){
+		if (child != nullptr){
+			result+= child->toString();
+		}
+	}
+	return result;
+}
+
+std::string ElseStatementNode::toString(){
+	std::string result= "";
+	for (Node * child : child_list){
+		if (child != nullptr){
+			result+= child->toString();
+		}
+	}
+	return result;
+}
+
+std::string StatementListNode::toString(){
+	std::string result= "";
+	for (Node * child : child_list){
+		if (child != nullptr){
+			result+= child->toString();
+		}
+	}
+	return result;
+}

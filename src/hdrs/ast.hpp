@@ -35,6 +35,18 @@ DEFINE_N_ARY_NODE(IdList);
 DEFINE_N_ARY_NODE(Typedef);
 DEFINE_N_ARY_NODE(NumList);
 DEFINE_N_ARY_NODE(VariableDeclList);
+DEFINE_N_ARY_NODE(FuncsList);
+DEFINE_N_ARY_NODE(Procedure);
+DEFINE_N_ARY_NODE(ArgList);
+DEFINE_N_ARY_NODE(Block);
+DEFINE_N_ARY_NODE(Function);
+DEFINE_N_ARY_NODE(StatementList);
+DEFINE_N_ARY_NODE(IfStatement);
+DEFINE_N_ARY_NODE(ElseStatement);
+DEFINE_N_ARY_NODE(ForStatement);
+DEFINE_N_ARY_NODE(FuncCall);
+
+
 
 DEFINE_PRIMITIVE_NODE(Number, int);
 DEFINE_PRIMITIVE_NODE(Character, char);
