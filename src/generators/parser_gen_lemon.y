@@ -46,13 +46,24 @@
 	exit(1);
 }
 
-start ::= global_decls(A) fp_decls(B) block(C).				
-								{std::cout<<A->toString()<<B->toString()<<C->toString()<<std::endl;}
-global_decls(A) ::= global_decls(B) primitive(C) id_list(D) eol.									
+start ::= global_decls(A) fp_decls(B) block(C) TK_EOF.				
+								{
+									std::cout<<"Analyzing..."<<std::endl;
+									if (A){
+										std::cout<<A->toString();
+									}
+									if (B){
+										std::cout<<B->toString();
+									}
+									if (C){
+										std::cout<<C->toString();
+									}
+								}
+global_decls(A) ::= global_decls(B) primitive(C) id_list(D) TK_NEW_LINE opt_eol.									
 								{A= new VariableDeclListNode(B, C, D);}
-global_decls(A) ::= global_decls(B) primitive(C) TK_OPEN_BRACK TK_NUM(D) TK_CLOSE_BRACK id_list(E) eol. 			
+global_decls(A) ::= global_decls(B) primitive(C) TK_OPEN_BRACK TK_NUM(D) TK_CLOSE_BRACK id_list(E) TK_NEW_LINE opt_eol. 			
 								{A= new VariableDeclListNode(B, C, new NumberNode(std::stoi(D)), E);}
-global_decls(A) ::= global_decls(B) typedef(C) eol.					
+global_decls(A) ::= global_decls(B) typedef(C) TK_NEW_LINE opt_eol.					
 								{A= new VariableDeclListNode(B, C);}
 global_decls(A) ::= .
 								{A= nullptr;}
@@ -98,7 +109,7 @@ args(A) ::= args(B) TK_COMMA primitive(C) TK_ID(D).
 								{A= new ArgListNode(B, C, new IdNode(D));}
 args(A) ::= .							
 								{A= nullptr;}
-block(A) ::=  KW_INICIO opt_eol  statement_list(C) KW_FIN eol.
+block(A) ::=  KW_INICIO opt_eol  statement_list(C) KW_FIN opt_eol.
 								{A= new BlockNode(C);}
 opt_eol ::= opt_eol TK_NEW_LINE.
 								{}

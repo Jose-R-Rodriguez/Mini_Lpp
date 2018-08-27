@@ -35,6 +35,7 @@ std::string VariableDeclListNode::toString(){
 			result+= child->toString();
 		}
 	}
+	std::cout<<"Printing out variable decl list"<<std::endl;
 	return result;
 }
 
@@ -79,12 +80,13 @@ std::string ProcedureNode::toString(){
 }
 
 std::string BlockNode::toString(){
-	std::string result= "";
+	std::string result= "inicio \n";
 	for (Node * child : child_list){
 		if (child != nullptr){
 			result+= child->toString();
 		}
 	}
+	result += "\nfin \n";
 	return result;
 }
 

@@ -15,8 +15,6 @@ int main(int argc, char const *argv[]){
 	Lexer mylexer(file);
 	void* pParser = ParseAlloc(malloc);
 
-
-	
 	using unique_str_ptr = std::unique_ptr<std::string>;
 	using unique_ptr_pool = std::stack<unique_str_ptr>;
 	unique_ptr_pool inputStrings;
@@ -24,10 +22,11 @@ int main(int argc, char const *argv[]){
 	int currentToken= -1;
 	while (currentToken != TK_EOF){
 		currentToken= mylexer.lex();
-		auto temp = std::make_unique<std::string>(mylexer.getLexeme());
+		unique_str_ptr temp = std::unique_ptr<std::string>(new std::string(mylexer.getLexeme()));
 		inputStrings.push(std::move(temp));
 		Parse(pParser, currentToken, inputStrings.top().get()->c_str());
 	}
+	Parse(pParser, 0, "eof");
 	std::cout<<"Syntax good"<<std::endl;
 	return 0;
 }

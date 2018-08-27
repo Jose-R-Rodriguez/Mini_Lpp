@@ -35,8 +35,8 @@ input_t::input_t (std::istream &in) : in(in){
 	mar= lim;
 	eof= false;
 }
-unsigned int currentRow= 0;
-unsigned int currentLine= 0;
+unsigned int currentRow= 1;
+unsigned int currentLine= 1;
 
 int Lexer::lex() {
 	while (1){
@@ -80,9 +80,13 @@ int Lexer::lex() {
 			<main>"["					{ return TK_OPEN_BRACK; }
 			<main>"]"					{ return TK_CLOSE_BRACK; }
 			<main>":"					{ return TK_COLON; }
-			<main>"\n"					{ ++currentRow; currentLine=0;return TK_NEW_LINE; }
+			<main>"\n"					{ ++currentRow; currentLine=1;return TK_NEW_LINE; }
 			<main>" "					{ continue; }
-			<main>*						{ if (!in.eof){std::cout<<"UNKNOWN TOKEN"<<lexeme<<std::endl;} return TK_EOF; }
+			<main>*						{ 
+					if (!in.eof){std::cout<<"UNKNOWN TOKEN"<<lexeme<<std::endl; 
+					exit(1);} 
+					else{return TK_EOF;} 
+				}
 
 			<main>"\""					{lexeme= ""; goto yyc_str_lit;}
 			<main>"//"					{lexeme= ""; goto yyc_line_comment;}
