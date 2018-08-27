@@ -17,6 +17,9 @@ procedimiento miProcedimiento
 inicio
 
 	si 2+2 entonces
+		yt <- 4444
+	sino
+		tttt<-9999
 	fin si
 	_varia_ble33 <- 4^4
 fin

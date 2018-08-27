@@ -394,7 +394,7 @@ State 9:
           statement ::= * return_statement
           if_statement ::= * KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list else_statement KW_FIN KW_SI
           if_statement ::= KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list * else_statement KW_FIN KW_SI
-          else_statement ::= * KW_SINO statement_list
+          else_statement ::= * KW_SINO TK_NEW_LINE statement_list
      (41) else_statement ::= *
           for_statement ::= * KW_PARA assignment KW_HASTA expr KW_HAGA
           function_call ::= * KW_LLAMAR TK_ID TK_OPEN_PAR opt_params TK_CLOSE_PAR
@@ -405,13 +405,13 @@ State 9:
 
                          TK_ID shift        110    
                          KW_SI shift        10     
-                       KW_SINO shift        56     
+                       KW_SINO shift        114    
                        KW_PARA shift        30     
                      KW_LLAMAR shift        108    
                     KW_RETORNE shift        3      
                   if_statement shift-reduce 34     statement ::= if_statement
-                else_statement shift        115    
-                     statement shift        118    
+                else_statement shift        116    
+                     statement shift        119    
                  for_statement shift-reduce 35     statement ::= for_statement
                  function_call shift-reduce 36     statement ::= function_call
                     assignment shift-reduce 37     statement ::= assignment
@@ -683,7 +683,7 @@ State 16:
                      KW_LLAMAR shift        108    
                     KW_RETORNE shift        3      
                   if_statement shift-reduce 34     statement ::= if_statement
-                     statement shift        118    
+                     statement shift        119    
                  for_statement shift-reduce 35     statement ::= for_statement
                  function_call shift-reduce 36     statement ::= function_call
                     assignment shift-reduce 37     statement ::= assignment
@@ -698,7 +698,7 @@ State 17:
           statement ::= * assignment
           statement ::= * return_statement
           if_statement ::= * KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list else_statement KW_FIN KW_SI
-     (40) else_statement ::= KW_SINO statement_list *
+     (40) else_statement ::= KW_SINO TK_NEW_LINE statement_list *
           for_statement ::= * KW_PARA assignment KW_HASTA expr KW_HAGA
           function_call ::= * KW_LLAMAR TK_ID TK_OPEN_PAR opt_params TK_CLOSE_PAR
           left_val ::= * TK_ID
@@ -712,13 +712,13 @@ State 17:
                      KW_LLAMAR shift        108    
                     KW_RETORNE shift        3      
                   if_statement shift-reduce 34     statement ::= if_statement
-                     statement shift        118    
+                     statement shift        119    
                  for_statement shift-reduce 35     statement ::= for_statement
                  function_call shift-reduce 36     statement ::= function_call
                     assignment shift-reduce 37     statement ::= assignment
               return_statement shift-reduce 38     statement ::= return_statement
                       left_val shift        109    
-                     {default} reduce       40     else_statement ::= KW_SINO statement_list
+                     {default} reduce       40     else_statement ::= KW_SINO TK_NEW_LINE statement_list
 
 State 18:
           left_val ::= * TK_ID
@@ -1105,10 +1105,10 @@ State 36:
           fp_decls ::= fp_decls * KW_FUNC TK_ID opt_arg_list TK_COLON primitive TK_NEW_LINE opt_eol variable_decls block
           block ::= * KW_INICIO opt_eol statement_list KW_FIN opt_eol
 
-                       KW_PROC shift        121    
+                       KW_PROC shift        122    
                        KW_FUNC shift        97     
                      KW_INICIO shift        60     
-                         block shift        123    
+                         block shift        124    
 
 State 37:
           global_decls ::= global_decls primitive * id_list TK_NEW_LINE opt_eol
@@ -1214,7 +1214,7 @@ State 48:
      (22) opt_arg_list ::= *
 
                    TK_OPEN_PAR shift        29     
-                  opt_arg_list shift        120    
+                  opt_arg_list shift        121    
                      {default} reduce       22     opt_arg_list ::=
 
 State 49:
@@ -1276,7 +1276,7 @@ State 55:
 State 56:
           statement_list ::= * statement_list statement TK_NEW_LINE opt_eol
      (33) statement_list ::= *
-          else_statement ::= KW_SINO * statement_list
+          else_statement ::= KW_SINO TK_NEW_LINE * statement_list
 
                 statement_list shift        17     
                      {default} reduce       33     statement_list ::=
@@ -1294,7 +1294,7 @@ State 58:
      (28) opt_eol ::= *
           statement_list ::= statement_list statement TK_NEW_LINE * opt_eol
 
-                       opt_eol shift        117    
+                       opt_eol shift        118    
                      {default} reduce       28     opt_eol ::=
 
 State 59:
@@ -1302,7 +1302,7 @@ State 59:
           opt_eol ::= * opt_eol TK_NEW_LINE
      (28) opt_eol ::= *
 
-                       opt_eol shift        119    
+                       opt_eol shift        120    
                      {default} reduce       28     opt_eol ::=
 
 State 60:
@@ -1374,7 +1374,7 @@ State 65:
           expr ::= expr * TK_MENOR_Q_IG term0
           expr ::= expr * TK_IGUAL_Q term0
 
-                   KW_ENTONCES shift        116    
+                   KW_ENTONCES shift        117    
                     TK_MENOR_Q shift        15     
                     TK_MAYOR_Q shift        14     
                  TK_MAYOR_Q_IG shift        13     
@@ -1750,58 +1750,63 @@ State 113:
                       KW_HASTA shift        8      
 
 State 114:
+          else_statement ::= KW_SINO * TK_NEW_LINE statement_list
+
+                   TK_NEW_LINE shift        56     
+
+State 115:
           if_statement ::= KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list else_statement KW_FIN * KW_SI
 
                          KW_SI shift-reduce 39     if_statement ::= KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list else_statement KW_FIN KW_SI
 
-State 115:
+State 116:
           if_statement ::= KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list else_statement * KW_FIN KW_SI
 
-                        KW_FIN shift        114    
+                        KW_FIN shift        115    
 
-State 116:
+State 117:
           if_statement ::= KW_SI expr KW_ENTONCES * TK_NEW_LINE statement_list else_statement KW_FIN KW_SI
 
                    TK_NEW_LINE shift        57     
 
-State 117:
+State 118:
           opt_eol ::= opt_eol * TK_NEW_LINE
      (32) statement_list ::= statement_list statement TK_NEW_LINE opt_eol *
 
                    TK_NEW_LINE shift-reduce 27     opt_eol ::= opt_eol TK_NEW_LINE
                      {default} reduce       32     statement_list ::= statement_list statement TK_NEW_LINE opt_eol
 
-State 118:
+State 119:
           statement_list ::= statement_list statement * TK_NEW_LINE opt_eol
 
                    TK_NEW_LINE shift        58     
 
-State 119:
+State 120:
      (26) block ::= KW_INICIO opt_eol statement_list KW_FIN opt_eol *
           opt_eol ::= opt_eol * TK_NEW_LINE
 
                    TK_NEW_LINE shift-reduce 27     opt_eol ::= opt_eol TK_NEW_LINE
                      {default} reduce       26     block ::= KW_INICIO opt_eol statement_list KW_FIN opt_eol
 
-State 120:
+State 121:
           fp_decls ::= fp_decls KW_PROC TK_ID opt_arg_list * TK_NEW_LINE opt_eol variable_decls block
 
                    TK_NEW_LINE shift        61     
 
-State 121:
+State 122:
           fp_decls ::= fp_decls KW_PROC * TK_ID opt_arg_list TK_NEW_LINE opt_eol variable_decls block
 
                          TK_ID shift        48     
 
-State 122:
+State 123:
       (0) start ::= global_decls fp_decls block TK_EOF *
 
                              $ reduce       0      start ::= global_decls fp_decls block TK_EOF
 
-State 123:
+State 124:
           start ::= global_decls fp_decls block * TK_EOF
 
-                        TK_EOF shift        122    
+                        TK_EOF shift        123    
 
 ----------------------------------------------------
 Symbols:

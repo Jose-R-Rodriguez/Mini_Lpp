@@ -145,6 +145,7 @@ std::string IfStatementNode::toString(){
 		result+= child_list[1]->toString();
 	if (child_list[2])
 		result+= child_list[2]->toString();
+	result+= "fin si\n";
 	return result;
 }
 
@@ -159,12 +160,9 @@ std::string ForStatementNode::toString(){
 }
 
 std::string ElseStatementNode::toString(){
-	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	std::string result= "sino \n";
+	if (child_list[0])
+		result+= child_list[0]->toString();
 	return result;
 }
 
@@ -172,7 +170,7 @@ std::string StatementListNode::toString(){
 	std::string result= "";
 	for (Node * child : child_list){
 		if (child != nullptr){
-			result+= child->toString();
+			result+= child->toString() +"\n";
 		}
 	}
 	return result;
