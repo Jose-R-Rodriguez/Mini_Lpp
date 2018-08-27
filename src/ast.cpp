@@ -139,12 +139,12 @@ std::string FuncCallNode::toString(){
 }
 
 std::string IfStatementNode::toString(){
-	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	std::string result= "si (";
+	result+= child_list[0]->toString() + ")\nentonces\n";
+	if (child_list[1])
+		result+= child_list[1]->toString();
+	if (child_list[2])
+		result+= child_list[2]->toString();
 	return result;
 }
 
@@ -219,31 +219,19 @@ std::string FunctionUseNode::toString(){
 
 std::string EqualsNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " = " + child_list[1]->toString();
 	return result;
 }
 
 std::string ReturnNode::toString(){
-	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	std::string result= " retorne";
+	result += child_list[0]->toString();
 	return result;
 }
 
 std::string ModulusNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " % " + child_list[1]->toString();
 	return result;
 }
 
@@ -259,121 +247,74 @@ std::string TypedefNode::toString(){
 
 std::string AdditionNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " + " + child_list[1]->toString();
 	return result;
 }
 
 std::string SubtractionNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " - " + child_list[1]->toString();
 	return result;
 }
 
 std::string MultiplicationNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " * " + child_list[1]->toString();
 	return result;
 }
 
 std::string DivisionNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " / " + child_list[1]->toString();
 	return result;
 }
 
 std::string AssignmentNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + "<-";
+	result+= child_list[1]->toString();
 	return result;
 }
 
 std::string ExponentNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " ^ " + child_list[1]->toString();
 	return result;
 }
 
 std::string OrNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " | " + child_list[1]->toString();
 	return result;
 }
 
 std::string AndNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " & " + child_list[1]->toString();
 	return result;
 }
 
 std::string LessThanNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " < " + child_list[1]->toString();
 	return result;
 }
 
 std::string GrtrThanEtNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " >= " + child_list[1]->toString();
 	return result;
 }
 
 std::string GrtrThanNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " > " + child_list[1]->toString();
 	return result;
 }
 
 std::string LessThanEtNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	result+= child_list[0]->toString() + " <= " + child_list[1]->toString();
 	return result;
 }
 

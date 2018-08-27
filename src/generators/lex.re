@@ -81,6 +81,7 @@ int Lexer::lex() {
 			<main>"]"					{ return TK_CLOSE_BRACK; }
 			<main>":"					{ return TK_COLON; }
 			<main>"\n"					{ ++currentRow; currentLine=1;return TK_NEW_LINE; }
+			<main>"\t"					{ continue; }
 			<main>" "					{ continue; }
 			<main>*						{ 
 					if (!in.eof){std::cout<<"UNKNOWN TOKEN"<<lexeme<<std::endl; 

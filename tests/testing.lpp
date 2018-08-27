@@ -1,13 +1,22 @@
 entero x, yy, z
 booleano miBoolean
+
 funcion miFuncion (caracter lmao, booleano xx, entero oo) : caracter
-caracter _michar
-booleano lol
-inicio
-x<-44+22*33
-fin
+	caracter _michar
+	booleano lol
+	inicio
+		x<-44+22*33
+	fin
+
+procedimiento miotroprocediento
+	inicio fin
 procedimiento miProcedimiento 
-caracter CharENProc
-inicio fin
+	caracter CharENProc
+	inicio fin
+
 inicio
+
+	si 2+2 entonces
+	fin si
+	_varia_ble33 <- 4^4
 fin
