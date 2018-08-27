@@ -1,16 +1,18 @@
 #include "ast.hpp"
 std::string IdListNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
+	for (int x= 0; x<child_list.size(); ++x){
+		if (child_list[x]){
+			result+= child_list[x]->toString();
+		}
+		if (x == 0){
+			result+= ",";
 		}
 	}
 	return result;
 }
 
 std::string IdNode::toString(){
-	std::cout<<value<<std::endl;
 	return value;
 }
 
@@ -30,12 +32,14 @@ std::string NumListNode::toString(){
 
 std::string VariableDeclListNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
+	if (child_list.size() == 3){
+		for (int x= 0 ; x<child_list.size(); x+=3){
+			if (child_list[x])
+				result+= child_list[x]->toString()+"\n";
+			result+= child_list[x+1]->toString() + " ";
+			result+= child_list[x+2]->toString();
+		};
 	}
-	std::cout<<"Printing out variable decl list"<<std::endl;
 	return result;
 }
 
@@ -51,16 +55,17 @@ std::string BooleanDeclNode::toString(){
 
 std::string ArgListNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	for (int x= 0 ; x<child_list.size(); x+=3){
+		if (child_list[x])
+			result+= child_list[x]->toString() + ", ";
+		result+= child_list[x+1]->toString() + " ";
+		result+= child_list[x+2]->toString();
+	};
 	return result;
 }
 
 std::string FuncsListNode::toString(){
-	std::string result= "";
+	std::string result= "\n";
 	for (Node * child : child_list){
 		if (child != nullptr){
 			result+= child->toString();
@@ -80,7 +85,7 @@ std::string ProcedureNode::toString(){
 }
 
 std::string BlockNode::toString(){
-	std::string result= "inicio \n";
+	std::string result= "\ninicio \n";
 	for (Node * child : child_list){
 		if (child != nullptr){
 			result+= child->toString();
@@ -91,10 +96,21 @@ std::string BlockNode::toString(){
 }
 
 std::string FunctionNode::toString(){
-	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
+	std::string result= "funcion ";
+	for (int x = 0; x<child_list.size(); ++x){
+		if (child_list[x]){
+			result +=  child_list[x]->toString();
+			switch (x){
+				case 0:
+					result+= " (";
+					break;
+				case 1:
+					result+= " ) : ";
+					break;
+				case 2:
+					result+= "\n";
+					break;
+			}
 		}
 	}
 	return result;

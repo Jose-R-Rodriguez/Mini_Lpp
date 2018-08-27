@@ -1,1 +1,9 @@
-inicio fin
+entero x, yy, z
+booleano miBoolean
+funcion miFuncion (caracter lmao, booleano xx, entero oo) : caracter
+caracter _michar
+booleano lol
+inicio
+fin
+inicio
+fin
