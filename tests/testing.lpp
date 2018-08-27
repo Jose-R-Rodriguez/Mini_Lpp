@@ -4,6 +4,10 @@ funcion miFuncion (caracter lmao, booleano xx, entero oo) : caracter
 caracter _michar
 booleano lol
 inicio
+x<-44+22*33
 fin
+procedimiento miProcedimiento 
+caracter CharENProc
+inicio fin
 inicio
 fin

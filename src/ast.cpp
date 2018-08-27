@@ -71,14 +71,26 @@ std::string FuncsListNode::toString(){
 			result+= child->toString();
 		}
 	}
+	result+="\n";
 	return result;
 }
 
 std::string ProcedureNode::toString(){
-	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
+	std::string result= "procedimiento ";
+	for (int x = 0; x<child_list.size(); ++x){
+		switch (x){
+			case 1:
+				result+= " (";
+				break;
+			case 2:
+				result+= ")\n";
+				break;
+			case 3:
+				result+= "\n";
+				break;
+		}
+		if (child_list[x]){
+			result +=  child_list[x]->toString();
 		}
 	}
 	return result;
@@ -98,19 +110,19 @@ std::string BlockNode::toString(){
 std::string FunctionNode::toString(){
 	std::string result= "funcion ";
 	for (int x = 0; x<child_list.size(); ++x){
+		switch (x){
+			case 1:
+				result+= " (";
+				break;
+			case 2:
+				result+= " ) : ";
+				break;
+			case 3:
+				result+= "\n";
+				break;
+		}
 		if (child_list[x]){
 			result +=  child_list[x]->toString();
-			switch (x){
-				case 0:
-					result+= " (";
-					break;
-				case 1:
-					result+= " ) : ";
-					break;
-				case 2:
-					result+= "\n";
-					break;
-			}
 		}
 	}
 	return result;
