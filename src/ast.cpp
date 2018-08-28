@@ -129,12 +129,12 @@ std::string FunctionNode::toString(){
 }
 
 std::string FuncCallNode::toString(){
-	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	std::string result= "llamar ";
+	if (child_list[0])
+		result+= child_list[0]->toString() + "(";
+	if (child_list[1])
+		result+= child_list[1]->toString();
+	result+= ")";
 	return result;
 }
 
@@ -150,12 +150,11 @@ std::string IfStatementNode::toString(){
 }
 
 std::string ForStatementNode::toString(){
-	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	std::string result= "para ";
+	if (child_list[0])
+		result+= child_list[0]->toString() + " hasta ";
+	if (child_list[1])
+		result+= child_list[1]->toString() + " haga ";
 	return result;
 }
 
@@ -207,11 +206,11 @@ std::string ArrayAccessNode::toString(){
 
 std::string FunctionUseNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
-	}
+	if (child_list[1])
+		result+= child_list[1]->toString() + "(";
+	if (child_list[2])
+		result+= child_list[2]->toString();
+	result+= ")";
 	return result;
 }
 

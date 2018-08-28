@@ -22,4 +22,8 @@ inicio
 		tttt<-9999
 	fin si
 	_varia_ble33 <- 4^4
+	para x<-10 hasta 33 haga
+		yy<-33
+	llamar miotroprocediento()
+
 fin
