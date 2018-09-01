@@ -35,6 +35,8 @@
 %type term1 {Node*}
 %type final {Node*}
 %type typedef {Node*}
+%type expr_list{Node*}
+%type exprs{Node*}
 
 
 
@@ -59,17 +61,15 @@ start ::= global_decls(A) fp_decls(B) block(C) TK_EOF.
 										std::cout<<C->toString();
 									}
 								}
-global_decls(A) ::= global_decls(B) primitive(C) id_list(D) TK_NEW_LINE opt_eol.									
+global_decls(A) ::= global_decls(B) primitive(C) id_list(D) one_more_eol.									
 								{A= new VariableDeclListNode(B, C, D);}
-global_decls(A) ::= global_decls(B) primitive(C) TK_OPEN_BRACK TK_NUM(D) TK_CLOSE_BRACK id_list(E) TK_NEW_LINE opt_eol. 			
+global_decls(A) ::= global_decls(B) primitive(C) TK_OPEN_BRACK TK_NUM(D) TK_CLOSE_BRACK id_list(E) one_more_eol. 			
 								{A= new VariableDeclListNode(B, C, new NumberNode(std::stoi(D)), E);}
-global_decls(A) ::= global_decls(B) typedef(C) TK_NEW_LINE opt_eol.					
+global_decls(A) ::= global_decls(B) typedef(C) one_more_eol.					
 								{A= new VariableDeclListNode(B, C);}
 global_decls(A) ::= .
 								{A= nullptr;}
-eol ::= TK_NEW_LINE.
-								{}
-eol ::= TK_EOF.
+one_more_eol ::= opt_eol TK_NEW_LINE.
 								{}
 id_list(A) ::= TK_ID(B) ids(C).
 								{A= new IdListNode(new IdNode(B), C);}
@@ -93,9 +93,9 @@ nums(A) ::= nums(B) TK_COMMA TK_NUM(C).
 								{A=new NumListNode(B, new NumberNode(std::stoi(C)));}
 nums(A) ::= .												
 								{A=nullptr;}
-fp_decls(A) ::= fp_decls(B) KW_PROC TK_ID(C) opt_arg_list(D) TK_NEW_LINE opt_eol variable_decls(E) block(G).
+fp_decls(A) ::= fp_decls(B) KW_PROC TK_ID(C) opt_arg_list(D) one_more_eol variable_decls(E) block(G).
 								{A= new FuncsListNode(B, new ProcedureNode(new IdNode(C), D, E, G ));}
-fp_decls(A) ::= fp_decls(B) KW_FUNC TK_ID(C) opt_arg_list(D) TK_COLON primitive(E)  TK_NEW_LINE opt_eol variable_decls(F) block(G).	
+fp_decls(A) ::= fp_decls(B) KW_FUNC TK_ID(C) opt_arg_list(D) TK_COLON primitive(E)  one_more_eol variable_decls(F) block(G).	
 								{A= new FuncsListNode(B, new FunctionNode(new IdNode(C), D, E, F, G ));}
 fp_decls(A) ::= .												
 								{A= nullptr;}
@@ -115,13 +115,13 @@ opt_eol ::= opt_eol TK_NEW_LINE.
 								{}
 opt_eol ::= .
 								{}
-variable_decls(A) ::= variable_decls(B) primitive(C) id_list(D) eol.
+variable_decls(A) ::= variable_decls(B) primitive(C) id_list(D) one_more_eol.
 								{A= new VariableDeclListNode(B, C, D);}
-variable_decls(A) ::= variable_decls primitive(B) TK_OPEN_BRACK TK_NUM(C) TK_CLOSE_BRACK id_list(D) eol.	
+variable_decls(A) ::= variable_decls primitive(B) TK_OPEN_BRACK TK_NUM(C) TK_CLOSE_BRACK id_list(D) one_more_eol.	
 								{A= new VariableDeclListNode(B, new NumberNode(std::stoi(C)), D );}
 variable_decls(A) ::= .
 								{A= nullptr;}
-statement_list(A) ::= statement_list(B) statement(C) TK_NEW_LINE opt_eol.
+statement_list(A) ::= statement_list(B) statement(C) one_more_eol.
 								{A= new StatementListNode(B, C);}
 statement_list(A) ::= .
 								{A= nullptr;}
@@ -144,15 +144,19 @@ else_statement(A) ::= .
 								{A= nullptr;}
 for_statement(A) ::= KW_PARA assignment(B) KW_HASTA expr(C) KW_HAGA.	
 								{A= new ForStatementNode(B, C);}
-function_call(A) ::= KW_LLAMAR TK_ID(B) TK_OPEN_PAR opt_params(C) TK_CLOSE_PAR.
+function_call(A) ::= KW_LLAMAR TK_ID(B) opt_params(C).
 								{A= new FuncCallNode(new IdNode(B), C);}
-opt_params(A) ::= expr(B) params(C).
-								{A= new ParamListNode(C, B);}
+opt_params(A) ::= TK_OPEN_PAR expr_list(C) TK_CLOSE_PAR.
+								{A= C;}
 opt_params(A) ::= .
 								{A= nullptr;}
-params(A) ::= params(B) TK_COMMA expr(C).
-								{A= new ParamListNode(B, C);}
-params(A) ::= .
+expr_list(A) ::= expr(B) exprs(C).
+								{A= new ExprListNode(C, B);}
+expr_list(A) ::= .
+								{A= nullptr;}
+exprs(A) ::= exprs(B) TK_COMMA expr(C).
+								{A= new ExprListNode(B, C);}
+exprs(A) ::= .
 								{A= nullptr;}
 left_val(A) ::= TK_ID(B).
 								{A= new IdNode(B);}

@@ -81,18 +81,24 @@ int Lexer::lex() {
 			<main>"]"					{ return TK_CLOSE_BRACK; }
 			<main>":"					{ return TK_COLON; }
 			<main>"\n"					{ ++currentRow; currentLine=1;return TK_NEW_LINE; }
+			<main>"\r"					{ ++currentRow; currentLine=1;return TK_NEW_LINE; }
+			<main>"\r\n"					{ ++currentRow; currentLine=1;return TK_NEW_LINE; }
 			<main>"\t"					{ continue; }
 			<main>" "					{ continue; }
 			<main>*						{ 
-					if (!in.eof){std::cout<<"UNKNOWN TOKEN"<<lexeme<<std::endl; 
-					exit(1);} 
-					else{return TK_EOF;} 
+					if (!in.eof){
+						std::cout<<"UNKNOWN TOKEN"<<lexeme<<std::endl; 
+						exit(1);
+					} else{return TK_EOF;} 
 				}
 
 			<main>"\""					{lexeme= ""; goto yyc_str_lit;}
 			<main>"//"					{lexeme= ""; goto yyc_line_comment;}
+			<main>"/*"					{lexeme= ""; goto yyc_block_comment;}
 			<line_comment>.				:=>line_comment
 			<line_comment>"\n"			:=>main
+			<block_comment>.			:=>block_comment
+			<block_comment>"*/"			:=>main
 			<str_lit>[^"]*				{lexeme+=*in.tok; goto yyc_str_lit;}
 			<str_lit>"\""				{return TK_STR_LIT;}
 		*/

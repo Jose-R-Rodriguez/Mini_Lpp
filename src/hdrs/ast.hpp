@@ -45,7 +45,7 @@ DEFINE_N_ARY_NODE(IfStatement);
 DEFINE_N_ARY_NODE(ElseStatement);
 DEFINE_N_ARY_NODE(ForStatement);
 DEFINE_N_ARY_NODE(FuncCall);
-DEFINE_N_ARY_NODE(ParamList);
+DEFINE_N_ARY_NODE(ExprList);
 DEFINE_N_ARY_NODE(Assignment);
 DEFINE_N_ARY_NODE(Return);
 DEFINE_N_ARY_NODE(Addition);

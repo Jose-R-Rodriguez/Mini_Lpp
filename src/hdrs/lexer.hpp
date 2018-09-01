@@ -72,7 +72,8 @@ private:
 		{"fin",				KW_FIN},
 		{"entonces",		KW_ENTONCES},
 		{"si",				KW_SI},
-		//{"escriba",			KW_ESCRIBA},
+		{"escriba",			KW_ESCRIBA},
+		{"var",				KW_VAR}
 		{"tipo",			KW_TIPO},
 		{"es",				KW_ES},
 		{"de",				KW_DE},
@@ -94,9 +95,8 @@ private:
 		{"div",				TK_DIV},
 		{"y",				TK_Y},
 		{"O",				TK_O},
-		/*{"mientras",		KW_MIENTRAS},
+		{"mientras",		KW_MIENTRAS},
 		{"repita",			KW_REPITA},
-		{"var",				KW_VAR}*/
 		
 	};
 };

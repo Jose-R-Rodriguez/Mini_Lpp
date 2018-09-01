@@ -183,12 +183,13 @@ std::string CharacterNode::toString(){
 	return std::string(value, 1);
 }
 
-std::string ParamListNode::toString(){
+std::string ExprListNode::toString(){
 	std::string result= "";
-	for (Node * child : child_list){
-		if (child != nullptr){
-			result+= child->toString();
-		}
+	if (child_list[0]){
+		result += child_list[0]->toString();
+	}
+	if (child_list[1]){
+		result += child_list[1]->toString();
 	}
 	return result;
 }
