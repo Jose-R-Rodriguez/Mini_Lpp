@@ -25,7 +25,8 @@
 	int_decl_type,
 	bool_decl_type,
 	char_decl_type,
-	typedef_decl_type
+	typedef_decl_type,
+	statement_type
 }
 
 %node AstNode %abstract %typedef = {
@@ -36,6 +37,13 @@
 	AstNode* left;
 	AstNode* right;
 }
+
+
+%node ForStatementNode 	BinaryNode
+%node FuncCallNode 		BinaryNode
+%node ArrayAccessNode 	BinaryNode
+%node FunctionUseNode 	BinaryNode
+%node AssignmentNode 	BinaryNode
 
 %node OperationNode BinaryNode %abstract
 
@@ -99,6 +107,34 @@
 	AstNode* primitiveTypeNode;
 }
 
+%node ProcedureNode AstNode = {
+	AstNode* idNode;
+	AstNode* optionalArgsNode;
+	AstNode* variableDeclsNode;
+	AstNode* blockNode;
+}
+
+%node FunctionNode AstNode = {
+	AstNode* idNode;
+	AstNode* optionalArgsNode;
+	AstNode* returnTypeNode;
+	AstNode* variableDeclsNode;
+	AstNode* blockNode;
+}
+
+%node BlockNode UnaryNode
+%node ElseStatementNode UnaryNode
+%node ReturnNode UnaryNode
+
+%node IfStatementNode AstNode = {
+	AstNode* expressionNode;
+	AstNode* statementListNode;
+	AstNode* elseNode;
+}
+
+
+
+
 %operation void infer_type(AstNode* node)
 %operation %virtual string toString(AstNode* node)
 %operation %virtual string getOperatorString(OperationNode* node)
@@ -120,9 +156,6 @@ infer_type(IdNode){
 }
 
 infer_type(ListNode){
-	for (auto& child : child_list){
-		child->infer_type();
-	}
 }
 
 infer_type(IntDeclNode){
@@ -141,8 +174,52 @@ infer_type(TypedefNode){
 
 }
 
+infer_type(ForStatementNode){
+	node->type= statement_type;
+}
+
+infer_type(FuncCallNode){
+	node->type= statement_type;
+}
+
+infer_type(ArrayAccessNode){
+	node->type= statement_type;
+}
+
+infer_type(FunctionUseNode){
+	node->type= statement_type;
+}
+
+infer_type(AssignmentNode){
+	node->type= statement_type;
+}
+
+infer_type(BlockNode){
+	node->type= statement_type;
+}
+
+infer_type(ElseStatementNode){
+	node->type= statement_type;
+}
+
+infer_type(ReturnNode){
+	node->type= statement_type;
+}
+
+infer_type(ProcedureNode){
+	node->type= statement_type;
+}
+
+infer_type(FunctionNode){
+	node->type= statement_type;
+}
+
+infer_type(IfStatementNode){
+	node->type= statement_type;
+}
+
 infer_type(TypedefArrayNode){
-	node->type= typedef_decl_type;
+	node->type= statement_type;
 }
 
 infer_type(OperationNode){
@@ -155,7 +232,7 @@ infer_type(OperationNode){
     else if(node->right->type != int_type){
 		cerr << node->getFilename() << ":" << node->getLinenum() <<
         		": second argument to `^' is not an integer" << endl;
-		node->left = error_type;
+		node->type = error_type;
     }
 	else{
     	node->type = node->left->type;
@@ -163,27 +240,29 @@ infer_type(OperationNode){
 }
 
 toString(NumberNode){
-	return value
+	return std::to_string(value);
 }
 
 toString(CharacterNode){
-	return value
+	return std::string(value, 1);
 }
 
 toString(BooleanNode){
-	return value
+	return value ? "verdadero" : "falso";
 }
 
 toString(IdNode){
-	return value
+	return value;
 }
 
 toString(ListNode){
-	string result= "";
+	std::string result= "";
 	for (auto& child : child_list){
-		result+= child->toString() + ",";
+		if (child){
+			result+= child->toString() + "\n";
+		}
 	}
-	result.pop_back();
+	//result.pop_back();
 	/*if (child_list.size() == 3){
 		for (int x= 0 ; x<child_list.size(); x+=3){
 			if (child_list[x])
@@ -196,21 +275,26 @@ toString(ListNode){
 }
 
 toString(IntDeclNode){
-	return "entero"
+	return "entero";
 }
 
 toString(CharDeclNode){
-	return "caracter"
+	return "caracter";
 }
 
 toString(BooleanDeclNode){
-	return "boolean"
+	return "booleano";
 }
 
-toString(BinaryNode){
+toString(OperationNode){
 	string result= "";
-	result+= left->toString() + getOperatorString() + right->toString() + "\n";
-	return result
+	if (left){
+		result+= left->toString();
+	}
+	if (right){
+		result+= node->getOperatorString() + right->toString();
+	}
+	return result+"\n";
 }
 
 toString(TypedefArrayNode){
@@ -221,54 +305,148 @@ toString(TypedefArrayNode){
 	return result;
 }
 
+toString(BlockNode){
+	string result= "inicio\n";
+	if (n)
+		result+= n->toString();
+	return result + "\nfin\n";
+}
+
+toString(ElseStatementNode){
+	return n->toString();
+}
+
+toString(ReturnNode){
+	string result= "retorne ";
+	result+= n->toString();
+	return result;
+}
+
+toString(ProcedureNode){
+	string result= "procedimiento ";
+	result+= idNode->toString();
+	if (optionalArgsNode) 
+		result+= "(" + optionalArgsNode->toString() + ")\n";
+	if (variableDeclsNode)
+		result+= variableDeclsNode->toString();
+	result+= blockNode->toString();
+	return result;
+}
+
+toString(FunctionNode){
+	string result= "funcion ";
+	result+= idNode->toString(); 
+	if (optionalArgsNode)
+		result+= "(" + optionalArgsNode->toString() + "):";
+	result+= returnTypeNode->toString() + "\n";
+	if (variableDeclsNode)
+		result+= variableDeclsNode->toString();
+	result+= blockNode->toString();
+	return result;
+}
+
+toString(IfStatementNode){
+	string result= "si ";
+	result+= expressionNode->toString() + "\n";
+	if (statementListNode)
+		result+= statementListNode->toString();
+	if (elseNode)
+		result+= elseNode->toString();
+	return result + "finsi";
+}
+
+toString(ForStatementNode){
+	string result= "Para ";
+	result+= left->toString() + " hasta ";
+	result+= right->toString();
+	result+= "haga";
+	return result;
+}
+
+toString(FuncCallNode){
+	string result= "Llamar ";
+	result+= left->toString();
+	if (right)
+		result+= right->toString();
+	return result;
+}
+
+toString(ArrayAccessNode){
+	string result= "";
+	result+= left->toString() + "[";
+	result+= right->toString() + "]";
+	return result;
+}
+
+toString(FunctionUseNode){
+	string result= "";
+	result+= left->toString();
+	result+= "(" + right->toString() + ")";
+	return result;
+}
+
+toString(AssignmentNode){
+	string result= "";
+	result+= left->toString() + "<-";
+	result+= right->toString();
+	return result;
+}
+
+toString(TypedefNode){
+	string result= "tipo ";
+	result+= left->toString() + " es ";
+	result+= right->toString();
+	return result;
+}
+
 getOperatorString(AdditionNode){
-	return "+"
+	return "+";
 }
 
 getOperatorString(SubtractionNode){
-	return "-"
+	return "-";
 }
 
 getOperatorString(OrNode){
-	return "|"
+	return "|";
 }
 
 getOperatorString(MultiplicationNode){
-	return "*"
+	return "*";
 }
 
 getOperatorString(EqualsNode){
-	return "="
+	return "=";
 }
 
 getOperatorString(LessThanEtNode){
-	return "<="
+	return "<=";
 }
 
 getOperatorString(GrtrThanEtNode){
-	return ">="
+	return ">=";
 }
 
 getOperatorString(GrtrThanNode){
-	return ">"
+	return ">";
 }
 
 getOperatorString(LessThanNode){
-	return "<"
+	return "<";
 }
 
 getOperatorString(DivisionNode){
-	return "/"
+	return "/";
 }
 
 getOperatorString(ExponentNode){
-	return "^"
+	return "^";
 }
 
 getOperatorString(AndNode){
-	return "&"
+	return "&";
 }
 
 getOperatorString(ModulusNode){
-	return "%"
+	return "%";
 }
