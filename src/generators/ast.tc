@@ -1,0 +1,274 @@
+%option lang= "C++"
+
+%decls %{
+	#include <deque>
+	#include "parser.hpp"
+	#include <iostream>
+	#include "common.hpp"
+	
+	class AstNode;
+	using namespace std;
+	using AstNodeList = deque<AstNode*>;
+%}
+
+%{
+	#include "ast.hpp"
+%}
+
+%enum type_code= {
+	int_type,
+	char_type,
+	bool_type,
+	error_type,
+	id_type,
+	variable_list_type,
+	int_decl_type,
+	bool_decl_type,
+	char_decl_type,
+	typedef_decl_type
+}
+
+%node AstNode %abstract %typedef = {
+	%nocreate type_code type = {error_type};
+}
+
+%node BinaryNode AstNode %abstract = {
+	AstNode* left;
+	AstNode* right;
+}
+
+%node OperationNode BinaryNode %abstract
+
+%node AdditionNode 			OperationNode
+%node SubtractionNode 		OperationNode
+%node OrNode 				OperationNode
+%node MultiplicationNode 	OperationNode
+%node EqualsNode 			OperationNode
+%node LessThanEtNode 		OperationNode
+%node GrtrThanEtNode 		OperationNode
+%node GrtrThanNode 			OperationNode
+%node LessThanNode 			OperationNode
+%node DivisionNode 			OperationNode
+%node ExponentNode 			OperationNode
+%node AndNode 				OperationNode
+%node ModulusNode 			OperationNode
+
+%node UnaryNode AstNode %abstract = {
+	AstNode* n;
+}
+
+
+%node ListNode AstNode %abstract = {
+	AstNodeList child_list;
+}
+
+%node VariableDeclListNode ListNode
+%node IdListNode ListNode
+%node NumListNode ListNode
+%node FuncsListNode ListNode
+%node StatementListNode ListNode
+%node ArgListNode ListNode
+%node ExprListNode ListNode
+
+
+%node IntDeclNode AstNode
+%node BooleanDeclNode AstNode
+%node CharDeclNode AstNode
+
+%node NumberNode AstNode = {
+	int value;
+}
+
+%node CharacterNode AstNode = {
+	char value;
+}
+
+%node BooleanNode AstNode = {
+	bool value;
+}
+
+%node TypedefNode BinaryNode
+
+%node IdNode AstNode = {
+	string value;
+}
+
+%node TypedefArrayNode AstNode = {
+	AstNode* idNode;
+	AstNode* NumberListNode;
+	AstNode* primitiveTypeNode;
+}
+
+%operation void infer_type(AstNode* node)
+%operation %virtual string toString(AstNode* node)
+%operation %virtual string getOperatorString(OperationNode* node)
+
+infer_type(NumberNode){
+	node->type = int_type;
+}
+
+infer_type(CharacterNode){
+	node->type = char_type;
+}
+
+infer_type(BooleanNode){
+	node->type = bool_type;
+}
+
+infer_type(IdNode){
+	node->type = id_type;
+}
+
+infer_type(ListNode){
+	for (auto& child : child_list){
+		child->infer_type();
+	}
+}
+
+infer_type(IntDeclNode){
+	node->type = int_decl_type;
+}
+
+infer_type(BooleanDeclNode){
+	node->type = bool_decl_type;
+}
+
+infer_type(CharDeclNode){
+	node->type = char_decl_type;
+}
+
+infer_type(TypedefNode){
+
+}
+
+infer_type(TypedefArrayNode){
+	node->type= typedef_decl_type;
+}
+
+infer_type(OperationNode){
+	infer_type(node->left);
+	infer_type(node->right);
+
+	if(node->left->type == error_type || node->right->type == error_type){
+		node->type = error_type;
+	}
+    else if(node->right->type != int_type){
+		cerr << node->getFilename() << ":" << node->getLinenum() <<
+        		": second argument to `^' is not an integer" << endl;
+		node->left = error_type;
+    }
+	else{
+    	node->type = node->left->type;
+	}
+}
+
+toString(NumberNode){
+	return value
+}
+
+toString(CharacterNode){
+	return value
+}
+
+toString(BooleanNode){
+	return value
+}
+
+toString(IdNode){
+	return value
+}
+
+toString(ListNode){
+	string result= "";
+	for (auto& child : child_list){
+		result+= child->toString() + ",";
+	}
+	result.pop_back();
+	/*if (child_list.size() == 3){
+		for (int x= 0 ; x<child_list.size(); x+=3){
+			if (child_list[x])
+				result+= child_list[x]->toString()+"\n";
+			result+= child_list[x+1]->toString() + " ";
+			result+= child_list[x+2]->toString();
+		};
+	}*/
+	return result;
+}
+
+toString(IntDeclNode){
+	return "entero"
+}
+
+toString(CharDeclNode){
+	return "caracter"
+}
+
+toString(BooleanDeclNode){
+	return "boolean"
+}
+
+toString(BinaryNode){
+	string result= "";
+	result+= left->toString() + getOperatorString() + right->toString() + "\n";
+	return result
+}
+
+toString(TypedefArrayNode){
+	string result= "Tipo ";
+	result+= idNode->toString() + " es arreglo [";
+	result+= NumberListNode->toString() + "] de ";
+	result+= primitiveTypeNode->toString();
+	return result;
+}
+
+getOperatorString(AdditionNode){
+	return "+"
+}
+
+getOperatorString(SubtractionNode){
+	return "-"
+}
+
+getOperatorString(OrNode){
+	return "|"
+}
+
+getOperatorString(MultiplicationNode){
+	return "*"
+}
+
+getOperatorString(EqualsNode){
+	return "="
+}
+
+getOperatorString(LessThanEtNode){
+	return "<="
+}
+
+getOperatorString(GrtrThanEtNode){
+	return ">="
+}
+
+getOperatorString(GrtrThanNode){
+	return ">"
+}
+
+getOperatorString(LessThanNode){
+	return "<"
+}
+
+getOperatorString(DivisionNode){
+	return "/"
+}
+
+getOperatorString(ExponentNode){
+	return "^"
+}
+
+getOperatorString(AndNode){
+	return "&"
+}
+
+getOperatorString(ModulusNode){
+	return "%"
+}
