@@ -51,15 +51,9 @@
 start ::= global_decls(A) fp_decls(B) block(C) TK_EOF.				
 								{
 									std::cout<<"Analyzing..."<<std::endl;
-									if (A){
-										std::cout<<A->toString();
-									}
-									if (B){
-										std::cout<<B->toString();
-									}
-									if (C){
-										std::cout<<C->toString();
-									}
+									AstNode* program = new ProgramNode(A,B,C);
+									std::cout<<program->toString();
+									//program->doSemantics();
 								}
 global_decls(A) ::= global_decls(B) primitive(C) id_list(D) one_more_eol.									
 								{A= new VariableDeclListNode({B, C, D});}
@@ -103,10 +97,12 @@ opt_arg_list(A) ::= TK_OPEN_PAR arg_list(B) TK_CLOSE_PAR.
 								{A= B;}
 opt_arg_list(A) ::= .
 								{A= nullptr;}
-arg_list(A) ::= primitive(B) TK_ID(C) args(D).	
-								{A= new ArgListNode({D, B, new IdNode(C)});}
+arg_list(A) ::= primitive(B) TK_ID(C) args(D).
+								{A= new ArgListNode({B, new IdNode(C), D});}
+arg_list(A) ::= .
+								{A=nullptr;}
 args(A) ::= args(B) TK_COMMA primitive(C) TK_ID(D).
-								{A= new ArgListNode({B, C, new IdNode(D)});}
+								{A= new ArgListNode({C, new IdNode(D), B});}
 args(A) ::= .							
 								{A= nullptr;}
 block(A) ::=  KW_INICIO opt_eol  statement_list(C) KW_FIN opt_eol.
@@ -117,8 +113,8 @@ opt_eol ::= .
 								{}
 variable_decls(A) ::= variable_decls(B) primitive(C) id_list(D) one_more_eol.
 								{A= new VariableDeclListNode({B, C, D});}
-variable_decls(A) ::= variable_decls primitive(B) TK_OPEN_BRACK TK_NUM(C) TK_CLOSE_BRACK id_list(D) one_more_eol.	
-								{A= new VariableDeclListNode({B, new NumberNode(std::stoi(C)), D} );}
+variable_decls(A) ::= variable_decls(B) primitive(C) TK_OPEN_BRACK TK_NUM(D) TK_CLOSE_BRACK id_list(E) one_more_eol.	
+								{A= new VariableDeclListNode({B, C, new NumberNode(std::stoi(D)), E} );}
 variable_decls(A) ::= .
 								{A= nullptr;}
 statement_list(A) ::= statement_list(B) statement(C) one_more_eol.

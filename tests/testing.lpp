@@ -1,7 +1,7 @@
 entero x, yy, z
 booleano miBoolean
 
-funcion miFuncion (caracter lmao, booleano xx, entero oo) : caracter
+funcion miFuncion (caracter lmao, booleano xx, entero oo, entero xD) : caracter
 	caracter _michar
 	booleano lol
 	inicio
@@ -10,6 +10,7 @@ funcion miFuncion (caracter lmao, booleano xx, entero oo) : caracter
 
 procedimiento miotroprocediento
 	inicio fin
+
 procedimiento miProcedimiento 
 	caracter CharENProc
 	inicio fin

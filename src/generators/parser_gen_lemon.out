@@ -12,7 +12,7 @@ State 0:
 State 1:
           opt_params ::= TK_OPEN_PAR * expr_list TK_CLOSE_PAR
           expr_list ::= * expr exprs
-     (46) expr_list ::= *
+     (47) expr_list ::= *
           left_val ::= * TK_ID
           left_val ::= * TK_ID TK_OPEN_BRACK expr TK_CLOSE_BRACK
           function_use ::= * TK_ID TK_OPEN_PAR opt_params TK_CLOSE_PAR
@@ -42,22 +42,22 @@ State 1:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
                           expr shift        38     
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        75     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
                      expr_list shift        105    
-                     {default} reduce       46     expr_list ::=
+                     {default} reduce       47     expr_list ::=
 
 State 2:
           left_val ::= * TK_ID
@@ -90,20 +90,20 @@ State 2:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
                           expr shift        67     
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        75     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 3:
           left_val ::= * TK_ID
@@ -136,20 +136,20 @@ State 3:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
                           expr shift        68     
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        75     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 4:
           exprs ::= exprs TK_COMMA * expr
@@ -182,20 +182,20 @@ State 4:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
                           expr shift        69     
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        75     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 5:
           left_val ::= * TK_ID
@@ -228,20 +228,20 @@ State 5:
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
           final ::= TK_OPEN_PAR * expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
                           expr shift        63     
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        75     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 6:
           left_val ::= * TK_ID
@@ -274,20 +274,20 @@ State 6:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
                           expr shift        64     
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        75     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 7:
           for_statement ::= KW_PARA assignment KW_HASTA * expr KW_HAGA
@@ -320,20 +320,20 @@ State 7:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
                           expr shift        65     
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        75     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 8:
           statement_list ::= statement_list * statement one_more_eol
@@ -345,7 +345,7 @@ State 8:
           if_statement ::= * KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list else_statement KW_FIN KW_SI
           if_statement ::= KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list * else_statement KW_FIN KW_SI
           else_statement ::= * KW_SINO TK_NEW_LINE statement_list
-     (40) else_statement ::= *
+     (41) else_statement ::= *
           for_statement ::= * KW_PARA assignment KW_HASTA expr KW_HAGA
           function_call ::= * KW_LLAMAR TK_ID opt_params
           left_val ::= * TK_ID
@@ -359,15 +359,15 @@ State 8:
                        KW_PARA shift        29     
                      KW_LLAMAR shift        100    
                     KW_RETORNE shift        2      
-                  if_statement shift-reduce 33     statement ::= if_statement
+                  if_statement shift-reduce 34     statement ::= if_statement
                 else_statement shift        109    
                      statement shift        36     
-                 for_statement shift-reduce 34     statement ::= for_statement
-                 function_call shift-reduce 35     statement ::= function_call
-                    assignment shift-reduce 36     statement ::= assignment
-              return_statement shift-reduce 37     statement ::= return_statement
+                 for_statement shift-reduce 35     statement ::= for_statement
+                 function_call shift-reduce 36     statement ::= function_call
+                    assignment shift-reduce 37     statement ::= assignment
+              return_statement shift-reduce 38     statement ::= return_statement
                       left_val shift        101    
-                     {default} reduce       40     else_statement ::=
+                     {default} reduce       41     else_statement ::=
 
 State 9:
           if_statement ::= KW_SI * expr KW_ENTONCES TK_NEW_LINE statement_list else_statement KW_FIN KW_SI
@@ -400,20 +400,20 @@ State 9:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
                           expr shift        66     
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        75     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 10:
           left_val ::= * TK_ID
@@ -440,19 +440,19 @@ State 10:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        76     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 11:
           left_val ::= * TK_ID
@@ -479,19 +479,19 @@ State 11:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        77     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 12:
           left_val ::= * TK_ID
@@ -518,19 +518,19 @@ State 12:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        78     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 13:
           left_val ::= * TK_ID
@@ -557,19 +557,19 @@ State 13:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        79     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 14:
           left_val ::= * TK_ID
@@ -596,19 +596,19 @@ State 14:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term0 shift        74     
                          term1 shift        70     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 15:
           block ::= KW_INICIO opt_eol statement_list * KW_FIN opt_eol
@@ -632,12 +632,12 @@ State 15:
                        KW_PARA shift        29     
                      KW_LLAMAR shift        100    
                     KW_RETORNE shift        2      
-                  if_statement shift-reduce 33     statement ::= if_statement
+                  if_statement shift-reduce 34     statement ::= if_statement
                      statement shift        36     
-                 for_statement shift-reduce 34     statement ::= for_statement
-                 function_call shift-reduce 35     statement ::= function_call
-                    assignment shift-reduce 36     statement ::= assignment
-              return_statement shift-reduce 37     statement ::= return_statement
+                 for_statement shift-reduce 35     statement ::= for_statement
+                 function_call shift-reduce 36     statement ::= function_call
+                    assignment shift-reduce 37     statement ::= assignment
+              return_statement shift-reduce 38     statement ::= return_statement
                       left_val shift        101    
 
 State 16:
@@ -648,7 +648,7 @@ State 16:
           statement ::= * assignment
           statement ::= * return_statement
           if_statement ::= * KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list else_statement KW_FIN KW_SI
-     (39) else_statement ::= KW_SINO TK_NEW_LINE statement_list *
+     (40) else_statement ::= KW_SINO TK_NEW_LINE statement_list *
           for_statement ::= * KW_PARA assignment KW_HASTA expr KW_HAGA
           function_call ::= * KW_LLAMAR TK_ID opt_params
           left_val ::= * TK_ID
@@ -661,14 +661,14 @@ State 16:
                        KW_PARA shift        29     
                      KW_LLAMAR shift        100    
                     KW_RETORNE shift        2      
-                  if_statement shift-reduce 33     statement ::= if_statement
+                  if_statement shift-reduce 34     statement ::= if_statement
                      statement shift        36     
-                 for_statement shift-reduce 34     statement ::= for_statement
-                 function_call shift-reduce 35     statement ::= function_call
-                    assignment shift-reduce 36     statement ::= assignment
-              return_statement shift-reduce 37     statement ::= return_statement
+                 for_statement shift-reduce 35     statement ::= for_statement
+                 function_call shift-reduce 36     statement ::= function_call
+                    assignment shift-reduce 37     statement ::= assignment
+              return_statement shift-reduce 38     statement ::= return_statement
                       left_val shift        101    
-                     {default} reduce       39     else_statement ::= KW_SINO TK_NEW_LINE statement_list
+                     {default} reduce       40     else_statement ::= KW_SINO TK_NEW_LINE statement_list
 
 State 17:
           left_val ::= * TK_ID
@@ -691,18 +691,18 @@ State 17:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term1 shift        71     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 18:
           left_val ::= * TK_ID
@@ -725,18 +725,18 @@ State 18:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term1 shift        72     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 19:
           left_val ::= * TK_ID
@@ -759,18 +759,18 @@ State 19:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
                          term1 shift        73     
-                         final shift-reduce 74     term1 ::= final
+                         final shift-reduce 75     term1 ::= final
 
 State 20:
           left_val ::= * TK_ID
@@ -787,17 +787,17 @@ State 20:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
-                         final shift-reduce 73     term1 ::= term1 TK_MOD final
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
+                         final shift-reduce 74     term1 ::= term1 TK_MOD final
 
 State 21:
           left_val ::= * TK_ID
@@ -814,17 +814,17 @@ State 21:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
-                         final shift-reduce 72     term1 ::= term1 TK_Y final
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
+                         final shift-reduce 73     term1 ::= term1 TK_Y final
 
 State 22:
           left_val ::= * TK_ID
@@ -841,17 +841,17 @@ State 22:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
-                         final shift-reduce 71     term1 ::= term1 TK_PODER final
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
+                         final shift-reduce 72     term1 ::= term1 TK_PODER final
 
 State 23:
           left_val ::= * TK_ID
@@ -868,17 +868,17 @@ State 23:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
-                         final shift-reduce 70     term1 ::= term1 TK_DIV final
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
+                         final shift-reduce 71     term1 ::= term1 TK_DIV final
 
 State 24:
           left_val ::= * TK_ID
@@ -895,17 +895,17 @@ State 24:
           final ::= * constant
           final ::= * TK_OPEN_PAR expr TK_CLOSE_PAR
 
-                        TK_NUM shift-reduce 53     constant ::= TK_NUM
+                        TK_NUM shift-reduce 54     constant ::= TK_NUM
                          TK_ID shift        80     
                    TK_OPEN_PAR shift        5      
-                       TK_CHAR shift-reduce 54     constant ::= TK_CHAR
-                       KW_VERD shift-reduce 55     bool_const ::= KW_VERD
-                      KW_FALSO shift-reduce 56     bool_const ::= KW_FALSO
-                      constant shift-reduce 77     final ::= constant
-                    bool_const shift-reduce 52     constant ::= bool_const
-                      left_val shift-reduce 75     final ::= left_val
-                  function_use shift-reduce 76     final ::= function_use
-                         final shift-reduce 69     term1 ::= term1 TK_MULT final
+                       TK_CHAR shift-reduce 55     constant ::= TK_CHAR
+                       KW_VERD shift-reduce 56     bool_const ::= KW_VERD
+                      KW_FALSO shift-reduce 57     bool_const ::= KW_FALSO
+                      constant shift-reduce 78     final ::= constant
+                    bool_const shift-reduce 53     constant ::= bool_const
+                      left_val shift-reduce 76     final ::= left_val
+                  function_use shift-reduce 77     final ::= function_use
+                         final shift-reduce 70     term1 ::= term1 TK_MULT final
 
 State 25:
           start ::= global_decls * fp_decls block TK_EOF
@@ -968,12 +968,14 @@ State 28:
           primitive ::= * KW_CARACTER
           opt_arg_list ::= TK_OPEN_PAR * arg_list TK_CLOSE_PAR
           arg_list ::= * primitive TK_ID args
+     (23) arg_list ::= *
 
                      KW_ENTERO shift-reduce 9      primitive ::= KW_ENTERO
                    KW_BOOLEANO shift-reduce 10     primitive ::= KW_BOOLEANO
                    KW_CARACTER shift-reduce 11     primitive ::= KW_CARACTER
                      primitive shift        94     
                       arg_list shift        95     
+                     {default} reduce       23     arg_list ::=
 
 State 29:
           for_statement ::= KW_PARA * assignment KW_HASTA expr KW_HAGA
@@ -989,86 +991,86 @@ State 30:
           global_decls ::= global_decls typedef * one_more_eol
           one_more_eol ::= * opt_eol TK_NEW_LINE
           opt_eol ::= * opt_eol TK_NEW_LINE
-     (27) opt_eol ::= *
+     (28) opt_eol ::= *
 
                   one_more_eol shift-reduce 3      global_decls ::= global_decls typedef one_more_eol
                        opt_eol shift        113    
-                     {default} reduce       27     opt_eol ::=
+                     {default} reduce       28     opt_eol ::=
 
 State 31:
           global_decls ::= global_decls primitive TK_OPEN_BRACK TK_NUM TK_CLOSE_BRACK id_list * one_more_eol
           one_more_eol ::= * opt_eol TK_NEW_LINE
           opt_eol ::= * opt_eol TK_NEW_LINE
-     (27) opt_eol ::= *
+     (28) opt_eol ::= *
 
                   one_more_eol shift-reduce 2      global_decls ::= global_decls primitive TK_OPEN_BRACK TK_NUM TK_CLOSE_BRACK id_list one_more_eol
                        opt_eol shift        113    
-                     {default} reduce       27     opt_eol ::=
+                     {default} reduce       28     opt_eol ::=
 
 State 32:
           global_decls ::= global_decls primitive id_list * one_more_eol
           one_more_eol ::= * opt_eol TK_NEW_LINE
           opt_eol ::= * opt_eol TK_NEW_LINE
-     (27) opt_eol ::= *
+     (28) opt_eol ::= *
 
                   one_more_eol shift-reduce 1      global_decls ::= global_decls primitive id_list one_more_eol
                        opt_eol shift        113    
-                     {default} reduce       27     opt_eol ::=
+                     {default} reduce       28     opt_eol ::=
 
 State 33:
           one_more_eol ::= * opt_eol TK_NEW_LINE
           fp_decls ::= fp_decls KW_FUNC TK_ID opt_arg_list TK_COLON primitive * one_more_eol variable_decls block
           opt_eol ::= * opt_eol TK_NEW_LINE
-     (27) opt_eol ::= *
+     (28) opt_eol ::= *
 
                   one_more_eol shift        55     
                        opt_eol shift        113    
-                     {default} reduce       27     opt_eol ::=
+                     {default} reduce       28     opt_eol ::=
 
 State 34:
           one_more_eol ::= * opt_eol TK_NEW_LINE
           opt_eol ::= * opt_eol TK_NEW_LINE
-     (27) opt_eol ::= *
+     (28) opt_eol ::= *
           variable_decls ::= variable_decls primitive TK_OPEN_BRACK TK_NUM TK_CLOSE_BRACK id_list * one_more_eol
 
-                  one_more_eol shift-reduce 29     variable_decls ::= variable_decls primitive TK_OPEN_BRACK TK_NUM TK_CLOSE_BRACK id_list one_more_eol
+                  one_more_eol shift-reduce 30     variable_decls ::= variable_decls primitive TK_OPEN_BRACK TK_NUM TK_CLOSE_BRACK id_list one_more_eol
                        opt_eol shift        113    
-                     {default} reduce       27     opt_eol ::=
+                     {default} reduce       28     opt_eol ::=
 
 State 35:
           one_more_eol ::= * opt_eol TK_NEW_LINE
           opt_eol ::= * opt_eol TK_NEW_LINE
-     (27) opt_eol ::= *
+     (28) opt_eol ::= *
           variable_decls ::= variable_decls primitive id_list * one_more_eol
 
-                  one_more_eol shift-reduce 28     variable_decls ::= variable_decls primitive id_list one_more_eol
+                  one_more_eol shift-reduce 29     variable_decls ::= variable_decls primitive id_list one_more_eol
                        opt_eol shift        113    
-                     {default} reduce       27     opt_eol ::=
+                     {default} reduce       28     opt_eol ::=
 
 State 36:
           one_more_eol ::= * opt_eol TK_NEW_LINE
           opt_eol ::= * opt_eol TK_NEW_LINE
-     (27) opt_eol ::= *
+     (28) opt_eol ::= *
           statement_list ::= statement_list statement * one_more_eol
 
-                  one_more_eol shift-reduce 31     statement_list ::= statement_list statement one_more_eol
+                  one_more_eol shift-reduce 32     statement_list ::= statement_list statement one_more_eol
                        opt_eol shift        113    
-                     {default} reduce       27     opt_eol ::=
+                     {default} reduce       28     opt_eol ::=
 
 State 37:
           one_more_eol ::= * opt_eol TK_NEW_LINE
           fp_decls ::= fp_decls KW_PROC TK_ID opt_arg_list * one_more_eol variable_decls block
           opt_eol ::= * opt_eol TK_NEW_LINE
-     (27) opt_eol ::= *
+     (28) opt_eol ::= *
 
                   one_more_eol shift        62     
                        opt_eol shift        113    
-                     {default} reduce       27     opt_eol ::=
+                     {default} reduce       28     opt_eol ::=
 
 State 38:
           expr_list ::= expr * exprs
           exprs ::= * exprs TK_COMMA expr
-     (48) exprs ::= *
+     (49) exprs ::= *
           expr ::= expr * TK_MENOR_Q term0
           expr ::= expr * TK_MAYOR_Q term0
           expr ::= expr * TK_MAYOR_Q_IG term0
@@ -1081,7 +1083,7 @@ State 38:
                  TK_MENOR_Q_IG shift        11     
                     TK_IGUAL_Q shift        10     
                          exprs shift        104    
-                     {default} reduce       48     exprs ::=
+                     {default} reduce       49     exprs ::=
 
 State 39:
           primitive ::= * KW_ENTERO
@@ -1191,30 +1193,30 @@ State 49:
 State 50:
           function_call ::= KW_LLAMAR TK_ID * opt_params
           opt_params ::= * TK_OPEN_PAR expr_list TK_CLOSE_PAR
-     (44) opt_params ::= *
+     (45) opt_params ::= *
 
                    TK_OPEN_PAR shift        1      
-                    opt_params shift-reduce 42     function_call ::= KW_LLAMAR TK_ID opt_params
-                     {default} reduce       44     opt_params ::=
+                    opt_params shift-reduce 43     function_call ::= KW_LLAMAR TK_ID opt_params
+                     {default} reduce       45     opt_params ::=
 
 State 51:
           opt_params ::= * TK_OPEN_PAR expr_list TK_CLOSE_PAR
-     (44) opt_params ::= *
+     (45) opt_params ::= *
           function_use ::= TK_ID TK_OPEN_PAR * opt_params TK_CLOSE_PAR
 
                    TK_OPEN_PAR shift        1      
                     opt_params shift        103    
-                     {default} reduce       44     opt_params ::=
+                     {default} reduce       45     opt_params ::=
 
 State 52:
           block ::= KW_INICIO opt_eol * statement_list KW_FIN opt_eol
           opt_eol ::= opt_eol * TK_NEW_LINE
           statement_list ::= * statement_list statement one_more_eol
-     (32) statement_list ::= *
+     (33) statement_list ::= *
 
-                   TK_NEW_LINE shift-reduce 26     opt_eol ::= opt_eol TK_NEW_LINE
+                   TK_NEW_LINE shift-reduce 27     opt_eol ::= opt_eol TK_NEW_LINE
                 statement_list shift        15     
-                     {default} reduce       32     statement_list ::=
+                     {default} reduce       33     statement_list ::=
 
 State 53:
           fp_decls ::= fp_decls KW_PROC TK_ID * opt_arg_list one_more_eol variable_decls block
@@ -1237,18 +1239,18 @@ State 55:
           fp_decls ::= fp_decls KW_FUNC TK_ID opt_arg_list TK_COLON primitive one_more_eol * variable_decls block
           variable_decls ::= * variable_decls primitive id_list one_more_eol
           variable_decls ::= * variable_decls primitive TK_OPEN_BRACK TK_NUM TK_CLOSE_BRACK id_list one_more_eol
-     (30) variable_decls ::= *
+     (31) variable_decls ::= *
 
                 variable_decls shift        26     
-                     {default} reduce       30     variable_decls ::=
+                     {default} reduce       31     variable_decls ::=
 
 State 56:
           arg_list ::= primitive TK_ID * args
           args ::= * args TK_COMMA primitive TK_ID
-     (24) args ::= *
+     (25) args ::= *
 
                           args shift        93     
-                     {default} reduce       24     args ::=
+                     {default} reduce       25     args ::=
 
 State 57:
           id_list ::= TK_ID * ids
@@ -1260,44 +1262,44 @@ State 57:
 
 State 58:
           statement_list ::= * statement_list statement one_more_eol
-     (32) statement_list ::= *
+     (33) statement_list ::= *
           else_statement ::= KW_SINO TK_NEW_LINE * statement_list
 
                 statement_list shift        16     
-                     {default} reduce       32     statement_list ::=
+                     {default} reduce       33     statement_list ::=
 
 State 59:
           statement_list ::= * statement_list statement one_more_eol
-     (32) statement_list ::= *
+     (33) statement_list ::= *
           if_statement ::= KW_SI expr KW_ENTONCES TK_NEW_LINE * statement_list else_statement KW_FIN KW_SI
 
                 statement_list shift        8      
-                     {default} reduce       32     statement_list ::=
+                     {default} reduce       33     statement_list ::=
 
 State 60:
           block ::= KW_INICIO opt_eol statement_list KW_FIN * opt_eol
           opt_eol ::= * opt_eol TK_NEW_LINE
-     (27) opt_eol ::= *
+     (28) opt_eol ::= *
 
                        opt_eol shift        111    
-                     {default} reduce       27     opt_eol ::=
+                     {default} reduce       28     opt_eol ::=
 
 State 61:
           block ::= KW_INICIO * opt_eol statement_list KW_FIN opt_eol
           opt_eol ::= * opt_eol TK_NEW_LINE
-     (27) opt_eol ::= *
+     (28) opt_eol ::= *
 
                        opt_eol shift        52     
-                     {default} reduce       27     opt_eol ::=
+                     {default} reduce       28     opt_eol ::=
 
 State 62:
           fp_decls ::= fp_decls KW_PROC TK_ID opt_arg_list one_more_eol * variable_decls block
           variable_decls ::= * variable_decls primitive id_list one_more_eol
           variable_decls ::= * variable_decls primitive TK_OPEN_BRACK TK_NUM TK_CLOSE_BRACK id_list one_more_eol
-     (30) variable_decls ::= *
+     (31) variable_decls ::= *
 
                 variable_decls shift        27     
-                     {default} reduce       30     variable_decls ::=
+                     {default} reduce       31     variable_decls ::=
 
 State 63:
           expr ::= expr * TK_MENOR_Q term0
@@ -1307,7 +1309,7 @@ State 63:
           expr ::= expr * TK_IGUAL_Q term0
           final ::= TK_OPEN_PAR expr * TK_CLOSE_PAR
 
-                  TK_CLOSE_PAR shift-reduce 78     final ::= TK_OPEN_PAR expr TK_CLOSE_PAR
+                  TK_CLOSE_PAR shift-reduce 79     final ::= TK_OPEN_PAR expr TK_CLOSE_PAR
                     TK_MENOR_Q shift        14     
                     TK_MAYOR_Q shift        13     
                  TK_MAYOR_Q_IG shift        12     
@@ -1322,7 +1324,7 @@ State 64:
           expr ::= expr * TK_MENOR_Q_IG term0
           expr ::= expr * TK_IGUAL_Q term0
 
-                TK_CLOSE_BRACK shift-reduce 50     left_val ::= TK_ID TK_OPEN_BRACK expr TK_CLOSE_BRACK
+                TK_CLOSE_BRACK shift-reduce 51     left_val ::= TK_ID TK_OPEN_BRACK expr TK_CLOSE_BRACK
                     TK_MENOR_Q shift        14     
                     TK_MAYOR_Q shift        13     
                  TK_MAYOR_Q_IG shift        12     
@@ -1337,7 +1339,7 @@ State 65:
           expr ::= expr * TK_MENOR_Q_IG term0
           expr ::= expr * TK_IGUAL_Q term0
 
-                       KW_HAGA shift-reduce 41     for_statement ::= KW_PARA assignment KW_HASTA expr KW_HAGA
+                       KW_HAGA shift-reduce 42     for_statement ::= KW_PARA assignment KW_HASTA expr KW_HAGA
                     TK_MENOR_Q shift        14     
                     TK_MAYOR_Q shift        13     
                  TK_MAYOR_Q_IG shift        12     
@@ -1360,7 +1362,7 @@ State 66:
                     TK_IGUAL_Q shift        10     
 
 State 67:
-     (58) return_statement ::= KW_RETORNE expr *
+     (59) return_statement ::= KW_RETORNE expr *
           expr ::= expr * TK_MENOR_Q term0
           expr ::= expr * TK_MAYOR_Q term0
           expr ::= expr * TK_MAYOR_Q_IG term0
@@ -1372,10 +1374,10 @@ State 67:
                  TK_MAYOR_Q_IG shift        12     
                  TK_MENOR_Q_IG shift        11     
                     TK_IGUAL_Q shift        10     
-                     {default} reduce       58     return_statement ::= KW_RETORNE expr
+                     {default} reduce       59     return_statement ::= KW_RETORNE expr
 
 State 68:
-     (57) assignment ::= left_val TK_ARROW expr *
+     (58) assignment ::= left_val TK_ARROW expr *
           expr ::= expr * TK_MENOR_Q term0
           expr ::= expr * TK_MAYOR_Q term0
           expr ::= expr * TK_MAYOR_Q_IG term0
@@ -1387,10 +1389,10 @@ State 68:
                  TK_MAYOR_Q_IG shift        12     
                  TK_MENOR_Q_IG shift        11     
                     TK_IGUAL_Q shift        10     
-                     {default} reduce       57     assignment ::= left_val TK_ARROW expr
+                     {default} reduce       58     assignment ::= left_val TK_ARROW expr
 
 State 69:
-     (47) exprs ::= exprs TK_COMMA expr *
+     (48) exprs ::= exprs TK_COMMA expr *
           expr ::= expr * TK_MENOR_Q term0
           expr ::= expr * TK_MAYOR_Q term0
           expr ::= expr * TK_MAYOR_Q_IG term0
@@ -1402,10 +1404,10 @@ State 69:
                  TK_MAYOR_Q_IG shift        12     
                  TK_MENOR_Q_IG shift        11     
                     TK_IGUAL_Q shift        10     
-                     {default} reduce       47     exprs ::= exprs TK_COMMA expr
+                     {default} reduce       48     exprs ::= exprs TK_COMMA expr
 
 State 70:
-     (68) term0 ::= term1 *
+     (69) term0 ::= term1 *
           term1 ::= term1 * TK_MULT final
           term1 ::= term1 * TK_DIV final
           term1 ::= term1 * TK_PODER final
@@ -1417,10 +1419,10 @@ State 70:
                       TK_PODER shift        22     
                           TK_Y shift        21     
                         TK_MOD shift        20     
-                     {default} reduce       68     term0 ::= term1
+                     {default} reduce       69     term0 ::= term1
 
 State 71:
-     (67) term0 ::= term0 TK_O term1 *
+     (68) term0 ::= term0 TK_O term1 *
           term1 ::= term1 * TK_MULT final
           term1 ::= term1 * TK_DIV final
           term1 ::= term1 * TK_PODER final
@@ -1432,10 +1434,10 @@ State 71:
                       TK_PODER shift        22     
                           TK_Y shift        21     
                         TK_MOD shift        20     
-                     {default} reduce       67     term0 ::= term0 TK_O term1
+                     {default} reduce       68     term0 ::= term0 TK_O term1
 
 State 72:
-     (66) term0 ::= term0 TK_RESTA term1 *
+     (67) term0 ::= term0 TK_RESTA term1 *
           term1 ::= term1 * TK_MULT final
           term1 ::= term1 * TK_DIV final
           term1 ::= term1 * TK_PODER final
@@ -1447,10 +1449,10 @@ State 72:
                       TK_PODER shift        22     
                           TK_Y shift        21     
                         TK_MOD shift        20     
-                     {default} reduce       66     term0 ::= term0 TK_RESTA term1
+                     {default} reduce       67     term0 ::= term0 TK_RESTA term1
 
 State 73:
-     (65) term0 ::= term0 TK_SUMA term1 *
+     (66) term0 ::= term0 TK_SUMA term1 *
           term1 ::= term1 * TK_MULT final
           term1 ::= term1 * TK_DIV final
           term1 ::= term1 * TK_PODER final
@@ -1462,10 +1464,10 @@ State 73:
                       TK_PODER shift        22     
                           TK_Y shift        21     
                         TK_MOD shift        20     
-                     {default} reduce       65     term0 ::= term0 TK_SUMA term1
+                     {default} reduce       66     term0 ::= term0 TK_SUMA term1
 
 State 74:
-     (59) expr ::= expr TK_MENOR_Q term0 *
+     (60) expr ::= expr TK_MENOR_Q term0 *
           term0 ::= term0 * TK_SUMA term1
           term0 ::= term0 * TK_RESTA term1
           term0 ::= term0 * TK_O term1
@@ -1473,10 +1475,10 @@ State 74:
                        TK_SUMA shift        19     
                       TK_RESTA shift        18     
                           TK_O shift        17     
-                     {default} reduce       59     expr ::= expr TK_MENOR_Q term0
+                     {default} reduce       60     expr ::= expr TK_MENOR_Q term0
 
 State 75:
-     (64) expr ::= term0 *
+     (65) expr ::= term0 *
           term0 ::= term0 * TK_SUMA term1
           term0 ::= term0 * TK_RESTA term1
           term0 ::= term0 * TK_O term1
@@ -1484,10 +1486,10 @@ State 75:
                        TK_SUMA shift        19     
                       TK_RESTA shift        18     
                           TK_O shift        17     
-                     {default} reduce       64     expr ::= term0
+                     {default} reduce       65     expr ::= term0
 
 State 76:
-     (63) expr ::= expr TK_IGUAL_Q term0 *
+     (64) expr ::= expr TK_IGUAL_Q term0 *
           term0 ::= term0 * TK_SUMA term1
           term0 ::= term0 * TK_RESTA term1
           term0 ::= term0 * TK_O term1
@@ -1495,10 +1497,10 @@ State 76:
                        TK_SUMA shift        19     
                       TK_RESTA shift        18     
                           TK_O shift        17     
-                     {default} reduce       63     expr ::= expr TK_IGUAL_Q term0
+                     {default} reduce       64     expr ::= expr TK_IGUAL_Q term0
 
 State 77:
-     (62) expr ::= expr TK_MENOR_Q_IG term0 *
+     (63) expr ::= expr TK_MENOR_Q_IG term0 *
           term0 ::= term0 * TK_SUMA term1
           term0 ::= term0 * TK_RESTA term1
           term0 ::= term0 * TK_O term1
@@ -1506,10 +1508,10 @@ State 77:
                        TK_SUMA shift        19     
                       TK_RESTA shift        18     
                           TK_O shift        17     
-                     {default} reduce       62     expr ::= expr TK_MENOR_Q_IG term0
+                     {default} reduce       63     expr ::= expr TK_MENOR_Q_IG term0
 
 State 78:
-     (61) expr ::= expr TK_MAYOR_Q_IG term0 *
+     (62) expr ::= expr TK_MAYOR_Q_IG term0 *
           term0 ::= term0 * TK_SUMA term1
           term0 ::= term0 * TK_RESTA term1
           term0 ::= term0 * TK_O term1
@@ -1517,10 +1519,10 @@ State 78:
                        TK_SUMA shift        19     
                       TK_RESTA shift        18     
                           TK_O shift        17     
-                     {default} reduce       61     expr ::= expr TK_MAYOR_Q_IG term0
+                     {default} reduce       62     expr ::= expr TK_MAYOR_Q_IG term0
 
 State 79:
-     (60) expr ::= expr TK_MAYOR_Q term0 *
+     (61) expr ::= expr TK_MAYOR_Q term0 *
           term0 ::= term0 * TK_SUMA term1
           term0 ::= term0 * TK_RESTA term1
           term0 ::= term0 * TK_O term1
@@ -1528,16 +1530,16 @@ State 79:
                        TK_SUMA shift        19     
                       TK_RESTA shift        18     
                           TK_O shift        17     
-                     {default} reduce       60     expr ::= expr TK_MAYOR_Q term0
+                     {default} reduce       61     expr ::= expr TK_MAYOR_Q term0
 
 State 80:
-     (49) left_val ::= TK_ID *
+     (50) left_val ::= TK_ID *
           left_val ::= TK_ID * TK_OPEN_BRACK expr TK_CLOSE_BRACK
           function_use ::= TK_ID * TK_OPEN_PAR opt_params TK_CLOSE_PAR
 
                  TK_OPEN_BRACK shift        6      
                    TK_OPEN_PAR shift        51     
-                     {default} reduce       49     left_val ::= TK_ID
+                     {default} reduce       50     left_val ::= TK_ID
 
 State 81:
           nums ::= nums TK_COMMA * TK_NUM
@@ -1601,7 +1603,7 @@ State 91:
 State 92:
           args ::= args TK_COMMA primitive * TK_ID
 
-                         TK_ID shift-reduce 23     args ::= args TK_COMMA primitive TK_ID
+                         TK_ID shift-reduce 24     args ::= args TK_COMMA primitive TK_ID
 
 State 93:
      (22) arg_list ::= primitive TK_ID args *
@@ -1653,28 +1655,28 @@ State 101:
                       TK_ARROW shift        3      
 
 State 102:
-     (49) left_val ::= TK_ID *
+     (50) left_val ::= TK_ID *
           left_val ::= TK_ID * TK_OPEN_BRACK expr TK_CLOSE_BRACK
 
                  TK_OPEN_BRACK shift        6      
-                     {default} reduce       49     left_val ::= TK_ID
+                     {default} reduce       50     left_val ::= TK_ID
 
 State 103:
           function_use ::= TK_ID TK_OPEN_PAR opt_params * TK_CLOSE_PAR
 
-                  TK_CLOSE_PAR shift-reduce 51     function_use ::= TK_ID TK_OPEN_PAR opt_params TK_CLOSE_PAR
+                  TK_CLOSE_PAR shift-reduce 52     function_use ::= TK_ID TK_OPEN_PAR opt_params TK_CLOSE_PAR
 
 State 104:
-     (45) expr_list ::= expr exprs *
+     (46) expr_list ::= expr exprs *
           exprs ::= exprs * TK_COMMA expr
 
                       TK_COMMA shift        4      
-                     {default} reduce       45     expr_list ::= expr exprs
+                     {default} reduce       46     expr_list ::= expr exprs
 
 State 105:
           opt_params ::= TK_OPEN_PAR expr_list * TK_CLOSE_PAR
 
-                  TK_CLOSE_PAR shift-reduce 43     opt_params ::= TK_OPEN_PAR expr_list TK_CLOSE_PAR
+                  TK_CLOSE_PAR shift-reduce 44     opt_params ::= TK_OPEN_PAR expr_list TK_CLOSE_PAR
 
 State 106:
           for_statement ::= KW_PARA assignment * KW_HASTA expr KW_HAGA
@@ -1689,7 +1691,7 @@ State 107:
 State 108:
           if_statement ::= KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list else_statement KW_FIN * KW_SI
 
-                         KW_SI shift-reduce 38     if_statement ::= KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list else_statement KW_FIN KW_SI
+                         KW_SI shift-reduce 39     if_statement ::= KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list else_statement KW_FIN KW_SI
 
 State 109:
           if_statement ::= KW_SI expr KW_ENTONCES TK_NEW_LINE statement_list else_statement * KW_FIN KW_SI
@@ -1702,17 +1704,17 @@ State 110:
                    TK_NEW_LINE shift        59     
 
 State 111:
-     (25) block ::= KW_INICIO opt_eol statement_list KW_FIN opt_eol *
+     (26) block ::= KW_INICIO opt_eol statement_list KW_FIN opt_eol *
           opt_eol ::= opt_eol * TK_NEW_LINE
 
-                   TK_NEW_LINE shift-reduce 26     opt_eol ::= opt_eol TK_NEW_LINE
-                     {default} reduce       25     block ::= KW_INICIO opt_eol statement_list KW_FIN opt_eol
+                   TK_NEW_LINE shift-reduce 27     opt_eol ::= opt_eol TK_NEW_LINE
+                     {default} reduce       26     block ::= KW_INICIO opt_eol statement_list KW_FIN opt_eol
 
 State 112:
       (5) one_more_eol ::= opt_eol TK_NEW_LINE *
-     (26) opt_eol ::= opt_eol TK_NEW_LINE *
+     (27) opt_eol ::= opt_eol TK_NEW_LINE *
 
-                   TK_NEW_LINE reduce       26     opt_eol ::= opt_eol TK_NEW_LINE
+                   TK_NEW_LINE reduce       27     opt_eol ::= opt_eol TK_NEW_LINE
                      {default} reduce       5      one_more_eol ::= opt_eol TK_NEW_LINE
 
 State 113:
@@ -1795,7 +1797,7 @@ Symbols:
    54: fp_decls: <lambda> KW_PROC KW_FUNC
    55: block: KW_INICIO
    56: opt_arg_list: <lambda> TK_OPEN_PAR
-   57: arg_list: KW_ENTERO KW_BOOLEANO KW_CARACTER
+   57: arg_list: <lambda> KW_ENTERO KW_BOOLEANO KW_CARACTER
    58: args: <lambda> TK_COMMA
    59: variable_decls: <lambda> KW_ENTERO KW_BOOLEANO KW_CARACTER
    60: statement_list: <lambda> TK_ID KW_SI KW_PARA KW_LLAMAR KW_RETORNE
