@@ -238,6 +238,30 @@ inferType(IfStatementNode){
 	
 }
 
+inferType(ArrayAccessNode){
+	
+}
+
+inferType(FunctionUseNode){
+	
+}
+
+inferType(AssignmentNode){
+	
+}
+
+inferType(TypedefNode){
+	
+}
+
+inferType(ElseStatementNode){
+	
+}
+
+inferType(ReturnNode){
+	
+}
+
 getListType(VariableDeclListNode){
 	return variable_list_type;
 }
