@@ -156,8 +156,8 @@
 %operation %virtual type_code	getListType(ListNode* node)
 
 inferType(OperationNode){
-	inferType(node->left)
-	inferType(node->right)
+	node->left->inferType();
+	node->right->inferType();
 
 	if (node->left->type == error_type || node->right->type == error_type){
 		node->type= error_type;
@@ -189,17 +189,17 @@ inferType(ProgramNode){
 }
 
 inferType(ForStatementNode){
-	inferType(node->left);
-	inferType(node->right);
+	node->left->inferType();
+	node->right->inferType();
 }
 
 inferType(ListNode){
 	for (auto* child : child_list){
 		if (child){
-			inferType(child)
+			child->inferType();
 		}
 	}
-	node->type= getListType(node);
+	node->type= node->getListType();
 }
 
 inferType(BlockNode){
