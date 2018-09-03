@@ -22,6 +22,12 @@
 	error_type,
 	id_type,
 	variable_list_type,
+	id_list_type,
+	num_list_type,
+	func_list_type,
+	stmt_list_type,
+	arg_list_type,
+	expr_list_type,
 	int_decl_type,
 	bool_decl_type,
 	char_decl_type,
@@ -143,19 +149,121 @@
 
 
 
-%operation %virtual string 	toString(AstNode* node)
-%operation %virtual string 	getOperatorString(OperationNode* node)
-%operation %virtual string 	getDelimiter(ListNode* node)
-%operation %virtual void 	inferType(AstNode* node)
+%operation %virtual string 		toString(AstNode* node)
+%operation %virtual string 		getOperatorString(OperationNode* node)
+%operation %virtual string 		getDelimiter(ListNode* node)
+%operation %virtual void 		inferType(AstNode* node)
+%operation %virtual type_code	getListType(ListNode* node)
 
-infer_type(OperationNode){
+inferType(OperationNode){
+	inferType(node->left)
+	inferType(node->right)
+
 	if (node->left->type == error_type || node->right->type == error_type){
 		node->type= error_type;
 	} else if (node->left->type != node->right->type){
 		node->type= error_type;
-	} else if (node->left->type){
-
+	} else{
+		node->type= node->left->type;
 	}
+}
+
+inferType(IdNode){
+	node->type= id_type;
+}
+
+inferType(NumberNode){
+	node->type= int_type;
+}
+
+inferType(CharacterNode){
+	node->type= char_type;
+}
+
+inferType(BooleanNode){
+	node->type= bool_type;
+}
+
+inferType(ProgramNode){
+	node->type= main_type;
+}
+
+inferType(ForStatementNode){
+	inferType(node->left);
+	inferType(node->right);
+}
+
+inferType(ListNode){
+	for (auto* child : child_list){
+		if (child){
+			inferType(child)
+		}
+	}
+	node->type= getListType(node);
+}
+
+inferType(BlockNode){
+
+}
+
+inferType(FuncCallNode){
+
+}
+
+inferType(IntDeclNode){
+
+}
+
+inferType(BooleanDeclNode){
+
+}
+
+inferType(CharDeclNode){
+
+}
+
+inferType(TypedefArrayNode){
+
+}
+
+inferType(ProcedureNode){
+
+}
+
+inferType(FunctionNode){
+
+}
+
+inferType(IfStatementNode){
+	
+}
+
+getListType(VariableDeclListNode){
+	return variable_list_type;
+}
+
+getListType(IdListNode){
+	return id_list_type;
+}
+
+getListType(NumListNode){
+	return num_list_type;
+}
+
+getListType(FuncsListNode){
+	return func_list_type;
+}
+
+getListType(StatementListNode){
+	return stmt_list_type;
+}
+
+getListType(ArgListNode){
+	return arg_list_type;
+}
+
+getListType(ExprListNode){
+	return expr_list_type;
 }
 
 toString(NumberNode){
