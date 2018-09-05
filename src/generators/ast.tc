@@ -154,6 +154,7 @@
 %operation %virtual string		getOperatorString(OperationNode* node)
 %operation %virtual string		getDelimiter(ListNode* node)
 %operation %virtual bool		fillFunctionSymbols(FuncsListNode* node)
+%operation %virtual bool		doSemantics(AstNode *node)
 
 fillFunctionSymbols(FuncsListNode){
 	if (child_list[0]){
