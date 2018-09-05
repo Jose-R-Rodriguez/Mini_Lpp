@@ -1,49 +1,53 @@
 %option lang= "C++"
-
+%option track_lines
 %decls %{
 	#include <deque>
-	#include "parser.hpp"
 	#include <iostream>
+	#include <unordered_map>
+	#include <utility>
+	#include "parser.hpp"
+	#include "lexer.hpp"
 	#include "common.hpp"
-	
+
+	enum class type_code{
+		error_type,
+		char_type,
+		bool_type,
+		int_type,
+		id_type,
+		func_type
+	};
+
 	class AstNode;
 	using namespace std;
 	using AstNodeList = deque<AstNode*>;
+	//Symbols in functions are only their names followed by their type
+	using FunctionSymbols= std::unordered_map<std::string, type_code, CaseIHash, CaseIPredicate>;
+	//SymbolTypes are the type of that symbol and optionally an array to an extra set of symbols
+	using SymbolType = std::pair<type_code,FunctionSymbols>;
+	//SymbolList contains a name followed by a SymbolType
+	using SymbolList = std::unordered_map<std::string, SymbolType, CaseIHash, CaseIPredicate>;
+	bool semanticsError(std::string errMsg, AstNode *node);
+	extern SymbolList SymbolTable;
 %}
 
 %{
 	#include "ast.hpp"
+	SymbolList SymbolTable= {};
+	bool semanticsError(std::string errMsg, AstNode *node){
+		std::cerr<<"Semantics ERROR@:"<<node->getLinenum()<<std::endl<<errMsg<<std::endl;
+		return false;
+	}
 %}
 
-%enum type_code= {
-	int_type,
-	char_type,
-	bool_type,
-	error_type,
-	id_type,
-	variable_list_type,
-	id_list_type,
-	num_list_type,
-	func_list_type,
-	stmt_list_type,
-	arg_list_type,
-	expr_list_type,
-	int_decl_type,
-	bool_decl_type,
-	char_decl_type,
-	typedef_decl_type,
-	statement_type,
-	main_type
-}
-
 %node AstNode %abstract %typedef = {
-	%nocreate type_code type = {error_type};
 }
 
 %node ProgramNode AstNode = {
 	AstNode* variableDeclsNode;
 	AstNode* functionNProceduresDeclNode;
 	AstNode* mainNode;
+
 }
 
 %node BinaryNode AstNode %abstract = {
@@ -146,148 +150,24 @@
 	AstNode* elseNode;
 }
 
+%operation %virtual string		toString(AstNode* node)
+%operation %virtual string		getOperatorString(OperationNode* node)
+%operation %virtual string		getDelimiter(ListNode* node)
+%operation %virtual bool		fillFunctionSymbols(FuncsListNode* node)
 
-
-
-%operation %virtual string 		toString(AstNode* node)
-%operation %virtual string 		getOperatorString(OperationNode* node)
-%operation %virtual string 		getDelimiter(ListNode* node)
-%operation %virtual void 		inferType(AstNode* node)
-%operation %virtual type_code	getListType(ListNode* node)
-
-inferType(OperationNode){
-	node->left->inferType();
-	node->right->inferType();
-
-	if (node->left->type == error_type || node->right->type == error_type){
-		node->type= error_type;
-	} else if (node->left->type != node->right->type){
-		node->type= error_type;
-	} else{
-		node->type= node->left->type;
+fillFunctionSymbols(FuncsListNode){
+	if (child_list[0]){
+		static_cast<FuncsListNode*>(child_list[0])->fillFunctionSymbols();
 	}
-}
-
-inferType(IdNode){
-	node->type= id_type;
-}
-
-inferType(NumberNode){
-	node->type= int_type;
-}
-
-inferType(CharacterNode){
-	node->type= char_type;
-}
-
-inferType(BooleanNode){
-	node->type= bool_type;
-}
-
-inferType(ProgramNode){
-	node->type= main_type;
-}
-
-inferType(ForStatementNode){
-	node->left->inferType();
-	node->right->inferType();
-}
-
-inferType(ListNode){
-	for (auto* child : child_list){
-		if (child){
-			child->inferType();
-		}
+	//SymbolTable
+	IdNode *FuncName= static_cast<IdNode*>(child_list[1]);
+	if (SymbolTable.find(FuncName->value) == SymbolTable.end()){
+		semanticsError("Symbol already declared", node);
+		return false;
+	} else {
+		SymbolTable[FuncName->value]= {type_code::func_type, {}};
 	}
-	node->type= node->getListType();
-}
-
-inferType(BlockNode){
-
-}
-
-inferType(FuncCallNode){
-
-}
-
-inferType(IntDeclNode){
-
-}
-
-inferType(BooleanDeclNode){
-
-}
-
-inferType(CharDeclNode){
-
-}
-
-inferType(TypedefArrayNode){
-
-}
-
-inferType(ProcedureNode){
-
-}
-
-inferType(FunctionNode){
-
-}
-
-inferType(IfStatementNode){
-	
-}
-
-inferType(ArrayAccessNode){
-	
-}
-
-inferType(FunctionUseNode){
-	
-}
-
-inferType(AssignmentNode){
-	
-}
-
-inferType(TypedefNode){
-	
-}
-
-inferType(ElseStatementNode){
-	
-}
-
-inferType(ReturnNode){
-	
-}
-
-getListType(VariableDeclListNode){
-	return variable_list_type;
-}
-
-getListType(IdListNode){
-	return id_list_type;
-}
-
-getListType(NumListNode){
-	return num_list_type;
-}
-
-getListType(FuncsListNode){
-	return func_list_type;
-}
-
-getListType(StatementListNode){
-	return stmt_list_type;
-}
-
-getListType(ArgListNode){
-	return arg_list_type;
-}
-
-getListType(ExprListNode){
-	return expr_list_type;
+	return true;
 }
 
 toString(NumberNode){

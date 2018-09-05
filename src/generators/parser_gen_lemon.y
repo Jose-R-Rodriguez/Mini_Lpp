@@ -52,8 +52,8 @@ start ::= global_decls(A) fp_decls(B) block(C) TK_EOF.
 								{
 									std::cout<<"Analyzing..."<<std::endl;
 									AstNode* program = new ProgramNode(A,B,C);
-									std::cout<<program->toString();
-									//program->doSemantics();
+									//std::cout<<program->toString();
+									program->doSemantics();
 								}
 global_decls(A) ::= global_decls(B) primitive(C) id_list(D) one_more_eol.									
 								{A= new VariableDeclListNode({B, C, D});}
