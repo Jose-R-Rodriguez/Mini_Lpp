@@ -4,7 +4,7 @@
 	#include <deque>
 	#include <iostream>
 	#include <unordered_map>
-	#include <utility>
+	#include <tuple>
 	#include "parser.hpp"
 	#include "lexer.hpp"
 	#include "common.hpp"
@@ -15,7 +15,8 @@
 		bool_type,
 		int_type,
 		id_type,
-		func_type
+		func_type,
+		array_type
 	};
 
 	class AstNode;
@@ -24,7 +25,7 @@
 	//Symbols in functions are only their names followed by their type
 	using FunctionSymbols= std::unordered_map<std::string, type_code, CaseIHash, CaseIPredicate>;
 	//SymbolTypes are the type of that symbol and optionally an array to an extra set of symbols
-	using SymbolType = std::pair<type_code,FunctionSymbols>;
+	using SymbolType = std::tuple<type_code,int,FunctionSymbols>;
 	//SymbolList contains a name followed by a SymbolType
 	using SymbolList = std::unordered_map<std::string, SymbolType, CaseIHash, CaseIPredicate>;
 	bool semanticsError(std::string errMsg, AstNode *node);
@@ -154,20 +155,200 @@
 %operation %virtual string		getOperatorString(OperationNode* node)
 %operation %virtual string		getDelimiter(ListNode* node)
 %operation %virtual bool		fillFunctionSymbols(FuncsListNode* node)
+%operation %virtual bool		fillVariableSymbols(VariableDeclListNode *node)
 %operation %virtual bool		doSemantics(AstNode *node)
+
+doSemantics(ProgramNode){
+	if (node->functionNProceduresDeclNode)
+		node->functionNProceduresDeclNode->fillFunctionSymbols();
+	if (node->variableDeclsNode)
+		node->variableDeclsNode->fillVariableSymbols();
+	mainNode->doSemantics();
+}
+
+doSemantics(ForStatementNode){
+
+}
+
+doSemantics(FuncCallNode){
+
+}
+
+doSemantics(ArrayAccessNode){
+
+}
+
+doSemantics(FunctionUseNode){
+
+}
+
+doSemantics(AssignmentNode){
+
+}
+
+doSemantics(AdditionNode){
+
+}
+
+doSemantics(SubtractionNode){
+
+}
+
+doSemantics(OrNode){
+
+}
+
+doSemantics(MultiplicationNode){
+
+}
+
+doSemantics(EqualsNode){
+
+}
+
+doSemantics(LessThanEtNode){
+
+}
+
+doSemantics(GrtrThanEtNode){
+
+}
+
+doSemantics(GrtrThanNode){
+
+}
+
+doSemantics(LessThanNode){
+
+}
+
+doSemantics(DivisionNode){
+
+}
+
+doSemantics(ExponentNode){
+
+}
+
+doSemantics(AndNode){
+
+}
+
+doSemantics(ModulusNode){
+
+}
+
+doSemantics(TypedefNode){
+
+}
+
+doSemantics(BlockNode){
+
+}
+
+doSemantics(ElseStatementNode){
+
+}
+
+doSemantics(ReturnNode){
+
+}
+
+doSemantics(VariableDeclListNode){
+
+}
+
+doSemantics(IdListNode){
+
+}
+
+doSemantics(NumListNode){
+
+}
+
+doSemantics(FuncsListNode){
+
+}
+
+doSemantics(StatementListNode){
+
+}
+
+doSemantics(ArgListNode){
+
+}
+
+doSemantics(ExprListNode){
+
+}
+
+doSemantics(IntDeclNode){
+
+}
+
+doSemantics(BooleanDeclNode){
+
+}
+
+doSemantics(CharDeclNode){
+
+}
+
+doSemantics(NumberNode){
+
+}
+
+doSemantics(CharacterNode){
+
+}
+
+doSemantics(BooleanNode){
+
+}
+
+doSemantics(IdNode){
+
+}
+
+doSemantics(TypedefArrayNode){
+
+}
+
+doSemantics(ProcedureNode){
+
+}
+
+doSemantics(FunctionNode){
+
+}
+
+doSemantics(IfStatementNode){
+
+}
+
+fillVariableSymbols(VariableDeclListNode){
+
+}
 
 fillFunctionSymbols(FuncsListNode){
 	if (child_list[0]){
 		static_cast<FuncsListNode*>(child_list[0])->fillFunctionSymbols();
 	}
+	if (child_list[1]->isA(FunctionNode_kind)){
+
+	} else if (child_list[1]->isA(ProcedureNode_kind)){
+
+	} else {
+		semanticsError("Expected function or procedure", child_list[1])
+	}
 	//SymbolTable
-	IdNode *FuncName= static_cast<IdNode*>(child_list[1]);
+	/*IdNode *FuncName= static_cast<IdNode*>(child_list[1]);
 	if (SymbolTable.find(FuncName->value) == SymbolTable.end()){
 		semanticsError("Symbol already declared", node);
 		return false;
 	} else {
-		SymbolTable[FuncName->value]= {type_code::func_type, {}};
-	}
+		SymbolTable[FuncName->value]= {type_code::func_type, 4,{}};
+	}*/
 	return true;
 }
 
