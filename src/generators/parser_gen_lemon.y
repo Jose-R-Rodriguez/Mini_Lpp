@@ -54,6 +54,15 @@ start ::= global_decls(A) fp_decls(B) block(C) TK_EOF.
 									AstNode* program = new ProgramNode(A,B,C);
 									//std::cout<<program->toString();
 									program->doSemantics();
+									auto map_it= SymbolTable.begin();
+									for (; map_it != SymbolTable.end(); ++map_it){
+										std::cout<<map_it->first<<std::endl;
+										auto innerMap= std::get<2>(map_it->second);
+										auto inner_it= innerMap.begin();
+										for (; inner_it != innerMap.end(); ++inner_it){
+											std::cout<<"\t"<<inner_it->first<<std::endl;
+										}
+									}
 								}
 global_decls(A) ::= global_decls(B) primitive(C) id_list(D) one_more_eol.									
 								{A= new VariableDeclListNode({B, C, D});}
