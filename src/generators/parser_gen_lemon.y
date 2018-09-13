@@ -2,6 +2,7 @@
 	#include <cassert> 
 	#include <iostream>
 	#include "ast.hpp"
+	#include "memoryHandler.hpp"
 }
 %token_type{const char* }
 %type ids {AstNode*}
@@ -62,6 +63,11 @@ start ::= global_decls(A) fp_decls(B) block(C) TK_EOF.
 										for (; inner_it != innerMap.end(); ++inner_it){
 											std::cout<<"\t"<<inner_it->first<<std::endl;
 										}
+									}
+									MemoryHandler mem_hndlr= MemoryHandler();
+									if (!program->generateCode()){
+										std::cout<<"ERROR GENERATING CODE"<<std::endl;
+										exit(1);
 									}
 								}
 global_decls(A) ::= global_decls(B) primitive(C) id_list(D) one_more_eol.									

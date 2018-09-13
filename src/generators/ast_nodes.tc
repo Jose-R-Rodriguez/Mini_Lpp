@@ -1,0 +1,109 @@
+%node AstNode %abstract %typedef = {
+}
+
+%node ProgramNode AstNode = {
+	AstNode* variableDeclsNode;
+	AstNode* functionNProceduresDeclNode;
+	AstNode* mainNode;
+
+}
+
+%node BinaryNode AstNode %abstract = {
+	AstNode* left;
+	AstNode* right;
+}
+
+
+%node ForStatementNode 	BinaryNode
+%node FuncCallNode 		BinaryNode
+%node ArrayAccessNode 	BinaryNode
+%node FunctionUseNode 	BinaryNode
+%node AssignmentNode 	BinaryNode
+
+%node OperationNode BinaryNode %abstract
+
+%node AdditionNode 			OperationNode
+%node SubtractionNode 		OperationNode
+%node OrNode 				OperationNode
+%node MultiplicationNode 	OperationNode
+%node EqualsNode 			OperationNode
+%node LessThanEtNode 		OperationNode
+%node GrtrThanEtNode 		OperationNode
+%node GrtrThanNode 			OperationNode
+%node LessThanNode 			OperationNode
+%node DivisionNode 			OperationNode
+%node ExponentNode 			OperationNode
+%node AndNode 				OperationNode
+%node ModulusNode 			OperationNode
+
+%node UnaryNode AstNode %abstract = {
+	AstNode* n;
+}
+
+
+%node ListNode AstNode %abstract = {
+	AstNodeList child_list;
+}
+
+%node VariableDeclListNode ListNode
+
+%node IdListNode ListNode
+%node NumListNode ListNode
+%node FuncsListNode ListNode
+%node StatementListNode ListNode
+%node ArgListNode ListNode
+%node ExprListNode ListNode
+
+
+%node IntDeclNode AstNode
+%node BooleanDeclNode AstNode
+%node CharDeclNode AstNode
+
+%node NumberNode AstNode = {
+	int value;
+}
+
+%node CharacterNode AstNode = {
+	char value;
+}
+
+%node BooleanNode AstNode = {
+	bool value;
+}
+
+%node TypedefNode BinaryNode
+
+%node IdNode AstNode = {
+	string value;
+}
+
+%node TypedefArrayNode AstNode = {
+	AstNode* idNode;
+	AstNode* NumberListNode;
+	AstNode* primitiveTypeNode;
+}
+
+%node ProcedureNode AstNode = {
+	AstNode* idNode;
+	AstNode* optionalArgsNode;
+	AstNode* variableDeclsNode;
+	AstNode* blockNode;
+}
+
+%node FunctionNode AstNode = {
+	AstNode* idNode;
+	AstNode* optionalArgsNode;
+	AstNode* returnTypeNode;
+	AstNode* variableDeclsNode;
+	AstNode* blockNode;
+}
+
+%node BlockNode UnaryNode
+%node ElseStatementNode UnaryNode
+%node ReturnNode UnaryNode
+
+%node IfStatementNode AstNode = {
+	AstNode* expressionNode;
+	AstNode* statementListNode;
+	AstNode* elseNode;
+}

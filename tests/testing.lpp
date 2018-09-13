@@ -16,7 +16,6 @@ procedimiento miProcedimiento
 	inicio fin
 
 inicio
-
 	si 2+2 entonces
 		yt <- 4444
 	sino

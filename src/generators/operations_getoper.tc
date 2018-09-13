@@ -1,0 +1,52 @@
+
+getOperatorString(AdditionNode){
+	return "+";
+}
+
+getOperatorString(SubtractionNode){
+	return "-";
+}
+
+getOperatorString(OrNode){
+	return "|";
+}
+
+getOperatorString(MultiplicationNode){
+	return "*";
+}
+
+getOperatorString(EqualsNode){
+	return "=";
+}
+
+getOperatorString(LessThanEtNode){
+	return "<=";
+}
+
+getOperatorString(GrtrThanEtNode){
+	return ">=";
+}
+
+getOperatorString(GrtrThanNode){
+	return ">";
+}
+
+getOperatorString(LessThanNode){
+	return "<";
+}
+
+getOperatorString(DivisionNode){
+	return "/";
+}
+
+getOperatorString(ExponentNode){
+	return "^";
+}
+
+getOperatorString(AndNode){
+	return "&";
+}
+
+getOperatorString(ModulusNode){
+	return "%";
+}

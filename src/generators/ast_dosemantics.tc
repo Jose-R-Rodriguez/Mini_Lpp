@@ -1,0 +1,271 @@
+doSemantics(ProgramNode){
+	if (node->functionNProceduresDeclNode)
+		node->functionNProceduresDeclNode->doSemantics();
+	//if (node->variableDeclsNode)
+	//	node->variableDeclsNode->doSemantics();
+	//mainNode->doSemantics();
+	return true;
+}
+
+doSemantics(ForStatementNode){
+	return true;
+}
+
+doSemantics(FuncCallNode){
+	return true;
+}
+
+doSemantics(ArrayAccessNode){
+	return true;
+}
+
+doSemantics(FunctionUseNode){
+	return true;
+}
+
+doSemantics(AssignmentNode){
+	return true;
+}
+
+doSemantics(AdditionNode){
+	return true;
+}
+
+doSemantics(SubtractionNode){
+	return true;
+}
+
+doSemantics(OrNode){
+	return true;
+}
+
+doSemantics(MultiplicationNode){
+	return true;
+}
+
+doSemantics(EqualsNode){
+	return true;
+}
+
+doSemantics(LessThanEtNode){
+	return true;
+}
+
+doSemantics(GrtrThanEtNode){
+	return true;
+}
+
+doSemantics(GrtrThanNode){
+	return true;
+}
+
+doSemantics(LessThanNode){
+	return true;
+}
+
+doSemantics(DivisionNode){
+	return true;
+}
+
+doSemantics(ExponentNode){
+	return true;
+}
+
+doSemantics(AndNode){
+	return true;
+}
+
+doSemantics(ModulusNode){
+	return true;
+}
+
+doSemantics(TypedefNode){
+	return true;
+}
+
+doSemantics(BlockNode){
+	return true;
+}
+
+doSemantics(ElseStatementNode){
+	return true;
+}
+
+doSemantics(ReturnNode){
+	return true;
+}
+
+doSemantics(VariableDeclListNode){
+	if (child_list[0])
+		child_list[0]->doSemantics();
+	if (child_list[1]->isA(TypedefNode_kind) || child_list[1]->isA(TypedefArrayNode_kind)){
+		child_list[1]->doSemantics();
+	} else if (child_list[1]->isA(IntDeclNode_kind)){
+		temp= type_code::int_type;
+	}
+	else if (child_list[1]->isA(CharDeclNode_kind)){
+		temp= type_code::char_type;
+	}
+	else if (child_list[1]->isA(BooleanDeclNode_kind)){
+		temp= type_code::bool_type;
+	}
+	if (child_list[2]->isA(NumberNode_kind)){
+		temp= type_code::array_type;
+		child_list[3]->doSemantics();
+	} else {
+		child_list[2]->doSemantics();
+
+	}
+	return true;
+
+}
+
+doSemantics(IdListNode){
+	if (child_list[1])
+		child_list[1]->doSemantics();
+	IdNode* name= static_cast<IdNode*>(child_list[0]);
+	if (!currentContext){
+		if (SymbolTable.find(name->value) != SymbolTable.end()){
+			semanticsError("Symbol already defined within function", node);
+			return false;
+		} else {
+			SymbolTable[name->value]= {temp, 4, {}};
+		}
+	} else {
+		if (currentContext->find(name->value) != currentContext->end()){
+			semanticsError("Symbol already defined within function", node);
+			return false;
+		} else {
+			(*currentContext)[name->value]= temp;
+		}
+	}
+	return true;
+}
+
+doSemantics(NumListNode){
+	return true;
+}
+
+doSemantics(FuncsListNode){
+	if (child_list[0]){
+		child_list[0]->doSemantics();
+	}
+	child_list[1]->doSemantics();
+	return true;
+}
+
+doSemantics(StatementListNode){
+	return true;
+}
+
+doSemantics(ArgListNode){
+	if (!currentContext){
+		semanticsError("Internal error, didnt set current context before putting arguments in VTable", node);
+		return false;
+	}
+	if (child_list[2]){
+		child_list[2]->doSemantics();
+	}
+	IdNode* name= static_cast<IdNode*>(child_list[1]);
+	if (currentContext->find(name->value) != currentContext->end()){
+		semanticsError("Symbol already defined within function", node);
+		return false;
+	}
+	if (child_list[0]->isA(IntDeclNode_kind)){
+		(*currentContext)[name->value]= type_code::int_type;
+	} else if (child_list[0]->isA(CharDeclNode_kind)){
+		(*currentContext)[name->value] = type_code::char_type;
+	} else if (child_list[0]->isA(BooleanDeclNode_kind)){
+		(*currentContext)[name->value] = type_code::bool_type;
+	}
+	return true;
+}
+
+doSemantics(ExprListNode){
+	return true;
+}
+
+doSemantics(IntDeclNode){
+	return true;
+}
+
+doSemantics(BooleanDeclNode){
+	return true;
+}
+
+doSemantics(CharDeclNode){
+	return true;
+
+}
+
+doSemantics(NumberNode){
+	return true;
+
+}
+
+doSemantics(CharacterNode){
+	return true;
+
+}
+
+doSemantics(BooleanNode){
+	return true;
+
+}
+
+doSemantics(IdNode){
+	return true;
+
+}
+
+doSemantics(TypedefArrayNode){
+	return true;
+
+}
+
+doSemantics(IfStatementNode){
+	return true;
+}
+
+doSemantics(ProcedureNode){
+	//SymbolTable
+	IdNode *ProcName= static_cast<IdNode*>(idNode);
+	if (SymbolTable.find(ProcName->value) != SymbolTable.end()){
+		semanticsError("Symbol already declared", node);
+		return false;
+	} else {
+		SymbolTable[ProcName->value]= {type_code::func_type, 4,{}};
+		currentContext= &std::get<2>(SymbolTable[ProcName->value]);
+	}
+	if (node->optionalArgsNode){
+		node->optionalArgsNode->doSemantics();
+	}
+	if (node->variableDeclsNode){
+		node->variableDeclsNode->doSemantics();
+	}
+	node->blockNode->doSemantics();
+	currentContext= nullptr;
+	temp= type_code::error_type;
+	return true;
+}
+
+doSemantics(FunctionNode){
+	IdNode *FuncName= static_cast<IdNode*>(idNode);
+	if (SymbolTable.find(FuncName->value) != SymbolTable.end()){
+		semanticsError("Symbol already declared", node);
+		return false;
+	} else {
+		SymbolTable[FuncName->value]= {type_code::func_type, 4,{}};
+		currentContext= &std::get<2>(SymbolTable[FuncName->value]);
+	}
+	if (node->optionalArgsNode){
+		node->optionalArgsNode->doSemantics();
+	}
+	if (node->variableDeclsNode){
+		node->variableDeclsNode->doSemantics();
+	}
+	currentContext= nullptr;
+	temp= type_code::error_type;
+
+	return true;
+}

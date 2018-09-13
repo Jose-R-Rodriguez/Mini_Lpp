@@ -1,0 +1,186 @@
+
+toString(NumberNode){
+	return std::to_string(value);
+}
+
+toString(CharacterNode){
+	return std::string(value, 1);
+}
+
+toString(BooleanNode){
+	return value ? "verdadero" : "falso";
+}
+
+toString(IdNode){
+	return value;
+}
+
+toString(ProgramNode){
+	std::string result= "";
+	if (variableDeclsNode)
+		result+= variableDeclsNode->toString();
+	if (functionNProceduresDeclNode)
+		result+= functionNProceduresDeclNode->toString();
+	result+= mainNode->toString();
+	return result;
+}
+
+toString(ListNode){
+	std::string result= "";
+	for (auto& child : child_list){
+		if (child){
+			result+= child->toString() + node->getDelimiter();
+		}
+	}
+	result.pop_back();
+	return result;
+}
+
+toString(ArgListNode){
+	std::string result= "";
+	if (child_list[0])
+		result+= child_list[0]->toString() + " ";
+	result+= child_list[1]->toString() + ",";
+	if (child_list[2])
+		result+= child_list[2]->toString();
+	return result;
+}
+
+toString(VariableDeclListNode){
+	std::string result= "";
+	for (int x = 0 ; x < child_list.size(); x++){
+		if (x==2){
+			result+= " ";
+		}
+		if (child_list[x])
+			result+= child_list[x]->toString();
+	}
+	result+= node->getDelimiter();
+	return result;
+}
+
+toString(IntDeclNode){
+	return "entero";
+}
+
+toString(CharDeclNode){
+	return "caracter";
+}
+
+toString(BooleanDeclNode){
+	return "booleano";
+}
+
+toString(OperationNode){
+	string result= "";
+	if (left){
+		result+= left->toString();
+	}
+	if (right){
+		result+= node->getOperatorString() + right->toString();
+	}
+	return result+"\n";
+}
+
+toString(TypedefArrayNode){
+	string result= "Tipo ";
+	result+= idNode->toString() + " es arreglo [";
+	result+= NumberListNode->toString() + "] de ";
+	result+= primitiveTypeNode->toString();
+	return result;
+}
+
+toString(BlockNode){
+	string result= "inicio\n";
+	if (n)
+		result+= n->toString();
+	return result + "\nfin\n";
+}
+
+toString(ElseStatementNode){
+	return n->toString();
+}
+
+toString(ReturnNode){
+	string result= "retorne ";
+	result+= n->toString();
+	return result;
+}
+
+toString(ProcedureNode){
+	string result= "procedimiento ";
+	result+= idNode->toString();
+	if (optionalArgsNode)
+		result+= "(" + optionalArgsNode->toString() + ")";
+	result+= "\n";
+	if (variableDeclsNode)
+		result+= variableDeclsNode->toString();
+	result+= blockNode->toString();
+	return result;
+}
+
+toString(FunctionNode){
+	string result= "funcion ";
+	result+= idNode->toString(); 
+	if (optionalArgsNode)
+		result+= "(" + optionalArgsNode->toString() + "):";
+	result+= returnTypeNode->toString() + "\n";
+	if (variableDeclsNode)
+		result+= variableDeclsNode->toString();
+	result+= blockNode->toString();
+	return result;
+}
+
+toString(IfStatementNode){
+	string result= "si ";
+	result+= expressionNode->toString() + "\n";
+	if (statementListNode)
+		result+= statementListNode->toString();
+	if (elseNode)
+		result+= elseNode->toString();
+	return result + "\nfinsi\n";
+}
+
+toString(ForStatementNode){
+	string result= "Para ";
+	result+= left->toString() + " hasta ";
+	result+= right->toString();
+	result+= " haga ";
+	return result;
+}
+
+toString(FuncCallNode){
+	string result= "Llamar ";
+	result+= left->toString();
+	if (right)
+		result+= right->toString();
+	return result;
+}
+
+toString(ArrayAccessNode){
+	string result= "";
+	result+= left->toString() + "[";
+	result+= right->toString() + "]";
+	return result;
+}
+
+toString(FunctionUseNode){
+	string result= "";
+	result+= left->toString();
+	result+= "(" + right->toString() + ")";
+	return result;
+}
+
+toString(AssignmentNode){
+	string result= "";
+	result+= left->toString() + "<-";
+	result+= right->toString();
+	return result;
+}
+
+toString(TypedefNode){
+	string result= "tipo ";
+	result+= left->toString() + " es ";
+	result+= right->toString();
+	return result;
+}

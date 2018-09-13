@@ -27,4 +27,5 @@ include_directories(${PROJECT_SOURCE_DIR}/src/hdrs)
 add_executable(lpp	parser.cpp
 					lexer.cpp
 					ast.cpp
+					${PROJECT_SOURCE_DIR}/src/memoryHandler.cpp
 					${PROJECT_SOURCE_DIR}/src/main.cpp)
