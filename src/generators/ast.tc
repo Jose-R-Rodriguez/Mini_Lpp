@@ -5,9 +5,11 @@
 	#include <iostream>
 	#include <unordered_map>
 	#include <tuple>
+	#include <fstream>
 	#include "parser.hpp"
 	#include "lexer.hpp"
 	#include "common.hpp"
+	#include "memoryHandler.hpp"
 
 	enum class type_code{
 		error_type,
@@ -52,7 +54,7 @@
 %operation %virtual string		getOperatorString(OperationNode* node)
 %operation %virtual string		getDelimiter(ListNode* node)
 %operation %virtual bool		doSemantics(AstNode *node)
-%operation %virtual bool		generateCode(AstNode *node)
+%operation %virtual bool		generateCode(AstNode *node, MemoryHandler& memHandler)
 
 %include "ast_dosemantics.tc"
 %include "ast_tostring.tc"

@@ -13,3 +13,12 @@ std::string MemoryHandler::allocateString(const std::string& newString){
 	inMemoryStrings.emplace(newString, placeString);
 	return placeString;
 }
+
+std::string MemoryHandler::generateDataCode(){
+	std::ostringstream result;
+	result<<"section .data"<<std::endl;
+	for (auto &str : inMemoryStrings){
+		result<<str.second<<" db "<<str.first<<" 0"<<std::endl;
+	}
+	return result.str();
+}

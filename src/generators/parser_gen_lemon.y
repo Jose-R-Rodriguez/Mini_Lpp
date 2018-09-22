@@ -38,6 +38,8 @@
 %type typedef {AstNode*}
 %type expr_list{AstNode*}
 %type exprs{AstNode*}
+%type languageStatements{AstNode*}
+%type printStatement{AstNode*}
 
 
 
@@ -54,6 +56,7 @@ start ::= global_decls(A) fp_decls(B) block(C) TK_EOF.
 									std::cout<<"Analyzing..."<<std::endl;
 									AstNode* program = new ProgramNode(A,B,C);
 									//std::cout<<program->toString();
+									std::cout<<"Syntax good"<<std::endl;
 									program->doSemantics();
 									auto map_it= SymbolTable.begin();
 									for (; map_it != SymbolTable.end(); ++map_it){
@@ -64,11 +67,13 @@ start ::= global_decls(A) fp_decls(B) block(C) TK_EOF.
 											std::cout<<"\t"<<inner_it->first<<std::endl;
 										}
 									}
+									std::cout<<"Building code"<<std::endl;
 									MemoryHandler mem_hndlr= MemoryHandler();
-									if (!program->generateCode()){
+									if (!program->generateCode(mem_hndlr)){
 										std::cout<<"ERROR GENERATING CODE"<<std::endl;
 										exit(1);
 									}
+									std::cout<<"Code built"<<std::endl;
 								}
 global_decls(A) ::= global_decls(B) primitive(C) id_list(D) one_more_eol.									
 								{A= new VariableDeclListNode({B, C, D});}
@@ -142,11 +147,16 @@ statement(A) ::= for_statement(B).
 								{A= B;}
 statement(A) ::= function_call(B).
 								{A= B;}
-
+statement(A) ::= languageStatements(B).
+								{A= B;}
 statement(A) ::= assignment(B).
 								{A= B;}
 statement(A) ::= return_statement(B).
 								{A= B;}
+languageStatements(A) ::= printStatement(B).
+								{A= B;}
+printStatement(A) ::= KW_ESCRIBA expr_list(B).
+								{A= new PrintStatementNode(B);}
 if_statement(A) ::= KW_SI expr(B) KW_ENTONCES TK_NEW_LINE statement_list(C) else_statement(D) KW_FIN KW_SI.
 								{A= new IfStatementNode(B, C, D);}
 else_statement(A) ::= KW_SINO TK_NEW_LINE statement_list(B).
@@ -163,10 +173,14 @@ opt_params(A) ::= .
 								{A= nullptr;}
 expr_list(A) ::= expr(B) exprs(C).
 								{A= new ExprListNode({C, B});}
+expr_list(A) ::= TK_STR_LIT(B) exprs(C).
+								{A= new ExprListNode({C, new StrLitNode(B)});}
 expr_list(A) ::= .
 								{A= nullptr;}
 exprs(A) ::= exprs(B) TK_COMMA expr(C).
 								{A= new ExprListNode({B, C});}
+exprs(A) ::= exprs(B) TK_COMMA TK_STR_LIT(C).
+								{A= new ExprListNode({B, new StrLitNode(C)});}
 exprs(A) ::= .
 								{A= nullptr;}
 left_val(A) ::= TK_ID(B).

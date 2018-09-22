@@ -27,6 +27,5 @@ int main(int argc, char const *argv[]){
 		Parse(pParser, currentToken, inputStrings.top().get()->c_str());
 	}
 	Parse(pParser, 0, "eof");
-	std::cout<<"Syntax good"<<std::endl;
 	return 0;
 }

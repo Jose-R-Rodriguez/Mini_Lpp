@@ -14,12 +14,17 @@ add_custom_command(
 	OUTPUT parser.cpp
 	COMMAND lemon -oparser.cpp -dparser.hpp -T${PROJECT_SOURCE_DIR}/src/lempar.c ${PROJECT_SOURCE_DIR}/src/generators/parser_gen_lemon.y
 	MAIN_DEPENDENCY ${PROJECT_SOURCE_DIR}/src/generators/parser_gen_lemon.y
+	DEPENDS ${PROJECT_SOURCE_DIR}/src/hdrs/parser_lemon.hpp
 )
 
 add_custom_command(
 	OUTPUT ast.cpp
 	COMMAND treecc -o ast.cpp -h ast.hpp ${PROJECT_SOURCE_DIR}/src/generators/ast.tc
 	MAIN_DEPENDENCY ${PROJECT_SOURCE_DIR}/src/generators/ast.tc
+	DEPENDS ${PROJECT_SOURCE_DIR}/src/generators/ast_generateCode.tc
+	DEPENDS ${PROJECT_SOURCE_DIR}/src/generators/ast_dosemantics.tc
+	DEPENDS ${PROJECT_SOURCE_DIR}/src/generators/ast_nodes.tc
+	DEPENDS ${PROJECT_SOURCE_DIR}/src/generators/ast_tostring.tc
 )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})

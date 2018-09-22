@@ -1,4 +1,5 @@
 %node AstNode %abstract %typedef = {
+	%nocreate string code= {""} ;
 }
 
 %node ProgramNode AstNode = {
@@ -40,6 +41,10 @@
 	AstNode* n;
 }
 
+%node BlockNode				UnaryNode
+%node ElseStatementNode		UnaryNode
+%node ReturnNode			UnaryNode
+%node PrintStatementNode	UnaryNode
 
 %node ListNode AstNode %abstract = {
 	AstNodeList child_list;
@@ -71,6 +76,10 @@
 	bool value;
 }
 
+%node StrLitNode AstNode = {
+	string value;
+}
+
 %node TypedefNode BinaryNode
 
 %node IdNode AstNode = {
@@ -97,10 +106,6 @@
 	AstNode* variableDeclsNode;
 	AstNode* blockNode;
 }
-
-%node BlockNode UnaryNode
-%node ElseStatementNode UnaryNode
-%node ReturnNode UnaryNode
 
 %node IfStatementNode AstNode = {
 	AstNode* expressionNode;

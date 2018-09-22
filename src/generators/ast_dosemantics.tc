@@ -215,7 +215,10 @@ doSemantics(BooleanNode){
 
 doSemantics(IdNode){
 	return true;
+}
 
+doSemantics(StrLitNode){
+	return true;
 }
 
 doSemantics(TypedefArrayNode){
@@ -224,6 +227,10 @@ doSemantics(TypedefArrayNode){
 }
 
 doSemantics(IfStatementNode){
+	return true;
+}
+
+doSemantics(PrintStatementNode){
 	return true;
 }
 

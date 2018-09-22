@@ -1,29 +1,3 @@
-entero x, yy, z
-booleano miBoolean
-
-funcion miFuncion (caracter lmao, booleano xx, entero oo, entero xD) : caracter
-	caracter _michar
-	booleano lol
-	inicio
-		x<-44+22*33
-	fin
-
-procedimiento miotroprocediento
-	inicio fin
-
-procedimiento miProcedimiento 
-	caracter CharENProc
-	inicio fin
-
 inicio
-	si 2+2 entonces
-		yt <- 4444
-	sino
-		tttt<-9999
-	fin si
-	_varia_ble33 <- 4^4
-	para x<-10 hasta 33 haga
-		yy<-33
-	llamar miotroprocediento()
-
+Escriba "Hola Mundo"
 fin

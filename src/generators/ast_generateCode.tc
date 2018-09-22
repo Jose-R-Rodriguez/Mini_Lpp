@@ -1,3 +1,63 @@
 generateCode(AstNode){
-	return 1;
+	return false;
+}
+
+generateCode(ProgramNode){
+	std::ofstream producedCode;
+	std::string vDCode = "";
+	std::string fPDCode= "";
+	producedCode.open("compileable.asm");
+	producedCode<<"global main"<<std::endl<<"extern printf"<<std::endl;
+	if (!mainNode->generateCode(memHandler)){
+		return false;
+	}
+	if (variableDeclsNode){
+		variableDeclsNode->generateCode(memHandler);
+		vDCode= variableDeclsNode->code;
+	}
+	if (functionNProceduresDeclNode){
+		functionNProceduresDeclNode->generateCode(memHandler);
+		fPDCode= functionNProceduresDeclNode->code;
+	}
+	producedCode<<memHandler.generateDataCode()
+		<<"section .text"<<std::endl
+		<<"main:"<<std::endl
+		<<mainNode->code<<std::endl;
+	producedCode.close();
+	return true;
+}
+
+generateCode(BlockNode){
+	std::ostringstream ss;
+	if (!n->generateCode(memHandler)){
+		return false;
+	}
+	
+	ss<<n->code<<"ret";
+	code= ss.str();
+	return true;
+}
+
+generateCode(ListNode){
+	std::ostringstream ss;
+	for (auto &child : child_list){
+		if (child){
+			if (!child->generateCode(memHandler)){
+				return false;
+			}
+			ss<<child->code<<std::endl;
+		}
+	}
+	code= ss.str();
+	return true;
+}
+
+generateCode(PrintStatementNode){
+	std::ostringstream ss;
+	if (!n->generateCode(memHandler)){
+		return false;
+	}
+	ss<<n->code;
+	code= ss.str();
+	return true;
 }

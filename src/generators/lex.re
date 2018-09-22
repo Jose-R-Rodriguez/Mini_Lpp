@@ -82,7 +82,7 @@ int Lexer::lex() {
 			<main>":"					{ return TK_COLON; }
 			<main>"\n"					{ ++currentRow; currentLine=1;return TK_NEW_LINE; }
 			<main>"\r"					{ ++currentRow; currentLine=1;return TK_NEW_LINE; }
-			<main>"\r\n"					{ ++currentRow; currentLine=1;return TK_NEW_LINE; }
+			<main>"\r\n"				{ ++currentRow; currentLine=1;return TK_NEW_LINE; }
 			<main>"\t"					{ continue; }
 			<main>" "					{ continue; }
 			<main>*						{ 

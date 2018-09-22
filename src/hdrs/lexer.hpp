@@ -7,11 +7,6 @@
 #include "common.hpp"
 #include "parser.hpp"
 
-
-enum Token {
-	TK_STR_LIT= 255
-};
-
 static const size_t SIZE = 1024;
 
 
@@ -72,7 +67,7 @@ private:
 		{"fin",				KW_FIN},
 		{"entonces",		KW_ENTONCES},
 		{"si",				KW_SI},
-		//{"escriba",			KW_ESCRIBA},
+		{"escriba",			KW_ESCRIBA},
 		//{"var",				KW_VAR}
 		{"tipo",			KW_TIPO},
 		{"es",				KW_ES},

@@ -71,6 +71,10 @@ toString(BooleanDeclNode){
 	return "booleano";
 }
 
+toString(StrLitNode){
+	return value;
+}
+
 toString(OperationNode){
 	string result= "";
 	if (left){
@@ -182,5 +186,11 @@ toString(TypedefNode){
 	string result= "tipo ";
 	result+= left->toString() + " es ";
 	result+= right->toString();
+	return result;
+}
+
+toString(PrintStatementNode){
+	string result= "escriba ";
+	result += n->toString();
 	return result;
 }
