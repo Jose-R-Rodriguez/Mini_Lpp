@@ -5,6 +5,7 @@
 	#include <iostream>
 	#include <unordered_map>
 	#include <tuple>
+	#include <stack>
 	#include <fstream>
 	#include "parser.hpp"
 	#include "lexer.hpp"

@@ -49,7 +49,8 @@
 %node PrintStatementNode	UnaryNode
 
 %node ListNode AstNode %abstract = {
-	AstNodeList child_list;
+	AstNode* next;
+	AstNodeList myNodes;
 }
 
 %node VariableDeclListNode ListNode

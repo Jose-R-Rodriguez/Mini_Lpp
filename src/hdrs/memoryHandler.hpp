@@ -6,7 +6,7 @@ class MemoryHandler {
 public:
 	MemoryHandler();
 	std::string allocate4BytePrimitive(int);
-	std::string allocateString(const std::string&);
+	std::string allocateString(const std::string&, const std::string type= "str");
 	std::string generateDataCode();
 private:
 	int constCount, tempCount, stringCount;

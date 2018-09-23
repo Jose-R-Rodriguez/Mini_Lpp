@@ -108,34 +108,33 @@ doSemantics(ReturnNode){
 }
 
 doSemantics(VariableDeclListNode){
-	if (child_list[0])
-		child_list[0]->doSemantics();
-	if (child_list[1]->isA(TypedefNode_kind) || child_list[1]->isA(TypedefArrayNode_kind)){
-		child_list[1]->doSemantics();
-	} else if (child_list[1]->isA(IntDeclNode_kind)){
+	if (next)
+		next->doSemantics();
+	if (myNodes[0]->isA(TypedefNode_kind) || myNodes[0]->isA(TypedefArrayNode_kind)){
+		myNodes[0]->doSemantics();
+	} else if (myNodes[0]->isA(IntDeclNode_kind)){
 		temp= type_code::int_type;
 	}
-	else if (child_list[1]->isA(CharDeclNode_kind)){
+	else if (myNodes[0]->isA(CharDeclNode_kind)){
 		temp= type_code::char_type;
 	}
-	else if (child_list[1]->isA(BooleanDeclNode_kind)){
+	else if (myNodes[0]->isA(BooleanDeclNode_kind)){
 		temp= type_code::bool_type;
 	}
-	if (child_list[2]->isA(NumberNode_kind)){
+	if (myNodes[1]->isA(NumberNode_kind)){
 		temp= type_code::array_type;
-		child_list[3]->doSemantics();
+		myNodes[2]->doSemantics();
 	} else {
-		child_list[2]->doSemantics();
-
+		myNodes[1]->doSemantics();
 	}
 	return true;
 
 }
 
 doSemantics(IdListNode){
-	if (child_list[1])
-		child_list[1]->doSemantics();
-	IdNode* name= static_cast<IdNode*>(child_list[0]);
+	if (next)
+		next->doSemantics();
+	IdNode* name= static_cast<IdNode*>(myNodes[0]);
 	if (!currentContext){
 		if (SymbolTable.find(name->value) != SymbolTable.end()){
 			semanticsError("Symbol already defined within function", node);
@@ -159,10 +158,10 @@ doSemantics(NumListNode){
 }
 
 doSemantics(FuncsListNode){
-	if (child_list[0]){
-		child_list[0]->doSemantics();
+	if (next){
+		next->doSemantics();
 	}
-	child_list[1]->doSemantics();
+	myNodes[0]->doSemantics();
 	return true;
 }
 
@@ -175,19 +174,19 @@ doSemantics(ArgListNode){
 		semanticsError("Internal error, didnt set current context before putting arguments in VTable", node);
 		return false;
 	}
-	if (child_list[2]){
-		child_list[2]->doSemantics();
+	if (next){
+		next->doSemantics();
 	}
-	IdNode* name= static_cast<IdNode*>(child_list[1]);
+	IdNode* name= static_cast<IdNode*>(myNodes[1]);
 	if (currentContext->find(name->value) != currentContext->end()){
 		semanticsError("Symbol already defined within function", node);
 		return false;
 	}
-	if (child_list[0]->isA(IntDeclNode_kind)){
+	if (myNodes[0]->isA(IntDeclNode_kind)){
 		(*currentContext)[name->value]= type_code::int_type;
-	} else if (child_list[0]->isA(CharDeclNode_kind)){
+	} else if (myNodes[0]->isA(CharDeclNode_kind)){
 		(*currentContext)[name->value] = type_code::char_type;
-	} else if (child_list[0]->isA(BooleanDeclNode_kind)){
+	} else if (myNodes[0]->isA(BooleanDeclNode_kind)){
 		(*currentContext)[name->value] = type_code::bool_type;
 	}
 	return true;

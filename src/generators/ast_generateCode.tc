@@ -32,48 +32,87 @@ generateCode(BlockNode){
 	if (!n->generateCode(memHandler)){
 		return false;
 	}
-	
 	ss<<n->code<<"ret";
 	code= ss.str();
 	return true;
 }
 
 generateCode(ListNode){
+	return false;
+}
+
+generateCode(StatementListNode){
 	std::ostringstream ss;
-	for (auto &child : child_list){
+	for (auto child : myNodes){
 		if (child){
 			if (!child->generateCode(memHandler)){
 				return false;
 			}
-			ss<<child->code<<std::endl;
+			ss<<child->code;
 		}
 	}
-	code= ss.str();
+	if (next){
+		if (!next->generateCode(memHandler)){
+			return false;
+		}
+		ss<<next->code;
+	}
+	code=ss.str();
 	return true;
 }
 
 generateCode(PrintStatementNode){
 	std::ostringstream ss;
-	if (!n->generateCode(memHandler)){
-		return false;
-	}
-	auto list = static_cast<ExprListNode*>(n);
 	int printAmount= 0;
-	for (auto child : list->child_list ){
-		if (child){
-			if (!child->generateCode(memHandler)){
+	std::string formats= "";
+	std::stack<std::string> places;
+	auto list = static_cast<ExprListNode*>(n);
+	while (list){
+		if (!list->generateCode(memHandler)){
+			return false;
+		}
+		ss<<list->code;
+		++printAmount;
+		for (auto child : list->myNodes){
+			places.push(child->place);
+			if (child->type == type_code::string_lit_type){
+				formats+= "%s";
+			} else if (child->type == type_code::bool_type){
+				formats+= "%d";
+			} else if (child->type == type_code::int_type){
+				formats+= "%d";
+			} else if (child->type == type_code::char_type){
+				formats+= "%c";
+			} else if (child->type == type_code::error_type) {
+				std::cout<<"Expr in print without type or with error type: "<<std::endl;
 				return false;
 			}
-			ss<<child->code<<std::endl;
-			printAmount++;
 		}
+		list=static_cast<ExprListNode*>(list->next);
 	}
+	auto printingStrPlace= memHandler.allocateString(formats);
 	ss<<n->code;
+	while (!places.empty()) {
+		ss<<"push "<<places.top()<<std::endl;
+		places.pop();
+	}
+	++printAmount;
+	ss<<"push "<<printingStrPlace<<std::endl
+		<<"call printf"<<std::endl
+		<<"add esp, "<< printAmount*4<<std::endl;
 	code= ss.str();
 	return true;
 }
 
 generateCode(ExprListNode){
+	std::ostringstream ss;
+	for (auto& child : myNodes){
+		if (!child->generateCode(memHandler)){
+			return false;
+		}
+		ss<<child->code;
+	}
+	code= ss.str();
 	return true;
 }
 

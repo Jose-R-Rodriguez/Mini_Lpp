@@ -25,40 +25,6 @@ toString(ProgramNode){
 	return result;
 }
 
-toString(ListNode){
-	std::string result= "";
-	for (auto& child : child_list){
-		if (child){
-			result+= child->toString() + node->getDelimiter();
-		}
-	}
-	result.pop_back();
-	return result;
-}
-
-toString(ArgListNode){
-	std::string result= "";
-	if (child_list[0])
-		result+= child_list[0]->toString() + " ";
-	result+= child_list[1]->toString() + ",";
-	if (child_list[2])
-		result+= child_list[2]->toString();
-	return result;
-}
-
-toString(VariableDeclListNode){
-	std::string result= "";
-	for (int x = 0 ; x < child_list.size(); x++){
-		if (x==2){
-			result+= " ";
-		}
-		if (child_list[x])
-			result+= child_list[x]->toString();
-	}
-	result+= node->getDelimiter();
-	return result;
-}
-
 toString(IntDeclNode){
 	return "entero";
 }
@@ -192,5 +158,40 @@ toString(TypedefNode){
 toString(PrintStatementNode){
 	string result= "escriba ";
 	result += n->toString();
+	return result;
+}
+
+toString(VariableDeclListNode){
+	string result= "";
+	return result;
+}
+
+toString(IdListNode){
+	string result= "";
+	return result;
+}
+
+toString(NumListNode){
+	string result= "";
+	return result;
+}
+
+toString(FuncsListNode){
+	string result= "";
+	return result;
+}
+
+toString(StatementListNode){
+	string result= "";
+	return result;
+}
+
+toString(ArgListNode){
+	string result= "";
+	return result;
+}
+
+toString(ExprListNode){
+	string result= "";
 	return result;
 }
