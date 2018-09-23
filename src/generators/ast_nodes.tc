@@ -1,5 +1,7 @@
 %node AstNode %abstract %typedef = {
 	%nocreate string code= {""} ;
+	%nocreate string place= {""};
+	%nocreate type_code type= {type_code::error_type};
 }
 
 %node ProgramNode AstNode = {
@@ -51,7 +53,6 @@
 }
 
 %node VariableDeclListNode ListNode
-
 %node IdListNode ListNode
 %node NumListNode ListNode
 %node FuncsListNode ListNode

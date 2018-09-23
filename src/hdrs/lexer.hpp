@@ -20,11 +20,10 @@ struct CaseInsensitiveComparator{
 };
 struct CaseIHash{
 	size_t operator()(const std::string& Key) const {
-		size_t hash= 0;
-		for (int letter= 0; letter < Key.length(); ++letter){
-			hash+=toupper(Key[letter]);
-		}
-		return hash;
+		std::string temp1(Key.length(), ' ');
+		std::transform(Key.begin(), Key.end(), temp1.begin(), toupper);
+		std::hash<std::string> str_hash;
+		return str_hash(temp1);
 	};
 };
 struct CaseIPredicate{
@@ -32,8 +31,7 @@ struct CaseIPredicate{
 		return Left.size() == Right.size() 
 			&& std::equal ( Left.begin() , Left.end() , Right.begin() ,[]( char a , char b ){
 				return toupper(a) == toupper(b); 
-			}
-		);
+			});
 	}
 };
 struct input_t {

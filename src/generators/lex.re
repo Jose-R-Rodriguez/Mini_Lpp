@@ -92,15 +92,15 @@ int Lexer::lex() {
 					} else{return TK_EOF;} 
 				}
 
-			<main>"\""					{lexeme= ""; goto yyc_str_lit;}
+			<main>"\""					{lexeme=*in.cur; goto yyc_str_lit;}
 			<main>"//"					{lexeme= ""; goto yyc_line_comment;}
 			<main>"/*"					{lexeme= ""; goto yyc_block_comment;}
 			<line_comment>.				:=>line_comment
 			<line_comment>"\n"			:=>main
 			<block_comment>.			:=>block_comment
 			<block_comment>"*/"			:=>main
-			<str_lit>[^"]*				{lexeme+=*in.tok; goto yyc_str_lit;}
-			<str_lit>"\""				{return TK_STR_LIT;}
+			<str_lit>[^"]				{lexeme+=*in.cur;goto yyc_str_lit;}
+			<str_lit>"\""				{lexeme.pop_back();return TK_STR_LIT;}
 		*/
 	}
 };

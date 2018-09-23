@@ -57,7 +57,28 @@ generateCode(PrintStatementNode){
 	if (!n->generateCode(memHandler)){
 		return false;
 	}
+	auto list = static_cast<ExprListNode*>(n);
+	int printAmount= 0;
+	for (auto child : list->child_list ){
+		if (child){
+			if (!child->generateCode(memHandler)){
+				return false;
+			}
+			ss<<child->code<<std::endl;
+			printAmount++;
+		}
+	}
 	ss<<n->code;
 	code= ss.str();
+	return true;
+}
+
+generateCode(ExprListNode){
+	return true;
+}
+
+generateCode(StrLitNode){
+	place= memHandler.allocateString(value);
+	type= type_code::string_lit_type;
 	return true;
 }

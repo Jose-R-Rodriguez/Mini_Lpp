@@ -72,6 +72,7 @@ doSemantics(ExponentNode){
 }
 
 doSemantics(AndNode){
+	type= type_code::bool_type;
 	return true;
 }
 
@@ -82,8 +83,19 @@ doSemantics(ModulusNode){
 doSemantics(TypedefNode){
 	return true;
 }
-
+doSemantics(BinaryNode){
+	if (left->type == right->type){
+		node->type= left->type;
+	} else {
+		node->type= type_code::error_type;
+	}
+	return true;
+}
 doSemantics(BlockNode){
+	if (!n->doSemantics()){
+		return false;
+	}
+	type= n->type;
 	return true;
 }
 
@@ -199,16 +211,19 @@ doSemantics(CharDeclNode){
 }
 
 doSemantics(NumberNode){
+	type= type_code::int_type;
 	return true;
 
 }
 
 doSemantics(CharacterNode){
+	type= type_code::char_type;
 	return true;
 
 }
 
 doSemantics(BooleanNode){
+	type= type_code::bool_type;
 	return true;
 
 }

@@ -18,7 +18,8 @@
 		int_type,
 		id_type,
 		func_type,
-		array_type
+		array_type,
+		string_lit_type
 	};
 
 	class AstNode;
