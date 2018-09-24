@@ -40,7 +40,8 @@
 %type exprs{AstNode*}
 %type languageStatements{AstNode*}
 %type printStatement{AstNode*}
-
+%type do_while_until_statement{AstNode*}
+%type while_statement{AstNode*}
 
 
 
@@ -145,6 +146,10 @@ statement(A) ::= if_statement(B).
 								{A= B;}
 statement(A) ::= for_statement(B).
 								{A= B;}
+statement(A) ::= while_statement(B).
+								{A= B;}
+statement(A) ::= do_while_until_statement(B).
+								{A= B;}
 statement(A) ::= function_call(B).
 								{A= B;}
 statement(A) ::= languageStatements(B).
@@ -163,8 +168,12 @@ else_statement(A) ::= KW_SINO TK_NEW_LINE statement_list(B).
 								{A= B;}
 else_statement(A) ::= .									
 								{A= nullptr;}
-for_statement(A) ::= KW_PARA assignment(B) KW_HASTA expr(C) KW_HAGA.	
-								{A= new ForStatementNode(B, C);}
+for_statement(A) ::= KW_PARA assignment(B) KW_HASTA expr(C) KW_HAGA statement_list(D) KW_FIN KW_PARA.
+								{A= new ForStatementNode(B, C, D);}
+while_statement(A) ::= KW_MIENTRAS expr(B) KW_HAGA one_more_eol statement_list(C) KW_FIN KW_MIENTRAS.
+								{A= new WhileStatementNode(B, C);}
+do_while_until_statement(A) ::= KW_REPITA one_more_eol statement_list(B) KW_HASTA expr(C).
+								{A= new DoWhileUntilStatementNode(B, C);}
 function_call(A) ::= KW_LLAMAR TK_ID(B) opt_params(C).
 								{A= new FuncCallNode(new IdNode(B), C);}
 opt_params(A) ::= TK_OPEN_PAR expr_list(C) TK_CLOSE_PAR.

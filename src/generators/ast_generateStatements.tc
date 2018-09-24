@@ -43,6 +43,7 @@ generateCode(AssignmentNode){
 	if (!right->generateCode(memHandler)){
 		return false;
 	}
+	place= left->place;
 	ss
 		<<right->code
 		<<left->code
@@ -54,11 +55,87 @@ generateCode(AssignmentNode){
 
 generateCode(ForStatementNode){
 	std::ostringstream ss;
+	std::string statementListCode= "";
+	if (!beginNode->generateCode(memHandler)){
+		return false;
+	}
+	if (!endConditionNode->generateCode(memHandler)){
+		return false;
+	}
+	if (statementListNode){
+		if (!statementListNode->generateCode(memHandler)){
+			return false;
+		}
+		statementListCode= statementListNode->code;
+	}
+	std::string forLabel= memHandler.getNewLabel();
+	std::string exitForLabel= memHandler.getNewLabel();
+	ss
+		<<beginNode->code
+		<<endConditionNode->code
+		<<forLabel<<":"<<std::endl
+		<<"mov eax, dword["<<beginNode->place<<"]"<<std::endl
+		<<"cmp eax, dword["<<endConditionNode->place<<"]"<<std::endl
+		<<"jl "<<exitForLabel<<std::endl
+		<<statementListCode<<std::endl
+		<<"dec dword["<<beginNode->place<<"]"<<std::endl
+		<<"jmp "<<forLabel<<std::endl
+		<<exitForLabel<<":"<<std::endl;
+	code= ss.str();
+	return true;
+}
+
+generateCode(WhileStatementNode){
+	std::ostringstream ss;
 	if (!left->generateCode(memHandler)){
 		return false;
 	}
 	if (!right->generateCode(memHandler)){
 		return false;
 	}
+	if (left->type != type_code::bool_type){
+		std::cout<<"Found non boolean in while"<<std::endl;
+		node->type= type_code::error_type;
+		return false;
+	}
+	std::string whileLabel= memHandler.getNewLabel();
+	std::string exitWhileLabel= memHandler.getNewLabel();
+	ss
+		<<whileLabel<<":"<<std::endl
+		<<left->code
+		<<"mov eax, dword["<<left->place<<"]"<<std::endl
+		<<"cmp eax, 0"<<std::endl
+		<<"je "<<exitWhileLabel<<std::endl
+		<<right->code<<std::endl
+		<<"jmp "<<whileLabel<<std::endl
+		<<exitWhileLabel<<":"<<std::endl;
+	code= ss.str();
+	return true;
+}
+
+generateCode(DoWhileUntilStatementNode){
+	std::ostringstream ss;
+	if (!left->generateCode(memHandler)){
+		return false;
+	}
+	if (!right->generateCode(memHandler)){
+		return false;
+	}
+	if (right->type != type_code::bool_type){
+		std::cout<<"Found non boolean in while"<<std::endl;
+		node->type= type_code::error_type;
+		return false;
+	}
+	std::string whileLabel= memHandler.getNewLabel();
+	std::string exitWhileLabel= memHandler.getNewLabel();
+	ss
+		<<whileLabel<<":"<<std::endl
+		<<left->code
+		<<"mov eax, dword["<<right->place<<"]"<<std::endl
+		<<"cmp eax, 1"<<std::endl
+		<<"je "<<exitWhileLabel<<std::endl
+		<<"jmp "<<whileLabel<<std::endl
+		<<exitWhileLabel<<":"<<std::endl;
+	code= ss.str();
 	return true;
 }

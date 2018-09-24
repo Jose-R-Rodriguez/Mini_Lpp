@@ -45,7 +45,7 @@ Inicio
 		Si minas[cx,cy] = -3 Entonces
 			 Retorne 2
 		Fin Si
-		Si minas[cx,cy] > 0 Entonces //Destapo un número
+		Si minas[cx,cy] > 0 Entonces //Destapo un nï¿½mero
 			llamar escribiir(cx, cy, ' ', minas[cx, cy], 1)
 			minas[cx, cy] <- -3 //-3 Significa que es una coordenada destapada
 			Retorne 0

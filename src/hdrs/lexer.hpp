@@ -88,8 +88,8 @@ private:
 		{"div",				TK_DIV},
 		{"y",				TK_Y},
 		{"O",				TK_O},
-		//{"mientras",		KW_MIENTRAS},
-		//{"repita",			KW_REPITA},
+		{"mientras",		KW_MIENTRAS},
+		{"repita",			KW_REPITA},
 		
 	};
 };

@@ -195,3 +195,18 @@ toString(ExprListNode){
 	string result= "";
 	return result;
 }
+
+toString(WhileStatementNode){
+	string result= "mientras ";
+	result+= left->toString() + " haga";
+	result+= right->toString() + "\n";
+	result+= "fin mientras"
+	return result;
+}
+
+toString(DoWhileUntilStatementNode){
+	string result= "repita \n";
+	result+= left->toString();
+	result+= "hasta " + right->toString() + "\n";
+	return result;
+}

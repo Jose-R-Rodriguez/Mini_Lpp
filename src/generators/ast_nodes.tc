@@ -17,11 +17,12 @@
 }
 
 
-%node ForStatementNode 	BinaryNode
-%node FuncCallNode 		BinaryNode
-%node ArrayAccessNode 	BinaryNode
-%node FunctionUseNode 	BinaryNode
-%node AssignmentNode 	BinaryNode
+%node FuncCallNode 				BinaryNode
+%node ArrayAccessNode 			BinaryNode
+%node FunctionUseNode 			BinaryNode
+%node AssignmentNode 			BinaryNode
+%node WhileStatementNode		BinaryNode
+%node DoWhileUntilStatementNode BinaryNode
 
 %node OperationNode BinaryNode %abstract
 
@@ -113,4 +114,10 @@
 	AstNode* expressionNode;
 	AstNode* statementListNode;
 	AstNode* elseNode;
+}
+
+%node ForStatementNode 	AstNode = {
+	AstNode* beginNode;
+	AstNode* endConditionNode;
+	AstNode* statementListNode;
 }
