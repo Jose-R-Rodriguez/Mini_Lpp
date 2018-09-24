@@ -6,7 +6,7 @@ generateCode(AdditionNode){
 	if (!right->generateCode(memHandler)){
 		return false;
 	}
-	if (left->type == right->type){
+	if (left->type == right->type && left->type == type_code::int_type){
 		type= left->type;
 	} else {
 		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
@@ -31,7 +31,7 @@ generateCode(SubtractionNode){
 	if (!right->generateCode(memHandler)){
 		return false;
 	}
-	if (left->type == right->type){
+	if (left->type == right->type && left->type == type_code::int_type){
 		type= left->type;
 	} else {
 		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
@@ -56,7 +56,7 @@ generateCode(MultiplicationNode){
 	if (!right->generateCode(memHandler)){
 		return false;
 	}
-	if (left->type == right->type){
+	if (left->type == right->type && left->type == type_code::int_type){
 		type= left->type;
 	} else {
 		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
@@ -81,7 +81,7 @@ generateCode(DivisionNode){
 	if (!right->generateCode(memHandler)){
 		return false;
 	}
-	if (left->type == right->type){
+	if (left->type == right->type && left->type == type_code::int_type){
 		type= left->type;
 	} else {
 		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
@@ -108,7 +108,7 @@ generateCode(ModulusNode){
 	if (!right->generateCode(memHandler)){
 		return false;
 	}
-	if (left->type == right->type){
+	if (left->type == right->type && left->type == type_code::int_type){
 		type= left->type;
 	} else {
 		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
@@ -185,7 +185,7 @@ generateCode(ExponentNode){
 	if (!right->generateCode(memHandler)){
 		return false;
 	}
-	if (left->type == right->type){
+	if (left->type == right->type && left->type == type_code::int_type){
 		type= left->type;
 	} else {
 		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
@@ -229,7 +229,7 @@ generateCode(LessThanNode){
 		return false;
 	}
 	if (left->type == right->type){
-		type= left->type;
+		type= type_code::bool_type;
 	} else {
 		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
 		return false;
@@ -254,7 +254,7 @@ generateCode(GrtrThanNode){
 		return false;
 	}
 	if (left->type == right->type){
-		type= left->type;
+		type= type_code::bool_type;
 	} else {
 		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
 		return false;
@@ -279,7 +279,7 @@ generateCode(GrtrThanEtNode){
 		return false;
 	}
 	if (left->type == right->type){
-		type= left->type;
+		type= type_code::bool_type;
 	} else {
 		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
 		return false;
@@ -304,7 +304,7 @@ generateCode(LessThanEtNode){
 		return false;
 	}
 	if (left->type == right->type){
-		type= left->type;
+		type= type_code::bool_type;
 	} else {
 		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
 		return false;
@@ -329,7 +329,7 @@ generateCode(EqualsNode){
 		return false;
 	}
 	if (left->type == right->type){
-		type= left->type;
+		type= type_code::bool_type;
 	} else {
 		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
 		return false;

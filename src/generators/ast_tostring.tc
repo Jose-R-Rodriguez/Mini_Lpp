@@ -112,10 +112,11 @@ toString(IfStatementNode){
 }
 
 toString(ForStatementNode){
-	string result= "Para ";
-	result+= left->toString() + " hasta ";
-	result+= right->toString();
-	result+= " haga ";
+	string result= "Para \n";
+	result+= beginNode->toString() + " hasta ";
+	result+= endConditionNode->toString();
+	result+= " haga \n";
+	result+= statementListNode->toString();
 	return result;
 }
 
@@ -200,7 +201,7 @@ toString(WhileStatementNode){
 	string result= "mientras ";
 	result+= left->toString() + " haga";
 	result+= right->toString() + "\n";
-	result+= "fin mientras"
+	result+= "fin mientras";
 	return result;
 }
 

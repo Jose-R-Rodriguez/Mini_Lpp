@@ -1,9 +1,16 @@
 Entero miEntero, x, yl
 inicio
 /*Escriba "Hola Mundo", " este es otro mensaje "*/
+miEntero<-44
 si (miEntero = 0)
 entonces
 miEntero <- 99+1
 fin si
-escriba miEntero
+
+miEntero<-5
+repita
+Escriba miEntero,  "  ---- "
+miEntero<-miEntero-1
+hasta miEntero=0
+
 fin
