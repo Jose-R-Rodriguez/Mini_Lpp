@@ -1,3 +1,5 @@
+Entero miEntero, x, yl
 inicio
-Escriba "Hola Mundo"
+Escriba "Hola Mundo", " este es otro mensaje "
+Escriba "printing out a number ", 3
 fin

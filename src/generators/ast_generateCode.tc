@@ -12,11 +12,15 @@ generateCode(ProgramNode){
 		return false;
 	}
 	if (variableDeclsNode){
-		variableDeclsNode->generateCode(memHandler);
+		if(!variableDeclsNode->generateCode(memHandler)){
+			return false;
+		}
 		vDCode= variableDeclsNode->code;
 	}
 	if (functionNProceduresDeclNode){
-		functionNProceduresDeclNode->generateCode(memHandler);
+		if(!functionNProceduresDeclNode->generateCode(memHandler)){
+			return false;
+		}
 		fPDCode= functionNProceduresDeclNode->code;
 	}
 	producedCode<<memHandler.generateDataCode()
@@ -43,6 +47,12 @@ generateCode(ListNode){
 
 generateCode(StatementListNode){
 	std::ostringstream ss;
+	if (next){
+		if (!next->generateCode(memHandler)){
+			return false;
+		}
+		ss<<next->code;
+	}
 	for (auto child : myNodes){
 		if (child){
 			if (!child->generateCode(memHandler)){
@@ -50,12 +60,6 @@ generateCode(StatementListNode){
 			}
 			ss<<child->code;
 		}
-	}
-	if (next){
-		if (!next->generateCode(memHandler)){
-			return false;
-		}
-		ss<<next->code;
 	}
 	code=ss.str();
 	return true;
@@ -74,14 +78,17 @@ generateCode(PrintStatementNode){
 		ss<<list->code;
 		++printAmount;
 		for (auto child : list->myNodes){
-			places.push(child->place);
 			if (child->type == type_code::string_lit_type){
+				places.push(child->place);
 				formats+= "%s";
 			} else if (child->type == type_code::bool_type){
+				places.push("dword["+child->place+"]");
 				formats+= "%d";
 			} else if (child->type == type_code::int_type){
+				places.push("dword["+child->place+"]");
 				formats+= "%d";
 			} else if (child->type == type_code::char_type){
+				places.push("dword["+child->place+"]");
 				formats+= "%c";
 			} else if (child->type == type_code::error_type) {
 				std::cout<<"Expr in print without type or with error type: "<<std::endl;
@@ -97,7 +104,8 @@ generateCode(PrintStatementNode){
 		places.pop();
 	}
 	++printAmount;
-	ss<<"push "<<printingStrPlace<<std::endl
+	ss
+		<<"push "<<printingStrPlace<<std::endl
 		<<"call printf"<<std::endl
 		<<"add esp, "<< printAmount*4<<std::endl;
 	code= ss.str();
@@ -121,3 +129,11 @@ generateCode(StrLitNode){
 	type= type_code::string_lit_type;
 	return true;
 }
+
+generateCode(NumberNode){
+	place= memHandler.allocateInt(value);
+	type= type_code::int_type;
+	return true;
+}
+%include "ast_OperationsCode.tc"
+%include "ast_generateVarDecl.tc"

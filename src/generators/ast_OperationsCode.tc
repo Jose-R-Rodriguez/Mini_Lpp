@@ -1,0 +1,128 @@
+generateCode(AdditionNode){
+	std::ostringstream ss;
+	if (!left->generateCode(memHandler)){
+		return false;
+	}
+	if (!right->generateCode(memHandler)){
+		return false;
+	}
+	if (left->type == right->type){
+		type= left->type;
+	} else {
+		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
+		return false;
+	}
+	place= memHandler.allocateInt(0, "$temp");
+	ss
+		<<left->code
+		<<right->code
+		<<"mov eax, dword["<<left->place<<"]"<<std::endl
+		<<"add eax, dword["<<right->place<<"]"<<std::endl
+		<<"mov dword["<<node->place<<"]"<<", eax"<<std::endl;
+	code= ss.str();
+	return true;
+}
+
+generateCode(SubtractionNode){
+	std::ostringstream ss;
+	if (!left->generateCode(memHandler)){
+		return false;
+	}
+	if (!right->generateCode(memHandler)){
+		return false;
+	}
+	if (left->type == right->type){
+		type= left->type;
+	} else {
+		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
+		return false;
+	}
+	place= memHandler.allocateInt(0, "$temp");
+	ss
+		<<left->code
+		<<right->code
+		<<"mov eax, dword["<<left->place<<"]"<<std::endl
+		<<"sub eax, dword["<<right->place<<"]"<<std::endl
+		<<"mov dword["<<node->place<<"]"<<", eax"<<std::endl;
+	code= ss.str();
+	return true;
+}
+
+generateCode(MultiplicationNode){
+	std::ostringstream ss;
+	if (!left->generateCode(memHandler)){
+		return false;
+	}
+	if (!right->generateCode(memHandler)){
+		return false;
+	}
+	if (left->type == right->type){
+		type= left->type;
+	} else {
+		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
+		return false;
+	}
+	place= memHandler.allocateInt(0, "$temp");
+	ss
+		<<left->code
+		<<right->code
+		<<"mov eax, dword["<<left->place<<"]"<<std::endl
+		<<"imul eax, dword["<<right->place<<"]"<<std::endl
+		<<"mov dword["<<node->place<<"]"<<", eax"<<std::endl;
+	code= ss.str();
+	return true;
+}
+
+generateCode(DivisionNode){
+	std::ostringstream ss;
+	if (!left->generateCode(memHandler)){
+		return false;
+	}
+	if (!right->generateCode(memHandler)){
+		return false;
+	}
+	if (left->type == right->type){
+		type= left->type;
+	} else {
+		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
+		return false;
+	}
+	place= memHandler.allocateInt(0, "$temp");
+	ss
+		<<left->code
+		<<right->code
+		<<"mov eax, dword["<<left->place<<"]"<<std::endl
+		<<"mov ebx, dword["<<right->place<<"]"<<std::endl
+		<<"cdq"<<std::endl
+		<<"idiv ebx"<<std::endl
+		<<"mov dword["<<node->place<<"]"<<", eax"<<std::endl;
+	code= ss.str();
+	return true;
+}
+
+generateCode(ModulusNode){
+	std::ostringstream ss;
+	if (!left->generateCode(memHandler)){
+		return false;
+	}
+	if (!right->generateCode(memHandler)){
+		return false;
+	}
+	if (left->type == right->type){
+		type= left->type;
+	} else {
+		std::cout<<"Error_type/inconsistent types detected in addition node"<<std::endl;
+		return false;
+	}
+	place= memHandler.allocateInt(0, "$temp");
+	ss
+		<<left->code
+		<<right->code
+		<<"mov eax, dword["<<left->place<<"]"<<std::endl
+		<<"mov ebx, dword["<<right->place<<"]"<<std::endl
+		<<"cdq"<<std::endl
+		<<"idiv ebx"<<std::endl
+		<<"mov dword["<<node->place<<"]"<<", edx"<<std::endl;
+	code= ss.str();
+	return true;
+}

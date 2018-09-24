@@ -1,0 +1,42 @@
+generateCode(VariableDeclListNode){
+	if (next){
+		if (!next->generateCode(memHandler)){
+			return false;
+		}
+	}
+	if (myNodes.size() == 2){
+		if(!myNodes[0]->generateCode(memHandler)){
+			return false;
+		}
+		if(!myNodes[1]->generateCode(memHandler)){
+			return false;
+		}
+		auto list= static_cast<IdListNode*>(myNodes[1]);
+		while(list){
+			IdNode* idNode= static_cast<IdNode*>(list->myNodes[0]);
+			memHandler.allocateInt(0, idNode->value);
+			idNode->type=myNodes[0]->type;
+			list=static_cast<IdListNode*>(list->next);
+		}
+	}
+	return true;
+}
+
+generateCode(IdListNode){
+	return true;
+}
+
+generateCode (IntDeclNode){
+	type= type_code::int_type;
+	return true;
+}
+
+generateCode (CharDeclNode){
+	type= type_code::char_type;
+	return true;
+}
+
+generateCode (BooleanDeclNode){
+	type= type_code::bool_type;
+	return true;
+}
