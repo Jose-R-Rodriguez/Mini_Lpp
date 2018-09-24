@@ -93,12 +93,12 @@ int Lexer::lex() {
 				}
 
 			<main>"\""					{lexeme=*in.cur; goto yyc_str_lit;}
-			<main>"//"					{lexeme= ""; goto yyc_line_comment;}
+			<main>"//"					{std::cout<<"DETECTED A LINE COMMENT"<<std::endl; lexeme= ""; goto yyc_line_comment;}
 			<main>"/*"					{lexeme= ""; goto yyc_block_comment;}
 			<line_comment>.				:=>line_comment
-			<line_comment>"\n"			:=>main
+			<line_comment>"\n"			{continue;}
 			<block_comment>.			:=>block_comment
-			<block_comment>"*/"			:=>main
+			<block_comment>"*/"			{continue;}
 			<str_lit>[^"]				{lexeme+=*in.cur;goto yyc_str_lit;}
 			<str_lit>"\""				{lexeme.pop_back();return TK_STR_LIT;}
 		*/

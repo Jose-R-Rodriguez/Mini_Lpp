@@ -1,5 +1,10 @@
 Entero miEntero, x, yl
 inicio
-Escriba "Hola Mundo", " este es otro mensaje "
-Escriba "printing out a number ", 3
+/*Escriba "Hola Mundo", " este es otro mensaje "*/
+escriba " 4=4 ", 4=4
+escriba " 4>=4 ", 4>=4
+escriba " 4<=4 ", 4<=4
+escriba " 4>4 ", 4>4
+escriba " 4<4 ", 4<4
+escriba " 1=4 ", 1=4
 fin

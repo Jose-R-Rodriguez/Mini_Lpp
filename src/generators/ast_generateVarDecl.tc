@@ -11,12 +11,17 @@ generateCode(VariableDeclListNode){
 		if(!myNodes[1]->generateCode(memHandler)){
 			return false;
 		}
-		auto list= static_cast<IdListNode*>(myNodes[1]);
-		while(list){
-			IdNode* idNode= static_cast<IdNode*>(list->myNodes[0]);
-			memHandler.allocateInt(0, idNode->value);
-			idNode->type=myNodes[0]->type;
-			list=static_cast<IdListNode*>(list->next);
+		IdListNode* idList= static_cast<IdListNode*>(myNodes[1]);
+		while(idList){
+			for (auto child : idList->myNodes){
+				if(!memHandler.allocateVariable(
+						static_cast<int>(myNodes[0]->type),
+						static_cast<IdNode*>(child)->value)){
+					std::cout<<"Duplicate somewhere"<<std::endl;
+					return false;
+				}
+			}
+			idList=static_cast<IdListNode*>(idList->next);
 		}
 	}
 	return true;

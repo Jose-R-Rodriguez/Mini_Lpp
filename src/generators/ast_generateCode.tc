@@ -8,9 +8,6 @@ generateCode(ProgramNode){
 	std::string fPDCode= "";
 	producedCode.open("compileable.asm");
 	producedCode<<"global main"<<std::endl<<"extern printf"<<std::endl;
-	if (!mainNode->generateCode(memHandler)){
-		return false;
-	}
 	if (variableDeclsNode){
 		if(!variableDeclsNode->generateCode(memHandler)){
 			return false;
@@ -22,6 +19,9 @@ generateCode(ProgramNode){
 			return false;
 		}
 		fPDCode= functionNProceduresDeclNode->code;
+	}
+	if (!mainNode->generateCode(memHandler)){
+		return false;
 	}
 	producedCode<<memHandler.generateDataCode()
 		<<"section .text"<<std::endl
@@ -98,7 +98,7 @@ generateCode(PrintStatementNode){
 		list=static_cast<ExprListNode*>(list->next);
 	}
 	auto printingStrPlace= memHandler.allocateString(formats);
-	ss<<n->code;
+	//ss<<n->code;
 	while (!places.empty()) {
 		ss<<"push "<<places.top()<<std::endl;
 		places.pop();
@@ -127,6 +127,12 @@ generateCode(ExprListNode){
 generateCode(StrLitNode){
 	place= memHandler.allocateString(value);
 	type= type_code::string_lit_type;
+	return true;
+}
+
+generateCode(IdNode){
+	place= value;
+	type= static_cast<type_code>(memHandler.getVariableType(value));
 	return true;
 }
 
