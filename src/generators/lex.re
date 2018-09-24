@@ -56,7 +56,7 @@ int Lexer::lex() {
 			re2c:define:YYSETCONDITION:naked = 1;
 
 			id=			[a-zA-Z_][a-zA-Z0-9_]*;
-			dec_num=	[1-9][0-9]*;
+			dec_num=	[0-9]+;
 
 			<!main>						{ int yylen= in.cur-in.tok; lexeme = std::string(in.tok, yylen); currentLine+= yylen;}
 			<main>id      				{ return (Keywords.find(lexeme) == Keywords.end()) ? TK_ID : Keywords[lexeme]; }

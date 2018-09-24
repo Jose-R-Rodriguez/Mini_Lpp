@@ -27,6 +27,7 @@ add_custom_command(
 	DEPENDS ${PROJECT_SOURCE_DIR}/src/generators/ast_tostring.tc
 	DEPENDS ${PROJECT_SOURCE_DIR}/src/generators/ast_OperationsCode.tc
 	DEPENDS ${PROJECT_SOURCE_DIR}/src/generators/ast_generateVarDecl.tc
+	DEPENDS ${PROJECT_SOURCE_DIR}/src/generators/ast_generateStatements.tc
 )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})

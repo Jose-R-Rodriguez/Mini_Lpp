@@ -143,3 +143,4 @@ generateCode(NumberNode){
 }
 %include "ast_OperationsCode.tc"
 %include "ast_generateVarDecl.tc"
+%include "ast_generateStatements.tc"

@@ -1,0 +1,64 @@
+generateCode(IfStatementNode){
+	std::ostringstream ss;
+	std::string elseCode= "";
+	std::string ifCode= "";
+	if (!expressionNode->generateCode(memHandler)){
+		return false;
+	}
+	if (statementListNode){
+		if (!statementListNode->generateCode(memHandler)){
+			return false;
+		}
+		ifCode= statementListNode->code;
+	}
+	if (elseNode){
+		if (!elseNode->generateCode(memHandler)){
+			return false;
+		}
+		elseCode= elseNode->code;
+	}
+	std::string ifLabel= memHandler.getNewLabel();
+	std::string elseLabel= memHandler.getNewLabel();
+	std::string ifEndLabel= memHandler.getNewLabel();
+	ss
+		<<expressionNode->code<<std::endl
+		<<ifLabel<<":"<<std::endl
+		<<"cmp dword["<<expressionNode->place<<"], 0"<<std::endl
+		<<"je "<<elseLabel<<std::endl
+		<<ifCode<<std::endl
+		<<"jmp "<<ifEndLabel<<std::endl
+		<<elseLabel<<":"<<std::endl
+		<<elseCode<<std::endl
+		<<"jmp "<<ifEndLabel<<std::endl
+		<<ifEndLabel<<":"<<std::endl;
+	code= ss.str();
+	return true;
+}
+
+generateCode(AssignmentNode){
+	std::ostringstream ss;
+	if (!left->generateCode(memHandler)){
+		return false;
+	}
+	if (!right->generateCode(memHandler)){
+		return false;
+	}
+	ss
+		<<right->code
+		<<left->code
+		<<"mov eax, dword["<<right->place<<"]"<<std::endl
+		<<"mov dword["<<left->place<<"], eax"<<std::endl;
+	code= ss.str();
+	return true;
+}
+
+generateCode(ForStatementNode){
+	std::ostringstream ss;
+	if (!left->generateCode(memHandler)){
+		return false;
+	}
+	if (!right->generateCode(memHandler)){
+		return false;
+	}
+	return true;
+}

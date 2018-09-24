@@ -1,10 +1,9 @@
 Entero miEntero, x, yl
 inicio
 /*Escriba "Hola Mundo", " este es otro mensaje "*/
-escriba " 4=4 ", 4=4
-escriba " 4>=4 ", 4>=4
-escriba " 4<=4 ", 4<=4
-escriba " 4>4 ", 4>4
-escriba " 4<4 ", 4<4
-escriba " 1=4 ", 1=4
+si (miEntero = 0)
+entonces
+miEntero <- 99+1
+fin si
+escriba miEntero
 fin
